@@ -1,0 +1,12 @@
+.main-options-container {
+    background: rgb(37, 37, 37);
+    border-radius: 7px;
+    border: black, solid, 2px;
+    height: 200px;
+    width: 400px;
+}
+
+.to-center {
+    height: 80%;
+    width: 100%;
+}

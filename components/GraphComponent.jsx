@@ -5,12 +5,14 @@ import SVGButtonArray from "./SVGButtonArray";
 import Dropdown from "./Dropdown";
 import { AppContext } from "../src/AppContext";
 import { svgData } from "../assets/SVGButtonData";
+import { useRef } from "react";
 
 function GraphComponent() {
     const { mySVG, setMySVG } = useContext(AppContext);
 
     const [graphType, setGraphType] = useState("Cross");
     const [gridOn, setGridOn] = useState(false);
+    const functionInput = useRef(``);
 
     function handleGraphTypeChange(event) {
         setGraphType(event.target.value);
@@ -22,7 +24,11 @@ function GraphComponent() {
     }
 
     async function GenerateGraph() {
-        const graphData = { Type: graphType, Grid: gridOn };
+        const graphData = {
+            Type: graphType,
+            Grid: gridOn,
+            function: functionInput.current.value,
+        };
         console.log(`Graph data: ${JSON.stringify(graphData)}`);
 
         const response = await fetch("http://localhost:3000/api/getGraphSVG", {
@@ -32,6 +38,8 @@ function GraphComponent() {
                 "Content-Type": "application/json",
             },
         });
+
+        console.log(functionInput.current.value);
 
         const newSVG = await response.text();
         setMySVG(newSVG);
@@ -70,7 +78,10 @@ function GraphComponent() {
                 <Dropdown>
                     <div>
                         <label>f(x) = </label>
-                        <input></input>
+                        <input
+                            ref={functionInput}
+                            placeholder="function"
+                        ></input>
                     </div>
                 </Dropdown>
                 Grid
@@ -89,9 +100,9 @@ function GraphComponent() {
                 </Dropdown>
                 Testing
                 <Dropdown>
-                    <button onClick={GenerateGraph}>Generate</button>
                     <button onClick={PostTest}>Show Current Test</button>
                 </Dropdown>
+                <button onClick={GenerateGraph}>Generate</button>
                 <div className="Add-layer">
                     <button>+</button>
                     <select>

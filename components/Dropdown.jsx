@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Dropdown({ children }) {
-    const [display, setDisplay] = useState(true);
+    const [display, setDisplay] = useState(false);
     function handleDisplayChange() {
         setDisplay(!display);
         console.log(display);

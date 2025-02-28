@@ -1,3 +1,12 @@
+//To do:
+//Add layers (vectors, points, ...)
+//Add function input (today)
+//put each component of graph layer into a dropdown (today)
+//Color picker
+//Pallette for functions
+//sign-in
+//side bar with prev generations
+
 import "./App.css";
 import SVGDisplay from "../components/SVGDisplay";
 import MainDynamicDropdown from "../components/MainDynamicDropdown";

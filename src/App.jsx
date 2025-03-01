@@ -1,14 +1,23 @@
 //To do:
-//Add layers (vectors, points, ...)
-//Add function input (today) [DONE, 2/28]
-//put each component of graph layer into a dropdown (today) [DONE, 2/28]
+
+//Add function input  [DONE, 2/28]
+//put each component of graph layer into a dropdown  [DONE, 2/28]
+//add navbar (tomorrow)
+//improve navbar (tomorrow)
+//improve/clean up current styling (tomorrow)
+//organize/modularize server code (tomorrow)
+//load presets (e.g, y=x, y = |x|, y=sin(x), y=e^x)
+//stylize graph component
+//add textboxes for return latex and svg code
+//make svg container an internal window should the svg overflow
+//implement mathjax for matrices and tables
+//implement visible/invisible layer
 //Add function to cleanup input of function
 //Color picker
-//Pallette for functions
+//Pallette for functions (sin, cos, e)
+//Add layers (vectors, points, ...)
 //sign-in
 //side bar with prev generations
-//organize/modularize server code
-//make svg container an internal window should the svg overflow
 
 import "./App.css";
 import SVGDisplay from "../components/SVGDisplay";
@@ -17,11 +26,8 @@ import { useState } from "react";
 import { AppContext } from "./AppContext";
 
 function App() {
-    //Selected Option
     const [selectedOption, setSelectedOption] = useState("Graph");
     const [mySVG, setMySVG] = useState();
-
-    // getSVGData();
 
     return (
         <AppContext.Provider

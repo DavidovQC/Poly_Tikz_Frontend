@@ -1,0 +1,16 @@
+.generate-button {
+    background-color: green;
+}
+
+.graph-component-container {
+    /* background-color: rgb(33, 33, 33); */
+    border: black solid 1px;
+    min-height: 200px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+}

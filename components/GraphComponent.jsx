@@ -1,11 +1,8 @@
 import { useContext, useState } from "react";
-import "./styles/main-options-container-styles.css";
-import SVGButton from "./SVGButton";
-import SVGButtonArray from "./SVGButtonArray";
 import Dropdown from "./Dropdown";
 import { AppContext } from "../src/AppContext";
-import { svgData } from "../assets/SVGButtonData";
 import { useRef } from "react";
+import "../styles/graph-component-styles.css";
 
 function GraphComponent() {
     const { mySVG, setMySVG } = useContext(AppContext);
@@ -59,9 +56,8 @@ function GraphComponent() {
 
     return (
         <>
-            <div>
-                Axes
-                <Dropdown>
+            <div className="graph-component-container">
+                <Dropdown label="Axes">
                     <div className="Axis-options">
                         <button onClick={handleGraphTypeChange} value={"Cross"}>
                             Cross
@@ -74,8 +70,7 @@ function GraphComponent() {
                         </button>
                     </div>
                 </Dropdown>
-                Function
-                <Dropdown>
+                <Dropdown label="Function">
                     <div>
                         <label>f(x) = </label>
                         <input
@@ -84,13 +79,12 @@ function GraphComponent() {
                         ></input>
                     </div>
                 </Dropdown>
-                Grid
-                <Dropdown>
+                <Dropdown label="Grid">
                     <div className="Grid-options">
                         <label>grid</label>
                         <input
                             type="checkbox"
-                            value="Grid"
+                            checked={gridOn}
                             onClick={handleGridChange}
                         ></input>
 
@@ -98,11 +92,9 @@ function GraphComponent() {
                         <input type="number" id="x-axis-scale"></input>
                     </div>
                 </Dropdown>
-                Testing
-                <Dropdown>
+                <Dropdown label="Testing">
                     <button onClick={PostTest}>Show Current Test</button>
                 </Dropdown>
-                <button onClick={GenerateGraph}>Generate</button>
                 <div className="Add-layer">
                     <button>+</button>
                     <select>
@@ -111,6 +103,9 @@ function GraphComponent() {
                         <option value="Shape">Shape</option>
                     </select>
                 </div>
+                <button className="generate-button" onClick={GenerateGraph}>
+                    Generate
+                </button>
             </div>
         </>
     );

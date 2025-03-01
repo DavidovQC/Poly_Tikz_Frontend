@@ -3,8 +3,9 @@
     background-color: white;
     justify-content: center;
     align-items: center;
-    height: 300px;
-    width: 600px;
+    min-height: 300px;
+    min-width: 600px;
     border-radius: 7px;
     border: 2px solid rgb(215, 105, 3);
+    margin-left: 50px;
 }

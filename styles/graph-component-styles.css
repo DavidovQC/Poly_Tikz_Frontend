@@ -6,11 +6,25 @@
     /* background-color: rgb(33, 33, 33); */
     border: black solid 1px;
     min-height: 200px;
-    min-width: 300px;
+    min-width: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     margin: 20px;
     padding: 20px;
+}
+
+button {
+    margin: 3px;
+}
+
+label {
+    margin: 2px;
+}
+
+.graph-options-container {
+    border: 1px solid black;
+    margin-left: 20px;
+    display: flex;
 }

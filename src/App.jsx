@@ -2,14 +2,13 @@
 
 //Add function input  [DONE, 2/28]
 //put each component of graph layer into a dropdown  [DONE, 2/28]
-//add navbar (tomorrow)
-//improve navbar (tomorrow)
+//create navbar (tomorrow)
 //improve/clean up current styling (tomorrow)
 //organize/modularize server code (tomorrow)
 //load presets (e.g, y=x, y = |x|, y=sin(x), y=e^x)
 //stylize graph component
-//add textboxes for return latex and svg code
-//make svg container an internal window should the svg overflow
+//add textboxes for return latex and svg code (tomorrow)
+//make svg container an internal window should the svg overflow (tomorrow)
 //implement mathjax for matrices and tables
 //implement visible/invisible layer
 //Add function to cleanup input of function

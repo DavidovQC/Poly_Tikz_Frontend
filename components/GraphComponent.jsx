@@ -55,59 +55,51 @@ function GraphComponent() {
     }
 
     return (
-        <>
-            <div className="graph-component-container">
-                <Dropdown label="Axes">
-                    <div className="Axis-options">
-                        <button onClick={handleGraphTypeChange} value={"Cross"}>
-                            Cross
-                        </button>
-                        <button
-                            onClick={handleGraphTypeChange}
-                            value={"L-Shape"}
-                        >
-                            L-Shape
-                        </button>
-                    </div>
-                </Dropdown>
-                <Dropdown label="Function">
-                    <div>
-                        <label>f(x) = </label>
-                        <input
-                            ref={functionInput}
-                            placeholder="function"
-                        ></input>
-                    </div>
-                </Dropdown>
-                <Dropdown label="Grid">
-                    <div className="Grid-options">
-                        <label>grid</label>
-                        <input
-                            type="checkbox"
-                            checked={gridOn}
-                            onClick={handleGridChange}
-                        ></input>
-
-                        <label>x-axis scale</label>
-                        <input type="number" id="x-axis-scale"></input>
-                    </div>
-                </Dropdown>
-                <Dropdown label="Testing">
-                    <button onClick={PostTest}>Show Current Test</button>
-                </Dropdown>
-                <div className="Add-layer">
-                    <button>+</button>
-                    <select>
-                        <option value="Point">Point</option>
-                        <option value="Vector">Vector</option>
-                        <option value="Shape">Shape</option>
-                    </select>
+        <div className="graph-component-container">
+            <Dropdown label="Axes">
+                <div className="Axis-options graph-options-container">
+                    <button onClick={handleGraphTypeChange} value={"Cross"}>
+                        Cross
+                    </button>
+                    <button onClick={handleGraphTypeChange} value={"L-Shape"}>
+                        L-Shape
+                    </button>
                 </div>
-                <button className="generate-button" onClick={GenerateGraph}>
-                    Generate
-                </button>
+            </Dropdown>
+            <Dropdown label="Function">
+                <div className="graph-options-container">
+                    <label>f(x) = </label>
+                    <input ref={functionInput} placeholder="function"></input>
+                </div>
+            </Dropdown>
+            <Dropdown label="Grid">
+                <div className="Grid-options graph-options-container">
+                    <label>grid</label>
+                    <input
+                        type="checkbox"
+                        checked={gridOn}
+                        onClick={handleGridChange}
+                    ></input>
+
+                    <label>x-axis scale</label>
+                    <input type="number" id="x-axis-scale"></input>
+                </div>
+            </Dropdown>
+            <Dropdown label="Testing">
+                <button onClick={PostTest}>Show Current Test</button>
+            </Dropdown>
+            <div className="Add-layer">
+                <button>+</button>
+                <select>
+                    <option value="Point">Point</option>
+                    <option value="Vector">Vector</option>
+                    <option value="Shape">Shape</option>
+                </select>
             </div>
-        </>
+            <button className="generate-button" onClick={GenerateGraph}>
+                Generate
+            </button>
+        </div>
     );
 }
 

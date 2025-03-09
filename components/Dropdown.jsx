@@ -10,10 +10,11 @@ function Dropdown({ children, label }) {
 
     return (
         <div className="dropdown-container">
-            <div className="dropdown-title-container">
-                <div className="arrow" onClick={handleDisplayChange}>
-                    ▼
-                </div>
+            <div
+                className="dropdown-title-container"
+                onClick={handleDisplayChange}
+            >
+                <div className="arrow">▼</div>
 
                 {label}
             </div>

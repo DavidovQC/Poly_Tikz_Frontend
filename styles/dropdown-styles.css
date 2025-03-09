@@ -4,7 +4,6 @@ button {
 
 .arrow {
     margin-right: 10px;
-    margin-left: 10px;
 }
 
 .arrow:hover {
@@ -12,10 +11,14 @@ button {
 }
 
 .dropdown-container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+}
+
+.dropdown-title-container:hover {
+    cursor: pointer;
 }
 
 .dropdown-title-container {
     display: flex;
-    /* border: 1px solid black; */
+    /* border: 1px solid red; */
 }

@@ -15,7 +15,7 @@ function MainDynamicDropdown() {
     return (
         <div className="options-container">
             <div className="selection-container">
-                Select an option:
+                <label>Select an option:</label>
                 <select value={selectedOption} onChange={changeOption}>
                     <option value="Graph">Graph</option>
                     <option value="Table">Table</option>

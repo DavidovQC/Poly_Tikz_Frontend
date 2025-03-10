@@ -7,9 +7,12 @@ import "../styles/graph-component-styles.css";
 function GraphComponent() {
     const { mySVG, setMySVG } = useContext(AppContext);
 
+    //Graph contents
     const [graphType, setGraphType] = useState("Cross");
     const [gridOn, setGridOn] = useState(false);
     const functionInput = useRef(``);
+    const xAxisSizeInput = useRef("1");
+    const yAxisSizeInput = useRef("1");
 
     function handleGraphTypeChange(event) {
         setGraphType(event.target.value);
@@ -25,6 +28,8 @@ function GraphComponent() {
             Type: graphType,
             Grid: gridOn,
             function: functionInput.current.value,
+            xAxisSize: xAxisSizeInput.current.value,
+            yAxisSize: yAxisSizeInput.current.value,
         };
         console.log(`Graph data: ${JSON.stringify(graphData)}`);
 
@@ -64,14 +69,32 @@ function GraphComponent() {
                     <button onClick={handleGraphTypeChange} value={"L-Shape"}>
                         L-Shape
                     </button>
+                    <label>x-axis size</label>
+                    <input
+                        ref={xAxisSizeInput}
+                        type="number"
+                        min="0.1"
+                        max="10"
+                        step=".1"
+                    ></input>
+                    <label>y-axis size</label>
+                    <input
+                        ref={yAxisSizeInput}
+                        type="number"
+                        min="0.1"
+                        max="10"
+                        step=".1"
+                    ></input>
                 </div>
             </Dropdown>
+
             <Dropdown label="Function">
                 <div className="graph-options-container">
                     <label>f(x) = </label>
                     <input ref={functionInput} placeholder="function"></input>
                 </div>
             </Dropdown>
+
             <Dropdown label="Grid">
                 <div className="Grid-options graph-options-container">
                     <label>grid</label>
@@ -81,8 +104,15 @@ function GraphComponent() {
                         onClick={handleGridChange}
                     ></input>
 
-                    <label>x-axis scale</label>
-                    <input type="number" id="x-axis-scale"></input>
+                    <label>Grid (m x n)</label>
+                    <labe>m: </labe>
+                    <input type="number" min="1" max="10" step="1"></input>
+                    <labe>n: </labe>
+                    <input type="number" min="1" max="10" step="1"></input>
+                    <labe>length (x): </labe>
+                    <input type="number" min="1" max="3" step=".1"></input>
+                    <labe>length (y): </labe>
+                    <input type="number" min="1" max="3" step=".1"></input>
                 </div>
             </Dropdown>
             <Dropdown label="Testing">

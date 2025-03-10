@@ -5,7 +5,6 @@ function Dropdown({ children, label }) {
     const [display, setDisplay] = useState(false);
     function handleDisplayChange() {
         setDisplay(!display);
-        console.log(display);
     }
 
     return (

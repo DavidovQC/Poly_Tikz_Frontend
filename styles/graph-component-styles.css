@@ -23,8 +23,37 @@ label {
     margin: 2px;
 }
 
+.number-input-field {
+    width: 40px;
+    margin-left: 10px;
+}
+
+.checkbox-field {
+    border: 1px solid green;
+}
+
+.text-input-field {
+    border: 1px solid blue;
+}
+
+/* -------------------------- Axis Container -------------------------------- */
+
 .graph-options-container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.axis-size-container {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.graph-button-container {
+    margin-top: 5px;
     display: flex;
 }

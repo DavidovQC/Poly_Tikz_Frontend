@@ -14,11 +14,10 @@ function Dropdown({ children, label }) {
                 onClick={handleDisplayChange}
             >
                 <div className="arrow">▼</div>
-
-                {label}
+                <div className="label-container"> {label}</div>
             </div>
             {display && (
-                <div className="dropdown-elements-container">{children}</div>
+                <div className="dropdown-contents-container">{children}</div>
             )}
         </div>
     );

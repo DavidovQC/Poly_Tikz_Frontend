@@ -10,9 +10,18 @@ function GraphComponent() {
     //Graph contents
     const [graphType, setGraphType] = useState("Cross");
     const [gridOn, setGridOn] = useState(false);
+    const [ticksOn, setTicksOn] = useState(false);
     const functionInput = useRef(``);
     const xAxisSizeInput = useRef("1");
     const yAxisSizeInput = useRef("1");
+    const mGridSize = useRef("1");
+    const nGridSize = useRef("1");
+    const gridStep = useRef("1");
+    const functionDomain = useRef("(-1, 1)");
+
+    function handleTicksChange() {
+        setTicksOn(!ticksOn);
+    }
 
     function handleGraphTypeChange(event) {
         setGraphType(event.target.value);
@@ -28,8 +37,10 @@ function GraphComponent() {
             Type: graphType,
             Grid: gridOn,
             function: functionInput.current.value,
+            functionDomain: functionDomain.current.value,
             xAxisSize: xAxisSizeInput.current.value,
             yAxisSize: yAxisSizeInput.current.value,
+            GridStep: gridStep.current.value,
         };
         console.log(`Graph data: ${JSON.stringify(graphData)}`);
 
@@ -63,28 +74,54 @@ function GraphComponent() {
         <div className="graph-component-container">
             <Dropdown label="Axes">
                 <div className="Axis-options graph-options-container">
-                    <button onClick={handleGraphTypeChange} value={"Cross"}>
-                        Cross
-                    </button>
-                    <button onClick={handleGraphTypeChange} value={"L-Shape"}>
-                        L-Shape
-                    </button>
-                    <label>x-axis size</label>
-                    <input
-                        ref={xAxisSizeInput}
-                        type="number"
-                        min="0.1"
-                        max="10"
-                        step=".1"
-                    ></input>
-                    <label>y-axis size</label>
-                    <input
-                        ref={yAxisSizeInput}
-                        type="number"
-                        min="0.1"
-                        max="10"
-                        step=".1"
-                    ></input>
+                    <div className="graph-button-container">
+                        <button onClick={handleGraphTypeChange} value={"Cross"}>
+                            Cross
+                        </button>
+                        <button
+                            onClick={handleGraphTypeChange}
+                            value={"L-Shape"}
+                        >
+                            L-Shape
+                        </button>
+                    </div>
+                    <div className="axis-size-container">
+                        <div className="x-axis-container">
+                            <label>x-axis size:</label>
+                            <input
+                                className="number-input-field"
+                                ref={xAxisSizeInput}
+                                defaultValue={1}
+                                type="number"
+                                min="0.1"
+                                max="10"
+                                step=".1"
+                            ></input>
+                        </div>
+                        <div className="y-axis-container">
+                            <label>y-axis size:</label>
+                            <input
+                                className="number-input-field"
+                                ref={yAxisSizeInput}
+                                defaultValue={1}
+                                type="number"
+                                min="0.1"
+                                max="10"
+                                step=".1"
+                            ></input>
+                        </div>
+                    </div>
+
+                    <Dropdown label="Ticks">
+                        <div className="checkbox-field">
+                            <label>tick marks</label>
+                            <input
+                                type="checkbox"
+                                value={ticksOn}
+                                onChange={handleTicksChange}
+                            ></input>
+                        </div>
+                    </Dropdown>
                 </div>
             </Dropdown>
 
@@ -92,6 +129,11 @@ function GraphComponent() {
                 <div className="graph-options-container">
                     <label>f(x) = </label>
                     <input ref={functionInput} placeholder="function"></input>
+                    <input
+                        defaultValue={"(-10, 10)"}
+                        ref={functionDomain}
+                        placeholder="domain (input as interval)"
+                    ></input>
                 </div>
             </Dropdown>
 
@@ -105,14 +147,19 @@ function GraphComponent() {
                     ></input>
 
                     <label>Grid (m x n)</label>
-                    <labe>m: </labe>
+                    <label>m: </label>
                     <input type="number" min="1" max="10" step="1"></input>
-                    <labe>n: </labe>
+                    <label>n: </label>
                     <input type="number" min="1" max="10" step="1"></input>
-                    <labe>length (x): </labe>
-                    <input type="number" min="1" max="3" step=".1"></input>
-                    <labe>length (y): </labe>
-                    <input type="number" min="1" max="3" step=".1"></input>
+                    <label>step: </label>
+                    <input
+                        ref={gridStep}
+                        type="number"
+                        defaultValue="1"
+                        min=".1"
+                        max="3"
+                        step=".1"
+                    ></input>
                 </div>
             </Dropdown>
             <Dropdown label="Testing">

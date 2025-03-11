@@ -1,10 +1,15 @@
-//To do:
+//Done:
 
 //Add function input  [DONE, 2/28]
 //put each component of graph layer into a dropdown  [DONE, 2/28]
+
+//To do:
 //create navbar (tomorrow)
 //improve/clean up current styling (tomorrow)
 //organize/modularize server code (tomorrow)
+//add textboxes for return latex and svg code (tomorrow)
+
+//code refactor
 //load presets (e.g, y=x, y = |x|, y=sin(x), y=e^x)
 //stylize graph component
 //add textboxes for return latex and svg code (tomorrow)
@@ -23,6 +28,7 @@ import SVGDisplay from "../components/SVGDisplay";
 import MainDynamicDropdown from "../components/MainDynamicDropdown";
 import { useState } from "react";
 import { AppContext } from "./AppContext";
+import Navbar from "../components/Navbar";
 
 function App() {
     const [selectedOption, setSelectedOption] = useState("Graph");
@@ -32,6 +38,7 @@ function App() {
         <AppContext.Provider
             value={{ mySVG, setMySVG, selectedOption, setSelectedOption }}
         >
+            {/* <Navbar></Navbar> */}
             <div className="site-container">
                 <MainDynamicDropdown />
 

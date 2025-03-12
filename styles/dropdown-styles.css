@@ -11,6 +11,9 @@ button {
 }
 
 .dropdown-container {
+}
+
+.dropdown-container.open {
     outline: 1px solid gray;
     outline-offset: -14px; /* moves the outline inward */
     padding-bottom: 14px;

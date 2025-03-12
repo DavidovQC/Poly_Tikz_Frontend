@@ -8,7 +8,11 @@ function Dropdown({ children, label }) {
     }
 
     return (
-        <div className="dropdown-container">
+        <div
+            className={
+                display ? "dropdown-container open" : "dropdown-container "
+            }
+        >
             <div
                 className="dropdown-title-container"
                 onClick={handleDisplayChange}

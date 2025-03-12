@@ -36,12 +36,14 @@ function GraphComponent() {
         const graphData = {
             Type: graphType,
             Grid: gridOn,
+            Ticks: ticksOn,
             function: functionInput.current.value,
             functionDomain: functionDomain.current.value,
             xAxisSize: xAxisSizeInput.current.value,
             yAxisSize: yAxisSizeInput.current.value,
             GridStep: gridStep.current.value,
         };
+
         console.log(`Graph data: ${JSON.stringify(graphData)}`);
 
         const response = await fetch("http://localhost:3000/api/getGraphSVG", {
@@ -127,39 +129,75 @@ function GraphComponent() {
 
             <Dropdown label="Function">
                 <div className="graph-options-container">
-                    <label>f(x) = </label>
-                    <input ref={functionInput} placeholder="function"></input>
-                    <input
-                        defaultValue={"(-10, 10)"}
-                        ref={functionDomain}
-                        placeholder="domain (input as interval)"
-                    ></input>
+                    <div className="text-input-field">
+                        <label>f(x) = </label>
+                        <input
+                            ref={functionInput}
+                            placeholder="function"
+                        ></input>
+                    </div>
+                    <div className="checkbox-field">
+                        <label>radians</label>
+                        <input type="checkbox"></input>
+                    </div>
+                    <Dropdown label={"Domain / Range"}>
+                        <div className="text-input-field">
+                            <label>Domain:</label>
+
+                            <input
+                                defaultValue={"(-10, 10)"}
+                                ref={functionDomain}
+                                placeholder="domain (input as interval)"
+                            ></input>
+                        </div>
+                    </Dropdown>
                 </div>
             </Dropdown>
 
             <Dropdown label="Grid">
                 <div className="Grid-options graph-options-container">
-                    <label>grid</label>
-                    <input
-                        type="checkbox"
-                        checked={gridOn}
-                        onClick={handleGridChange}
-                    ></input>
-
-                    <label>Grid (m x n)</label>
-                    <label>m: </label>
-                    <input type="number" min="1" max="10" step="1"></input>
-                    <label>n: </label>
-                    <input type="number" min="1" max="10" step="1"></input>
-                    <label>step: </label>
-                    <input
-                        ref={gridStep}
-                        type="number"
-                        defaultValue="1"
-                        min=".1"
-                        max="3"
-                        step=".1"
-                    ></input>
+                    <div className="checkbox-field">
+                        <label>grid</label>
+                        <input
+                            type="checkbox"
+                            checked={gridOn}
+                            onClick={handleGridChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label>Grid (m x n)</label>
+                        <div>
+                            <div>
+                                <label>m: </label>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    max="10"
+                                    step="1"
+                                ></input>
+                            </div>
+                            <div>
+                                <label>n: </label>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    max="10"
+                                    step="1"
+                                ></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>step: </label>
+                        <input
+                            ref={gridStep}
+                            type="number"
+                            defaultValue="1"
+                            min=".1"
+                            max="3"
+                            step=".1"
+                        ></input>
+                    </div>
                 </div>
             </Dropdown>
             <Dropdown label="Testing">

@@ -12,12 +12,13 @@ function GraphComponent() {
     const [gridOn, setGridOn] = useState(false);
     const [ticksOn, setTicksOn] = useState(false);
     const functionInput = useRef(``);
-    const xAxisSizeInput = useRef("1");
-    const yAxisSizeInput = useRef("1");
+    const xAxisSizeInput = useRef(1);
+    const yAxisSizeInput = useRef(1);
     const mGridSize = useRef("1");
     const nGridSize = useRef("1");
-    const gridStep = useRef("1");
+    const gridStep = useRef(1);
     const functionDomain = useRef("(-1, 1)");
+    const ticksStep = useRef(1);
 
     function handleTicksChange() {
         setTicksOn(!ticksOn);
@@ -36,7 +37,8 @@ function GraphComponent() {
         const graphData = {
             Type: graphType,
             Grid: gridOn,
-            Ticks: ticksOn,
+            TicksOn: ticksOn,
+            TicksStep: ticksStep.current.value,
             function: functionInput.current.value,
             functionDomain: functionDomain.current.value,
             xAxisSize: xAxisSizeInput.current.value,
@@ -86,6 +88,9 @@ function GraphComponent() {
                         >
                             L-Shape
                         </button>
+                        <button onClick={handleGraphTypeChange} value={"T-Bar"}>
+                            T-Bar
+                        </button>
                     </div>
                     <div className="axis-size-container">
                         <div className="x-axis-container">
@@ -95,9 +100,9 @@ function GraphComponent() {
                                 ref={xAxisSizeInput}
                                 defaultValue={1}
                                 type="number"
-                                min="0.1"
-                                max="10"
-                                step=".1"
+                                min={0.1}
+                                max={10}
+                                step={0.1}
                             ></input>
                         </div>
                         <div className="y-axis-container">
@@ -107,16 +112,25 @@ function GraphComponent() {
                                 ref={yAxisSizeInput}
                                 defaultValue={1}
                                 type="number"
-                                min="0.1"
-                                max="10"
-                                step=".1"
+                                min={0.1}
+                                max={10}
+                                step={0.1}
                             ></input>
                         </div>
                     </div>
 
                     <Dropdown label="Ticks">
                         <div className="checkbox-field">
-                            <label>tick marks</label>
+                            <label>x-axis</label>
+                            <input
+                                type="checkbox"
+                                value={ticksOn}
+                                onChange={handleTicksChange}
+                            ></input>
+                        </div>
+
+                        <div className="checkbox-field">
+                            <label>y-axis</label>
                             <input
                                 type="checkbox"
                                 value={ticksOn}
@@ -135,6 +149,13 @@ function GraphComponent() {
                             ref={functionInput}
                             placeholder="function"
                         ></input>
+                    </div>
+                    <div>
+                        <label>Stroke: </label>
+                        <select className="stroke">
+                            <option>Fill</option>
+                            <option>Dotted</option>
+                        </select>
                     </div>
                     <div className="checkbox-field">
                         <label>radians</label>
@@ -164,29 +185,7 @@ function GraphComponent() {
                             onClick={handleGridChange}
                         ></input>
                     </div>
-                    <div>
-                        <label>Grid (m x n)</label>
-                        <div>
-                            <div>
-                                <label>m: </label>
-                                <input
-                                    type="number"
-                                    min="1"
-                                    max="10"
-                                    step="1"
-                                ></input>
-                            </div>
-                            <div>
-                                <label>n: </label>
-                                <input
-                                    type="number"
-                                    min="1"
-                                    max="10"
-                                    step="1"
-                                ></input>
-                            </div>
-                        </div>
-                    </div>
+
                     <div>
                         <label>step: </label>
                         <input
@@ -200,15 +199,20 @@ function GraphComponent() {
                     </div>
                 </div>
             </Dropdown>
+            <Dropdown label="Window">{/* clipping */}</Dropdown>
             <Dropdown label="Testing">
                 <button onClick={PostTest}>Show Current Test</button>
             </Dropdown>
+
             <div className="Add-layer">
                 <button>+</button>
                 <select>
                     <option value="Point">Point</option>
                     <option value="Vector">Vector</option>
+                    <option value="Function">Function</option>
                     <option value="Shape">Shape</option>
+                    <option value="Piecewise">Piecewise</option>
+                    <option value="Riemann-Sum">Riemann Sum</option>
                 </select>
             </div>
             <button className="generate-button" onClick={GenerateGraph}>

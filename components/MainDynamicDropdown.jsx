@@ -15,11 +15,17 @@ function MainDynamicDropdown() {
     return (
         <div className="options-container">
             <div className="selection-container">
-                <label>Select an option:</label>
-                <select value={selectedOption} onChange={changeOption}>
-                    <option value="Graph">Graph</option>
-                    <option value="Table">Table</option>
-                </select>
+                <div>
+                    <label>Select an option: </label>
+                    <select value={selectedOption} onChange={changeOption}>
+                        <option value="Graph">Graph</option>
+                        <option value="Table">Table</option>
+                        <option value="Venn-Diagram">Venn Diagram</option>
+                        <option value="Lienar-Transform">
+                            Linear Transform
+                        </option>
+                    </select>
+                </div>
             </div>
             <div className="to-center">
                 {selectedOption == "Graph" && <GraphComponent />}

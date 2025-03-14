@@ -9,10 +9,11 @@
 //organize/modularize server code (tomorrow)
 //add textboxes for return latex and svg code (tomorrow)
 
-//code refactor
+//For Domain/Range add clipping options for before the function!
+//Venn Diagram
+
+//add layers to graph component
 //load presets (e.g, y=x, y = |x|, y=sin(x), y=e^x)
-//stylize graph component
-//add textboxes for return latex and svg code (tomorrow)
 //make svg container an internal window should the svg overflow (tomorrow)
 //implement mathjax for matrices and tables
 //implement visible/invisible layer

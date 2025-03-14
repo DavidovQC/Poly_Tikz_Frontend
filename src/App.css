@@ -1,7 +1,7 @@
 .site-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border: solid purple 1px;
+    justify-content: space-around;
+    align-items: space-between;
+    /* border: solid purple 1px; */
 }

@@ -1,6 +1,3 @@
-import { useState } from "react";
-import "./styles/SVG-container.css";
-
 function SVGDisplay({ svg }) {
     return (
         <div

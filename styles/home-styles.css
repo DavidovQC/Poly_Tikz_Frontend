@@ -8,3 +8,17 @@
     flex-direction: column;
     align-items: center;
 }
+
+.SVG-container {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    min-width: 600px;
+
+    border-radius: 7px;
+    border: 2px solid rgb(215, 105, 3);
+
+    padding: 10px;
+}

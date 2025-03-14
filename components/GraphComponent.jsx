@@ -177,7 +177,6 @@ function GraphComponent() {
                             ></input>
                         </div>
                         <div className="text-input-field">
-                            {" "}
                             <label>Range:</label>
                             <input defaultValue={"(-10, 10)"}></input>
                         </div>

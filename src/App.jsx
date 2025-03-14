@@ -30,7 +30,8 @@ import SVGDisplay from "../components/SVGDisplay";
 import MainDynamicDropdown from "../components/MainDynamicDropdown";
 import { useState } from "react";
 import { AppContext } from "./AppContext";
-import Navbar from "../components/Navbar";
+
+import Homepage from "../Pages/Homepage";
 
 function App() {
     const [selectedOption, setSelectedOption] = useState("Graph");
@@ -40,7 +41,7 @@ function App() {
         <AppContext.Provider
             value={{ mySVG, setMySVG, selectedOption, setSelectedOption }}
         >
-            <Navbar></Navbar>
+            <Homepage></Homepage>
             <div className="site-container">
                 <MainDynamicDropdown />
 

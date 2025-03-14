@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "./styles/main-dynamic-dropdown-styles.css";
+import "../styles/main-dynamic-dropdown-styles.css";
 import GraphComponent from "./GraphComponent";
 import { AppContext } from "../src/AppContext";
 

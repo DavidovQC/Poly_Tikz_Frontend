@@ -1,0 +1,19 @@
+.navbar-container {
+    border: gray solid 1px;
+    border-radius: 10px;
+}
+
+.navbar-elements {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-elements p {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.navbar-elements p:hover {
+    color: orange;
+    cursor: pointer;
+}

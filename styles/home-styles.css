@@ -1,0 +1,10 @@
+.output-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.output-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

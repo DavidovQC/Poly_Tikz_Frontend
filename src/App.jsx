@@ -25,6 +25,7 @@
 //side bar with prev generations
 
 import "./App.css";
+import "../styles/home-styles.css";
 import SVGDisplay from "../components/SVGDisplay";
 import MainDynamicDropdown from "../components/MainDynamicDropdown";
 import { useState } from "react";
@@ -39,11 +40,17 @@ function App() {
         <AppContext.Provider
             value={{ mySVG, setMySVG, selectedOption, setSelectedOption }}
         >
-            {/* <Navbar></Navbar> */}
+            <Navbar></Navbar>
             <div className="site-container">
                 <MainDynamicDropdown />
 
-                <SVGDisplay svg={mySVG} className="SVG-Display" />
+                <div className="output-container">
+                    <SVGDisplay svg={mySVG} className="SVG-Display" />
+                    <div className="output-text-container">
+                        <input type="text" placeholder="TiKZ"></input>
+                        <input type="text" placeholder="svg"></input>
+                    </div>
+                </div>
             </div>
         </AppContext.Provider>
     );

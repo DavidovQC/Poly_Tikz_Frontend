@@ -119,6 +119,11 @@ function GraphComponent() {
                         </div>
                     </div>
 
+                    <div className="checkbox-field">
+                        <label>arrows</label>
+                        <input type="checkbox"></input>
+                    </div>
+
                     <Dropdown label="Ticks">
                         <div className="checkbox-field">
                             <label>x-axis</label>
@@ -138,6 +143,7 @@ function GraphComponent() {
                             ></input>
                         </div>
                     </Dropdown>
+                    <Dropdown label="Custom"></Dropdown>
                 </div>
             </Dropdown>
 
@@ -168,8 +174,12 @@ function GraphComponent() {
                             <input
                                 defaultValue={"(-10, 10)"}
                                 ref={functionDomain}
-                                placeholder="domain (input as interval)"
                             ></input>
+                        </div>
+                        <div className="text-input-field">
+                            {" "}
+                            <label>Range:</label>
+                            <input defaultValue={"(-10, 10)"}></input>
                         </div>
                     </Dropdown>
                 </div>

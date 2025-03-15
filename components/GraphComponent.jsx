@@ -14,8 +14,6 @@ function GraphComponent() {
     const functionInput = useRef(``);
     const xAxisSizeInput = useRef(1);
     const yAxisSizeInput = useRef(1);
-    const mGridSize = useRef("1");
-    const nGridSize = useRef("1");
     const gridStep = useRef(1);
     const functionDomain = useRef("(-1, 1)");
     const ticksStep = useRef(1);
@@ -141,6 +139,11 @@ function GraphComponent() {
                                 value={ticksOn}
                                 onChange={handleTicksChange}
                             ></input>
+                        </div>
+
+                        <div className="checkbox-field">
+                            <label>radians</label>
+                            <input type="checkbox"></input>
                         </div>
                     </Dropdown>
                     <Dropdown label="Custom"></Dropdown>

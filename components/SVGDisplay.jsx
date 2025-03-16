@@ -1,11 +1,15 @@
+import "../styles/svg-display-styles.css";
+
 function SVGDisplay({ svg }) {
     return (
-        <div
-            className="SVG-container"
-            dangerouslySetInnerHTML={{
-                __html: svg,
-            }}
-        ></div>
+        <div className="test-container">
+            <div
+                className="SVG-container"
+                dangerouslySetInnerHTML={{
+                    __html: svg,
+                }}
+            ></div>
+        </div>
     );
 }
 

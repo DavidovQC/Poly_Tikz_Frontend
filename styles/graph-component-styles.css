@@ -4,9 +4,9 @@
 
 .graph-component-container {
     /* background-color: rgb(33, 33, 33); */
-    border: black solid 1px;
+    /* border: black solid 1px; */
     min-height: 200px;
-    min-width: 350px;
+    min-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -34,6 +34,10 @@ label {
 
 .text-input-field {
     border: 1px solid blue;
+}
+
+.range-field {
+    border: 1px solid red;
 }
 
 /* -------------------------- Axis Container -------------------------------- */

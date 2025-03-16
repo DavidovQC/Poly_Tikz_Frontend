@@ -1,6 +1,10 @@
-.output-text-container {
+.main-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-between;
+    /* border: solid purple 1px; */
+    margin-top: 20px;
 }
 
 .output-container {
@@ -9,16 +13,21 @@
     align-items: center;
 }
 
-.SVG-container {
+.output-text-container {
     display: flex;
-    background-color: white;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
-    min-width: 600px;
+    flex-direction: column;
+}
 
-    border-radius: 7px;
-    border: 2px solid rgb(215, 105, 3);
+.tikz-section {
+    display: flex;
+    flex-direction: column;
+}
 
-    padding: 10px;
+.tikz-text-container {
+    resize: none;
+}
+
+.svg-section {
+    display: flex;
+    flex-direction: column;
 }

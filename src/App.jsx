@@ -5,13 +5,16 @@
 //create navbar [DONE, 3/13]
 //improve/clean up current styling
 //add textboxes for return latex and svg code
+//refactor homepage
+//make svg container an internal window should the svg overflow
 
 //To do:
-//organize/modularize server code (tomorrow)
-//refactor homepage
+
 //add layers to graph component
-//make svg container an internal window should the svg overflow (tomorrow)
-//implement mathjax for matrices and tables
+//add Venn-Diagram
+
+//implement mathjax for matrices and tables (primarily tables)
+//organize/modularize server code (tomorrow)
 
 //For Domain/Range add clipping options for before the function!
 //Venn Diagram
@@ -36,10 +39,21 @@ import Homepage from "../Pages/Homepage";
 function App() {
     const [selectedOption, setSelectedOption] = useState("Graph");
     const [mySVG, setMySVG] = useState();
+    const [svgCode, setSVGCode] = useState(``);
+    const [latexCode, setLatexCode] = useState(``);
 
     return (
         <AppContext.Provider
-            value={{ mySVG, setMySVG, selectedOption, setSelectedOption }}
+            value={{
+                svgCode,
+                setSVGCode,
+                latexCode,
+                setLatexCode,
+                mySVG,
+                setMySVG,
+                selectedOption,
+                setSelectedOption,
+            }}
         >
             <Homepage></Homepage>
         </AppContext.Provider>

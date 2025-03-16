@@ -5,7 +5,7 @@ import { useRef } from "react";
 import "../styles/graph-component-styles.css";
 
 function GraphComponent() {
-    const { mySVG, setMySVG } = useContext(AppContext);
+    const { setLatexCode, setSVGCode, setMySVG } = useContext(AppContext);
 
     //Graph contents
     const [graphType, setGraphType] = useState("Cross");
@@ -54,9 +54,10 @@ function GraphComponent() {
             },
         });
 
-        console.log(functionInput.current.value);
-
-        const newSVG = await response.text();
+        const data = await response.json();
+        const newSVG = data.SVG;
+        setLatexCode(data.TikZ);
+        setSVGCode(data.SVG);
         setMySVG(newSVG);
     }
 
@@ -145,6 +146,24 @@ function GraphComponent() {
                             <label>radians</label>
                             <input type="checkbox"></input>
                         </div>
+                        <div>
+                            <label>Step:</label>
+                            <input
+                                type="number"
+                                step={0.1}
+                                max="10"
+                                defaultValue={1}
+                            ></input>
+                        </div>
+                        <div>
+                            <label>Spacing:</label>
+                            <input
+                                type="number"
+                                step={0.1}
+                                max="10"
+                                defaultValue={1}
+                            ></input>
+                        </div>
                     </Dropdown>
                     <Dropdown label="Custom"></Dropdown>
                 </div>
@@ -169,6 +188,15 @@ function GraphComponent() {
                     <div className="checkbox-field">
                         <label>radians</label>
                         <input type="checkbox"></input>
+                    </div>
+                    <div className="range-field">
+                        <label>Samples</label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="300"
+                            defaultValue="150"
+                        ></input>
                     </div>
                     <Dropdown label={"Domain / Range"}>
                         <div className="text-input-field">

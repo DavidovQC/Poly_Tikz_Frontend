@@ -1,13 +1,17 @@
 import { useContext, useState } from "react";
 import Dropdown from "./Dropdown";
+import GraphPointLayer from "./GraphChildLayers/GraphPointLayer";
 import { AppContext } from "../src/AppContext";
 import { useRef } from "react";
 import "../styles/graph-component-styles.css";
+import VectorLayer from "./GraphChildLayers/VectorLayer";
 
 function GraphComponent() {
     const { setLatexCode, setSVGCode, setMySVG } = useContext(AppContext);
 
     //Graph contents
+    const [layers, setLayers] = useState([]);
+
     const [graphType, setGraphType] = useState("Cross");
     const [gridOn, setGridOn] = useState(false);
     const [ticksOn, setTicksOn] = useState(false);
@@ -17,6 +21,7 @@ function GraphComponent() {
     const gridStep = useRef(1);
     const functionDomain = useRef("(-1, 1)");
     const ticksStep = useRef(1);
+    const [layerType, setLayerType] = useState("Point");
 
     function handleTicksChange() {
         setTicksOn(!ticksOn);
@@ -28,8 +33,35 @@ function GraphComponent() {
 
     function handleGridChange() {
         setGridOn(!gridOn);
-        console.log(gridOn);
     }
+
+    function handleLayerTypeChange(event) {
+        setLayerType(event.target.value);
+    }
+
+    function addLayer() {
+        switch (layerType) {
+            case "Point":
+                setLayers((prevLayers) => [
+                    ...prevLayers,
+                    { id: Date.now(), type: "Point" },
+                ]);
+                break;
+
+            case "Vector":
+                setLayers((prevLayers) => [
+                    ...prevLayers,
+                    { id: Date.now(), type: "Vector" },
+                ]);
+
+            default:
+                console.log("Error");
+        }
+    }
+
+    function deleteLayer() {}
+
+    function updateLayer() {}
 
     async function GenerateGraph() {
         const graphData = {
@@ -245,8 +277,8 @@ function GraphComponent() {
             </Dropdown>
 
             <div className="Add-layer">
-                <button>+</button>
-                <select>
+                <button onClick={addLayer}>+</button>
+                <select onChange={handleLayerTypeChange}>
                     <option value="Point">Point</option>
                     <option value="Vector">Vector</option>
                     <option value="Function">Function</option>
@@ -258,6 +290,33 @@ function GraphComponent() {
             <button className="generate-button" onClick={GenerateGraph}>
                 Generate
             </button>
+
+            <div>
+                {layers.map((layer) => (
+                    <div key={layer.id}>
+                        {(function () {
+                            switch (layer.type) {
+                                case "Point":
+                                    return (
+                                        <GraphPointLayer
+                                            key={layer.id}
+                                            type={layer.type}
+                                        ></GraphPointLayer>
+                                    );
+                                case "Vector":
+                                    return (
+                                        <VectorLayer
+                                            key={layer.id}
+                                            type={layer.type}
+                                        ></VectorLayer>
+                                    );
+                                default:
+                                    return null;
+                            }
+                        })()}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

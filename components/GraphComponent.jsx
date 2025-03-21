@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useReducer, useContext, useState } from "react";
 import Dropdown from "./Dropdown";
 import GraphPointLayer from "./GraphChildLayers/GraphPointLayer";
 import { AppContext } from "../src/AppContext";
@@ -9,8 +9,61 @@ import VectorLayer from "./GraphChildLayers/VectorLayer";
 function GraphComponent() {
     const { setLatexCode, setSVGCode, setMySVG } = useContext(AppContext);
 
+    //layer data type: { id, type, visible, ...data,  }
+
+    function reducer(layers, action) {
+        switch (action.type) {
+            case "add_layer":
+                console.log(layers);
+                return [...layers, newLayer(action.payload.type, Date.now())];
+
+            case "update_layer":
+                console.log(layers);
+                return layers.map((layer) =>
+                    layer.id == action.payload.id ? action.payload : layer
+                );
+            case "toggle_visible":
+
+            default:
+                return layers;
+        }
+    }
+
+    function newLayer(type, id) {
+        switch (type) {
+            case "point":
+                return {
+                    id: id,
+                    type: "point",
+                    data: {
+                        xValue: 0,
+                        yValue: 0,
+                        filled: true,
+                        visible: true,
+                    },
+                };
+            case "vector":
+                return {
+                    id: id,
+                    type: "vector",
+                    data: {
+                        xValue: 0,
+                        yValue: 0,
+                        arrow: true,
+                        visible: true,
+                    },
+                };
+            default:
+                console.log("not specified");
+                return null;
+        }
+    }
+
     //Graph contents
-    const [layers, setLayers] = useState([]);
+    const [layers, dispatch] = useReducer(reducer, []);
+    //I’m thinking of just giving up and keeping a JS object
+    //in the parent component with the {id, type, values} and updating these with each change to the component
+    const [data, setData] = useState([]);
 
     const [graphType, setGraphType] = useState("Cross");
     const [gridOn, setGridOn] = useState(false);
@@ -39,29 +92,25 @@ function GraphComponent() {
         setLayerType(event.target.value);
     }
 
-    function addLayer() {
-        switch (layerType) {
+    function updateLayer(id, type, newValues) {
+        switch (type) {
             case "Point":
-                setLayers((prevLayers) => [
-                    ...prevLayers,
-                    { id: Date.now(), type: "Point" },
-                ]);
-                break;
-
-            case "Vector":
-                setLayers((prevLayers) => [
-                    ...prevLayers,
-                    { id: Date.now(), type: "Vector" },
-                ]);
-
+                setLayers((prevLayers) =>
+                    prevLayers.map((layer) =>
+                        layer.id === id ? (
+                            <GraphPointLayer
+                                xValue={newValues.x}
+                                yValue={newValues.y}
+                            />
+                        ) : (
+                            layer
+                        )
+                    )
+                );
             default:
                 console.log("Error");
         }
     }
-
-    function deleteLayer() {}
-
-    function updateLayer() {}
 
     async function GenerateGraph() {
         const graphData = {
@@ -277,7 +326,16 @@ function GraphComponent() {
             </Dropdown>
 
             <div className="Add-layer">
-                <button onClick={addLayer}>+</button>
+                <button
+                    onClick={() =>
+                        dispatch({
+                            type: "add_layer",
+                            payload: { type: "point" },
+                        })
+                    }
+                >
+                    +
+                </button>
                 <select onChange={handleLayerTypeChange}>
                     <option value="Point">Point</option>
                     <option value="Vector">Vector</option>
@@ -292,30 +350,16 @@ function GraphComponent() {
             </button>
 
             <div>
-                {layers.map((layer) => (
-                    <div key={layer.id}>
-                        {(function () {
-                            switch (layer.type) {
-                                case "Point":
-                                    return (
-                                        <GraphPointLayer
-                                            key={layer.id}
-                                            type={layer.type}
-                                        ></GraphPointLayer>
-                                    );
-                                case "Vector":
-                                    return (
-                                        <VectorLayer
-                                            key={layer.id}
-                                            type={layer.type}
-                                        ></VectorLayer>
-                                    );
-                                default:
-                                    return null;
-                            }
-                        })()}
-                    </div>
-                ))}
+                {layers.map((layer) => {
+                    return (
+                        <GraphPointLayer
+                            key={layer.id}
+                            id={layer.id}
+                            dispatch={dispatch}
+                            defaultData={layer.data}
+                        ></GraphPointLayer>
+                    );
+                })}
             </div>
         </div>
     );

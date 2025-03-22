@@ -14,13 +14,12 @@ function GraphComponent() {
     function reducer(layers, action) {
         switch (action.type) {
             case "add_layer":
-                console.log(layers);
                 return [...layers, newLayer(action.payload.type, Date.now())];
 
             case "update_layer":
                 console.log(layers);
                 return layers.map((layer) =>
-                    layer.id == action.payload.id ? action.payload : layer
+                    layer.id == action.newLayer.id ? action.newLayer : layer
                 );
             case "toggle_visible":
 
@@ -35,23 +34,19 @@ function GraphComponent() {
                 return {
                     id: id,
                     type: "point",
-                    data: {
-                        xValue: 0,
-                        yValue: 0,
-                        filled: true,
-                        visible: true,
-                    },
+                    xValue: 0,
+                    yValue: 0,
+                    filled: true,
+                    visible: true,
                 };
             case "vector":
                 return {
                     id: id,
                     type: "vector",
-                    data: {
-                        xValue: 0,
-                        yValue: 0,
-                        arrow: true,
-                        visible: true,
-                    },
+                    xValue: 0,
+                    yValue: 0,
+                    arrow: true,
+                    visible: true,
                 };
             default:
                 console.log("not specified");
@@ -90,26 +85,6 @@ function GraphComponent() {
 
     function handleLayerTypeChange(event) {
         setLayerType(event.target.value);
-    }
-
-    function updateLayer(id, type, newValues) {
-        switch (type) {
-            case "Point":
-                setLayers((prevLayers) =>
-                    prevLayers.map((layer) =>
-                        layer.id === id ? (
-                            <GraphPointLayer
-                                xValue={newValues.x}
-                                yValue={newValues.y}
-                            />
-                        ) : (
-                            layer
-                        )
-                    )
-                );
-            default:
-                console.log("Error");
-        }
     }
 
     async function GenerateGraph() {
@@ -348,19 +323,6 @@ function GraphComponent() {
             <button className="generate-button" onClick={GenerateGraph}>
                 Generate
             </button>
-
-            <div>
-                {layers.map((layer) => {
-                    return (
-                        <GraphPointLayer
-                            key={layer.id}
-                            id={layer.id}
-                            dispatch={dispatch}
-                            defaultData={layer.data}
-                        ></GraphPointLayer>
-                    );
-                })}
-            </div>
         </div>
     );
 }

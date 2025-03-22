@@ -2,6 +2,7 @@ import { useContext } from "react";
 import "../styles/main-dynamic-dropdown-styles.css";
 import GraphComponent from "./GraphComponent";
 import { AppContext } from "../src/AppContext";
+import { LayersProvider } from "../Layers/LayersContext";
 
 function MainDynamicDropdown() {
     const { selectedOption, setSelectedOption } = useContext(AppContext);
@@ -23,7 +24,11 @@ function MainDynamicDropdown() {
                 </select>
             </div>
             <div className="to-center">
-                {selectedOption == "Graph" && <GraphComponent />}
+                {selectedOption == "Graph" && (
+                    <LayersProvider>
+                        <GraphComponent />
+                    </LayersProvider>
+                )}
                 {selectedOption == "Table" && <p>Table Chosen</p>}
             </div>
         </div>

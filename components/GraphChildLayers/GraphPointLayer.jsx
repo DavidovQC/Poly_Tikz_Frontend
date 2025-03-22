@@ -2,25 +2,25 @@ import { useState } from "react";
 import Dropdown from "../Dropdown";
 import { useEffect } from "react";
 
-function GraphPointLayer({ dispatch, id, defaultData }) {
+function GraphPointLayer({ dispatch, id }) {
     const [xCoordinate, setXCoordinate] = useState(0);
     const [yCoordinate, setYCoordinate] = useState(0);
     const [visible, setVisible] = useState(true);
     const [filled, setFilled] = useState(true);
 
-    useEffect(() => {
-        dispatch({
-            type: "update_layer",
-            newLayer: {
-                id: id,
-                type: "point",
-                visible: visible,
-                xValue: xCoordinate,
-                yValue: yCoordinate,
-                filled: filled,
-            },
-        });
-    }, [xCoordinate, yCoordinate]);
+    // useEffect(() => {
+    //     dispatch({
+    //         type: "update_layer",
+    //         newLayer: {
+    //             id: id,
+    //             type: "point",
+    //             visible: visible,
+    //             xValue: xCoordinate,
+    //             yValue: yCoordinate,
+    //             filled: filled,
+    //         },
+    //     });
+    // }, [xCoordinate, yCoordinate]);
 
     function handleXCoordinateChange(e) {
         setXCoordinate(Number(e.target.value));

@@ -1,9 +1,10 @@
-import { useReducer, useContext, createContext } from "react";
-import GraphPointLayer from "../components/GraphChildLayers/GraphPointLayer";
+import { useReducer, createContext } from "react";
 
 const LayerContext = createContext();
 
 function reducer(layers, action) {
+    console.log("dispatch called");
+
     switch (action.type) {
         case "add_layer":
             return [...layers, newLayer(action.payload.type, Date.now())];
@@ -12,25 +13,44 @@ function reducer(layers, action) {
             return layers.map((layer) =>
                 layer.id === action.newLayer.id ? newLayer : layer
             );
-        default:
-            console.log("error");
-            return null;
+        case "delete_all_layers":
+            return [];
     }
 }
 
 function newLayer(type, id) {
+    console.log(`the type is + ${type}`);
     switch (type) {
-        case "point":
+        case "Point":
+            console.log("creating point");
             return {
                 id: id,
                 visible: true,
+                type: "Point",
                 xValue: 0,
                 yValue: 0,
                 filled: true,
             };
+        case "Function":
+            console.log("creating function");
+            return {
+                id: id,
+                visible: true,
+                type: "Function",
+                function: null,
+            };
+        case "Axis":
+            console.log("creating Axis");
+            return {
+                id: id,
+                visible: true,
+                type: "Axis",
+                xAxisSize: 1,
+                yAxisSize: 1,
+                axisType: "Cross",
+            };
         default:
-            console.log("error, no type");
-            return null;
+            console.log("error, invalid type");
     }
 }
 
@@ -43,3 +63,5 @@ export function LayersProvider({ children }) {
         </LayerContext.Provider>
     );
 }
+
+export { LayerContext };

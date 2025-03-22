@@ -4,21 +4,23 @@ const LayerContext = createContext();
 
 function reducer(layers, action) {
     console.log("dispatch called");
-
+    console.log(layers);
     switch (action.type) {
         case "add_layer":
-            return [...layers, newLayer(action.payload.type, Date.now())];
+            return [...layers, createLayer(action.payload.type, Date.now())];
 
         case "edit_layer":
             return layers.map((layer) =>
-                layer.id === action.newLayer.id ? newLayer : layer
+                layer.id === action.newLayer.id ? action.newLayer : layer
             );
         case "delete_all_layers":
             return [];
+        default:
+            console.log("error default");
     }
 }
 
-function newLayer(type, id) {
+function createLayer(type, id) {
     console.log(`the type is + ${type}`);
     switch (type) {
         case "Point":

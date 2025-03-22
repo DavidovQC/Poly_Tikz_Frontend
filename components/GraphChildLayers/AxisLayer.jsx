@@ -1,15 +1,34 @@
 import Dropdown from "../Dropdown";
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 
-function AxisLayer() {
+function AxisLayer({ dispatch, id }) {
+    //Working
     const [graphType, setGraphType] = useState("Cross");
     const [gridOn, setGridOn] = useState(false);
     const [ticksOn, setTicksOn] = useState(false);
 
-    const xAxisSizeInput = useRef(1);
-    const yAxisSizeInput = useRef(1);
-    const gridStep = useRef(1);
-    const ticksStep = useRef(1);
+    //in progress
+    const [xAxisSize, setXAxisSize] = useState(1);
+    const [yAxisSize, setYAxisSize] = useState(1);
+    const [gridStep, setGridStep] = useState(1);
+    const [ticksStep, setTicksStep] = useState(1);
+
+    useEffect(() => {
+        dispatch({
+            type: "edit_layer",
+            newLayer: {
+                type: "Axis",
+                id: id,
+                xAxisSize: xAxisSize,
+                yAxisSize: yAxisSize,
+            },
+        });
+    }, [xAxisSize]);
+
+    // const xAxisSizeInput = useRef(1);
+    // const yAxisSizeInput = useRef(1);
+    // const gridStep = useRef(1);
+    // const ticksStep = useRef(1);
 
     function handleGraphTypeChange(event) {
         setGraphType(event.target.value);
@@ -21,6 +40,10 @@ function AxisLayer() {
 
     function handleTicksChange() {
         setTicksOn(!ticksOn);
+    }
+
+    function handleXAxisSizeChange(event) {
+        setXAxisSize(event.target.value);
     }
 
     return (
@@ -42,19 +65,18 @@ function AxisLayer() {
                         <label>x-axis size:</label>
                         <input
                             className="number-input-field"
-                            ref={xAxisSizeInput}
-                            defaultValue={1}
+                            value={xAxisSize}
                             type="number"
                             min={0.1}
                             max={10}
                             step={0.1}
+                            onChange={handleXAxisSizeChange}
                         ></input>
                     </div>
                     <div className="y-axis-container">
                         <label>y-axis size:</label>
                         <input
                             className="number-input-field"
-                            ref={yAxisSizeInput}
                             defaultValue={1}
                             type="number"
                             min={0.1}
@@ -64,7 +86,7 @@ function AxisLayer() {
                     </div>
                 </div>
 
-                <div className="checkbox-field">
+                {/* <div className="checkbox-field">
                     <label>arrows</label>
                     <input type="checkbox"></input>
                 </div>
@@ -136,7 +158,7 @@ function AxisLayer() {
                         </div>
                     </div>
                 </Dropdown>
-                <Dropdown label="Custom"></Dropdown>
+                <Dropdown label="Custom"></Dropdown>*/}
             </div>
         </Dropdown>
     );

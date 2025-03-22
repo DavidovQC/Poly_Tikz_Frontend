@@ -4,7 +4,7 @@ import Dropdown from "./Dropdown";
 import { AppContext } from "../src/AppContext";
 import { LayerContext } from "../Layers/LayersContext";
 import Layers from "../Layers/Layers";
-import { useRef } from "react";
+
 import "../styles/graph-component-styles.css";
 
 function GraphComponent() {

@@ -16,8 +16,13 @@ function Layers({ options }) {
             <div className="Add-layer">
                 <select onChange={handleLayerTypeChange}>
                     <option value="Point">Point</option>
-                    <option value="Axis">Axis</option>
                     <option value="Function">Function</option>
+                    <option value="Circle">Circle</option>
+                    <option value="Rectangle">Rectangle</option>
+                    <option value="Line Segment">Line Segment</option>
+                    {/* {options.map((option) => {
+                        <option value={option}>{option}</option>;
+                    })} */}
                 </select>
             </div>
 
@@ -52,6 +57,7 @@ function Layers({ options }) {
                                 <FunctionLayer
                                     key={layer.id}
                                     id={layer.id}
+                                    dispatch={dispatch}
                                 ></FunctionLayer>
                             );
 
@@ -60,6 +66,7 @@ function Layers({ options }) {
                                 <AxisLayer
                                     key={layer.id}
                                     id={layer.id}
+                                    dispatch={dispatch}
                                 ></AxisLayer>
                             );
                         default:

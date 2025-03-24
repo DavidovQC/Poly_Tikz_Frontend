@@ -32,6 +32,7 @@ function createLayer(type, id) {
                 xValue: 0,
                 yValue: 0,
                 filled: true,
+                size: 1,
             };
         case "Function":
             console.log("creating function");
@@ -50,6 +51,7 @@ function createLayer(type, id) {
                 xAxisSize: 1,
                 yAxisSize: 1,
                 axisType: "Cross",
+                arrowsOn: true,
             };
         default:
             console.log("error, invalid type");

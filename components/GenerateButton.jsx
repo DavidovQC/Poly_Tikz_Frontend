@@ -1,3 +1,11 @@
-function GenerateButton({ clickFunction }) {
-    <button onClick={clickFunction}>Generate</button>;
+import "../styles/button-styles.css";
+
+function GenerateButton({ buttonFunction }) {
+    return (
+        <button className="generate-button" onClick={buttonFunction}>
+            Generate
+        </button>
+    );
 }
+
+export default GenerateButton;

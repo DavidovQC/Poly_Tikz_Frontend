@@ -1,14 +1,33 @@
+import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown";
 
-function FunctionLayer() {
-    // const functionInput = useRef(``);
+function FunctionLayer({ id, dispatch }) {
+    const [functionInput, setFunctionInput] = useState("");
+
+    function handleFunctionChange(e) {
+        setFunctionInput(e.target.value);
+    }
+
+    useEffect(() => {
+        dispatch({
+            type: "edit_layer",
+            newLayer: {
+                type: "Function",
+                id: id,
+                function: functionInput,
+            },
+        });
+    }, [functionInput]);
 
     return (
         <Dropdown label="Function">
             <div className="graph-options-container">
                 <div className="text-input-field">
                     <label>f(x) = </label>
-                    <input placeholder="function"></input>
+                    <input
+                        placeholder="function"
+                        onChange={handleFunctionChange}
+                    ></input>
                 </div>
                 <div>
                     <label>Stroke: </label>

@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { useContext } from "react";
 import { AppContext } from "../src/AppContext";
 import SVGDisplay from "../components/SVGDisplay";
+import Footer from "../components/Footer";
 
 function Homepage() {
     const { latexCode, svgCode, mySVG, setMySVG } = useContext(AppContext);
@@ -23,8 +24,8 @@ function Homepage() {
                             <label>LaTeX code:</label>
                             <textarea
                                 className="tikz-text-container"
-                                rows="10"
-                                cols="75"
+                                rows="15"
+                                cols="100"
                                 placeholder="LaTeX"
                                 value={latexCode}
                             ></textarea>
@@ -33,8 +34,8 @@ function Homepage() {
                             <label>svg code:</label>
                             <textarea
                                 type="text"
-                                rows="10"
-                                cols="75"
+                                rows="15"
+                                cols="100"
                                 placeholder="svg"
                                 value={svgCode}
                             ></textarea>
@@ -42,6 +43,7 @@ function Homepage() {
                     </div>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 }

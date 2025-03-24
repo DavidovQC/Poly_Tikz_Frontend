@@ -16,12 +16,14 @@ function Layers({ options }) {
             <div className="Add-layer">
                 <select onChange={handleLayerTypeChange}>
                     <option value="Point">Point</option>
+                    <option value="Circle">Node</option>
                     <option value="Function">Function</option>
                     <option value="Circle">Circle</option>
                     <option value="Rectangle">Rectangle</option>
                     <option value="Line Segment">Line Segment</option>
+
                     {/* {options.map((option) => {
-                        <option value={option}>{option}</option>;
+                        return <option value={option}>{option}</option>;
                     })} */}
                 </select>
             </div>

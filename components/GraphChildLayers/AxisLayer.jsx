@@ -2,14 +2,18 @@ import Dropdown from "../Dropdown";
 import { useState, useEffect } from "react";
 
 function AxisLayer({ dispatch, id }) {
-    //Working
+    //Working + Added to Layer
+    const [xAxisSize, setXAxisSize] = useState(1);
+    const [yAxisSize, setYAxisSize] = useState(1);
     const [graphType, setGraphType] = useState("Cross");
+    const [arrowsOn, setArrowsOn] = useState(true);
+
+    //Working
     const [gridOn, setGridOn] = useState(false);
     const [ticksOn, setTicksOn] = useState(false);
 
     //in progress
-    const [xAxisSize, setXAxisSize] = useState(1);
-    const [yAxisSize, setYAxisSize] = useState(1);
+
     const [gridStep, setGridStep] = useState(1);
     const [ticksStep, setTicksStep] = useState(1);
 
@@ -21,17 +25,31 @@ function AxisLayer({ dispatch, id }) {
                 id: id,
                 xAxisSize: xAxisSize,
                 yAxisSize: yAxisSize,
+                AxisType: graphType,
+                arrowsOn: arrowsOn,
             },
         });
-    }, [xAxisSize]);
+    }, [xAxisSize, yAxisSize, graphType, arrowsOn]);
 
     // const xAxisSizeInput = useRef(1);
     // const yAxisSizeInput = useRef(1);
     // const gridStep = useRef(1);
     // const ticksStep = useRef(1);
 
+    function handleXAxisSizeChange(event) {
+        setXAxisSize(event.target.value);
+    }
+
+    function handleYAxisSizeChange(event) {
+        setYAxisSize(event.target.value);
+    }
+
     function handleGraphTypeChange(event) {
         setGraphType(event.target.value);
+    }
+
+    function handleArrowsChange(event) {
+        setArrowsOn(!arrowsOn);
     }
 
     function handleGridChange() {
@@ -40,10 +58,6 @@ function AxisLayer({ dispatch, id }) {
 
     function handleTicksChange() {
         setTicksOn(!ticksOn);
-    }
-
-    function handleXAxisSizeChange(event) {
-        setXAxisSize(event.target.value);
     }
 
     return (
@@ -77,18 +91,23 @@ function AxisLayer({ dispatch, id }) {
                         <label>y-axis size:</label>
                         <input
                             className="number-input-field"
-                            defaultValue={1}
+                            value={yAxisSize}
                             type="number"
                             min={0.1}
                             max={10}
                             step={0.1}
+                            onChange={handleYAxisSizeChange}
                         ></input>
                     </div>
                 </div>
 
-                {/* <div className="checkbox-field">
+                <div className="checkbox-field">
                     <label>arrows</label>
-                    <input type="checkbox"></input>
+                    <input
+                        type="checkbox"
+                        checked={arrowsOn}
+                        onChange={handleArrowsChange}
+                    ></input>
                 </div>
 
                 <Dropdown label="Ticks">
@@ -96,7 +115,7 @@ function AxisLayer({ dispatch, id }) {
                         <label>x-axis</label>
                         <input
                             type="checkbox"
-                            value={ticksOn}
+                            checked={ticksOn}
                             onChange={handleTicksChange}
                         ></input>
                     </div>
@@ -105,7 +124,7 @@ function AxisLayer({ dispatch, id }) {
                         <label>y-axis</label>
                         <input
                             type="checkbox"
-                            value={ticksOn}
+                            checked={ticksOn}
                             onChange={handleTicksChange}
                         ></input>
                     </div>
@@ -148,7 +167,6 @@ function AxisLayer({ dispatch, id }) {
                         <div>
                             <label>step: </label>
                             <input
-                                ref={gridStep}
                                 type="number"
                                 defaultValue="1"
                                 min=".1"
@@ -158,7 +176,7 @@ function AxisLayer({ dispatch, id }) {
                         </div>
                     </div>
                 </Dropdown>
-                <Dropdown label="Custom"></Dropdown>*/}
+                <Dropdown label="Custom"></Dropdown>
             </div>
         </Dropdown>
     );

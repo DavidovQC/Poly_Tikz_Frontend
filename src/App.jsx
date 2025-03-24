@@ -7,26 +7,19 @@
 //add textboxes for return latex and svg code
 //refactor homepage
 //make svg container an internal window should the svg overflow
+//add layers to graph component
+//organize/modularize server code
 
 //To do:
-
-//add layers to graph component
-//add Venn-Diagram
-
 //implement mathjax for matrices and tables (primarily tables)
-//organize/modularize server code (tomorrow)
 
 //For Domain/Range add clipping options for before the function!
-//Venn Diagram
-
 //load presets (e.g, y=x, y = |x|, y=sin(x), y=e^x)
 //Pallette for functions (sin, cos, e)
-
 //implement visible/invisible layer
 //Add function to cleanup input of function
 //Color picker
-
-//Add layers (vectors, points, ...)
+//add Venn-Diagram
 
 //sign-in
 //side bar with prev generations

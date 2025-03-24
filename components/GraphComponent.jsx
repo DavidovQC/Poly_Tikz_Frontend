@@ -6,6 +6,7 @@ import { LayerContext } from "../Layers/LayersContext";
 import Layers from "../Layers/Layers";
 
 import "../styles/graph-component-styles.css";
+import GenerateButton from "./GenerateButton";
 
 function GraphComponent() {
     const { setLatexCode, setSVGCode, setMySVG } = useContext(AppContext);
@@ -26,42 +27,13 @@ function GraphComponent() {
     }, []);
 
     async function GenerateGraph() {
-        const graphData = {
-            Type: graphType,
-            Grid: gridOn,
-            TicksOn: ticksOn,
-            TicksStep: ticksStep.current.value,
-            function: functionInput.current.value,
-            functionDomain: functionDomain.current.value,
-            xAxisSize: xAxisSizeInput.current.value,
-            yAxisSize: yAxisSizeInput.current.value,
-            GridStep: gridStep.current.value,
-        };
+        console.log(`Graph data: ${JSON.stringify(layers)}`);
 
-        console.log(`Graph data: ${JSON.stringify(graphData)}`);
-
-        const response = await fetch("http://localhost:3000/api/getGraphSVG", {
-            method: "POST",
-            body: JSON.stringify(graphData),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        const data = await response.json();
-        const newSVG = data.SVG;
-        setLatexCode(data.TikZ);
-        setSVGCode(data.SVG);
-        setMySVG(newSVG);
-    }
-
-    async function genGraphV2() {
-        const graphData = layers;
         const response = await fetch(
             "http://localhost:3000/api/getGraphSVGv2",
             {
                 method: "POST",
-                body: JSON.stringify(graphData),
+                body: JSON.stringify(layers),
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -69,7 +41,10 @@ function GraphComponent() {
         );
 
         const data = await response.json();
-        console.log(data);
+        const newSVG = data.SVG;
+        setLatexCode(data.TikZ);
+        setSVGCode(data.SVG);
+        setMySVG(newSVG);
     }
 
     async function PostTest() {
@@ -86,13 +61,13 @@ function GraphComponent() {
 
     return (
         <div className="graph-component-container">
-            <button onClick={genGraphV2}>V2 test</button>
-
-            <Dropdown label="Testing">
+            {/* <Dropdown label="Testing">
                 <button onClick={PostTest}>Show Current Test</button>
-            </Dropdown>
+            </Dropdown> */}
 
             <Layers></Layers>
+
+            <GenerateButton buttonFunction={GenerateGraph}></GenerateButton>
         </div>
     );
 }

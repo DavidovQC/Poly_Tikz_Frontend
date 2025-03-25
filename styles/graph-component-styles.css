@@ -1,10 +1,4 @@
-.generate-button {
-    background-color: green;
-}
-
-.graph-component-container {
-    /* background-color: rgb(33, 33, 33); */
-    /* border: black solid 1px; */
+/* .graph-component-container {
     min-height: 200px;
     min-width: 500px;
     display: flex;
@@ -13,7 +7,7 @@
     align-items: flex-start;
     margin: 20px;
     padding: 20px;
-}
+} */
 
 button {
     margin: 3px;
@@ -41,13 +35,13 @@ label {
 }
 
 /* -------------------------- Axis Container -------------------------------- */
-
+/* 
 .graph-options-container {
-    /* border: 1px solid black; */
+  
     margin-left: 20px;
     display: flex;
     flex-direction: column;
-}
+} */
 
 .axis-size-container {
     display: flex;

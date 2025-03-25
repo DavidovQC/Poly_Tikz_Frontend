@@ -7,14 +7,16 @@ function AxisLayer({ dispatch, id }) {
     const [yAxisSize, setYAxisSize] = useState(1);
     const [graphType, setGraphType] = useState("Cross");
     const [arrowsOn, setArrowsOn] = useState(true);
+    const [gridStep, setGridStep] = useState(1);
+    const [xAxisVisible, setXAxisVisible] = useState(true);
+    const [yAxisVisible, setYAxisVisible] = useState(true);
+
+    const [gridOn, setGridOn] = useState(false);
+    const [ticksOnX, setTicksOnX] = useState(false);
 
     //Working
-    const [gridOn, setGridOn] = useState(false);
-    const [ticksOn, setTicksOn] = useState(false);
-
+    const [ticksOnY, setTicksOnY] = useState(false);
     //in progress
-
-    const [gridStep, setGridStep] = useState(1);
     const [ticksStep, setTicksStep] = useState(1);
 
     useEffect(() => {
@@ -27,9 +29,28 @@ function AxisLayer({ dispatch, id }) {
                 yAxisSize: yAxisSize,
                 AxisType: graphType,
                 arrowsOn: arrowsOn,
+                xAxisVisible: xAxisVisible,
+                yAxisVisible: yAxisVisible,
+                gridOn: gridOn,
+                gridStep: gridStep,
+                ticksOnX: ticksOnX,
+                ticksStep: ticksStep,
+                xAxisVisible: xAxisVisible,
+                yAxisVisible: yAxisVisible,
             },
         });
-    }, [xAxisSize, yAxisSize, graphType, arrowsOn]);
+    }, [
+        xAxisSize,
+        yAxisSize,
+        graphType,
+        arrowsOn,
+        gridStep,
+        gridOn,
+        ticksOnX,
+        ticksStep,
+        xAxisVisible,
+        yAxisVisible,
+    ]);
 
     // const xAxisSizeInput = useRef(1);
     // const yAxisSizeInput = useRef(1);
@@ -57,7 +78,23 @@ function AxisLayer({ dispatch, id }) {
     }
 
     function handleTicksChange() {
-        setTicksOn(!ticksOn);
+        setTicksOnX(!ticksOnX);
+    }
+
+    function handleXAxisVisibleChange() {
+        setXAxisVisible(!xAxisVisible);
+    }
+
+    function handleYAxisVisibleChange() {
+        setYAxisVisible(!yAxisVisible);
+    }
+
+    function handleGridStepChange(event) {
+        setGridStep(event.target.value);
+    }
+
+    function handleTickStepChange(event) {
+        setTicksStep(event.target.value);
     }
 
     return (
@@ -115,34 +152,35 @@ function AxisLayer({ dispatch, id }) {
                         <label>x-axis</label>
                         <input
                             type="checkbox"
-                            checked={ticksOn}
+                            checked={ticksOnX}
                             onChange={handleTicksChange}
                         ></input>
                     </div>
 
-                    <div className="checkbox-field">
+                    {/* <div className="checkbox-field">
                         <label>y-axis</label>
                         <input
                             type="checkbox"
                             checked={ticksOn}
                             onChange={handleTicksChange}
                         ></input>
-                    </div>
+                    </div> */}
 
-                    <div className="checkbox-field">
+                    {/* <div className="checkbox-field">
                         <label>radians</label>
                         <input type="checkbox"></input>
-                    </div>
+                    </div> */}
                     <div>
                         <label>Step:</label>
                         <input
                             type="number"
                             step={0.1}
                             max="10"
-                            defaultValue={1}
+                            value={ticksStep}
+                            onChange={handleTickStepChange}
                         ></input>
                     </div>
-                    <div>
+                    {/* <div>
                         <label>Spacing:</label>
                         <input
                             type="number"
@@ -150,7 +188,7 @@ function AxisLayer({ dispatch, id }) {
                             max="10"
                             defaultValue={1}
                         ></input>
-                    </div>
+                    </div> */}
                 </Dropdown>
 
                 <Dropdown label="Grid">
@@ -168,15 +206,34 @@ function AxisLayer({ dispatch, id }) {
                             <label>step: </label>
                             <input
                                 type="number"
-                                defaultValue="1"
+                                value={gridStep}
                                 min=".1"
                                 max="3"
                                 step=".1"
+                                onChange={handleGridStepChange}
                             ></input>
                         </div>
                     </div>
                 </Dropdown>
-                <Dropdown label="Custom"></Dropdown>
+                <Dropdown label="Advanced">
+                    <div className="checkbox-field">
+                        <label>x-axis visible:</label>
+                        <input
+                            type="checkbox"
+                            checked={xAxisVisible}
+                            onChange={handleXAxisVisibleChange}
+                        ></input>
+                    </div>
+
+                    <div className="checkbox-field">
+                        <label>y-axis visible:</label>
+                        <input
+                            type="checkbox"
+                            checked={yAxisVisible}
+                            onChange={handleYAxisVisibleChange}
+                        ></input>
+                    </div>
+                </Dropdown>
             </div>
         </Dropdown>
     );

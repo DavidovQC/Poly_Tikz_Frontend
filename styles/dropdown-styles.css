@@ -18,6 +18,9 @@ button {
     outline-offset: -14px; /* moves the outline inward */
     padding-bottom: 14px;
     padding-right: 15px;
+    width: 450px;
+
+    max-width: 90%;
 }
 
 .dropdown-title-container:hover {
@@ -39,4 +42,5 @@ button {
     margin-left: 15px;
     margin-right: 15px;
     margin-bottom: 15px;
+    padding-left: 15px;
 }

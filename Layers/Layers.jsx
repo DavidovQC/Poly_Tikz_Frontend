@@ -3,6 +3,8 @@ import GraphPointLayer from "../components/GraphChildLayers/GraphPointLayer";
 import { LayerContext } from "./LayersContext";
 import FunctionLayer from "../components/GraphChildLayers/FunctionLayer";
 import AxisLayer from "../components/GraphChildLayers/AxisLayer";
+import "../styles/layers-styles.css";
+
 function Layers({ options }) {
     const { layers, dispatch } = useContext(LayerContext);
     const [layerType, setLayerType] = useState("Point");
@@ -13,36 +15,41 @@ function Layers({ options }) {
 
     return (
         <div>
-            <div className="Add-layer">
-                <select onChange={handleLayerTypeChange}>
-                    <option value="Point">Point</option>
-                    <option value="Circle">Node</option>
-                    <option value="Function">Function</option>
-                    <option value="Circle">Circle</option>
-                    <option value="Rectangle">Rectangle</option>
-                    <option value="Line Segment">Line Segment</option>
+            <div className="add-layer-options-container">
+                <button
+                    className="add-layer-button"
+                    onClick={() => {
+                        console.log(`${layerType}`);
+                        dispatch({
+                            type: "add_layer",
+                            payload: {
+                                type: layerType,
+                            },
+                        });
+                    }}
+                >
+                    +
+                </button>
 
-                    {/* {options.map((option) => {
+                <div className="Add-layer">
+                    <select
+                        onChange={handleLayerTypeChange}
+                        className="options-select"
+                    >
+                        <option value="Point">Point</option>
+                        <option value="Circle">Node</option>
+                        <option value="Function">Function</option>
+                        <option value="Circle">Circle</option>
+                        <option value="Rectangle">Rectangle</option>
+                        <option value="Line Segment">Line Segment</option>
+
+                        {/* {options.map((option) => {
                         return <option value={option}>{option}</option>;
                     })} */}
-                </select>
+                    </select>
+                </div>
             </div>
-
-            <button
-                onClick={() => {
-                    console.log(`${layerType}`);
-                    dispatch({
-                        type: "add_layer",
-                        payload: {
-                            type: layerType,
-                        },
-                    });
-                }}
-            >
-                +
-            </button>
-
-            <div>
+            <div className="layers-container">
                 {layers.map((layer) => {
                     switch (layer.type) {
                         case "Point":

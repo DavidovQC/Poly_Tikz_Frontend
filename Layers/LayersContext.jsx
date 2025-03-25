@@ -31,6 +31,7 @@ function createLayer(type, id) {
                 type: "Point",
                 xValue: 0,
                 yValue: 0,
+
                 filled: true,
                 size: 1,
             };
@@ -52,6 +53,8 @@ function createLayer(type, id) {
                 yAxisSize: 1,
                 axisType: "Cross",
                 arrowsOn: true,
+                xAxisVisible: true,
+                yAxisVisible: true,
             };
         default:
             console.log("error, invalid type");

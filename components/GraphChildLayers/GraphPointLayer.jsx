@@ -5,6 +5,7 @@ import { useEffect } from "react";
 function GraphPointLayer({ dispatch, id }) {
     const [xCoordinate, setXCoordinate] = useState(0);
     const [yCoordinate, setYCoordinate] = useState(0);
+
     const [size, setSize] = useState(1);
 
     ///to be implemented:
@@ -21,6 +22,7 @@ function GraphPointLayer({ dispatch, id }) {
                 visible: visible,
                 xValue: xCoordinate,
                 yValue: yCoordinate,
+
                 filled: filled,
                 size: size,
             },

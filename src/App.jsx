@@ -11,15 +11,13 @@
 //organize/modularize server code
 
 //To do:
-//implement mathjax for matrices and tables (primarily tables)
+//implement mathjax for matrices and tables
 
-//For Domain/Range add clipping options for before the function!
 //load presets (e.g, y=x, y = |x|, y=sin(x), y=e^x)
 //Pallette for functions (sin, cos, e)
 //implement visible/invisible layer
 //Add function to cleanup input of function
 //Color picker
-//add Venn-Diagram
 
 //sign-in
 //side bar with prev generations
@@ -27,7 +25,10 @@
 import "./App.css";
 import { useState } from "react";
 import { AppContext } from "./AppContext";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "../Pages/Homepage";
+import About from "../Pages/About";
+import Contact from "../Pages/Contact";
 
 function App() {
     const [selectedOption, setSelectedOption] = useState("Graph");
@@ -48,7 +49,13 @@ function App() {
                 setSelectedOption,
             }}
         >
-            <Homepage></Homepage>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="/About" element={<About />} />
+                    <Route path="/Contact" element={<Contact />} />
+                </Routes>
+            </Router>
         </AppContext.Provider>
     );
 }

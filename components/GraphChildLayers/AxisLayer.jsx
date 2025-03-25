@@ -35,8 +35,6 @@ function AxisLayer({ dispatch, id }) {
                 gridStep: gridStep,
                 ticksOnX: ticksOnX,
                 ticksStep: ticksStep,
-                xAxisVisible: xAxisVisible,
-                yAxisVisible: yAxisVisible,
             },
         });
     }, [
@@ -107,9 +105,9 @@ function AxisLayer({ dispatch, id }) {
                     <button onClick={handleGraphTypeChange} value={"L-Shape"}>
                         L-Shape
                     </button>
-                    <button onClick={handleGraphTypeChange} value={"T-Bar"}>
+                    {/* <button onClick={handleGraphTypeChange} value={"T-Bar"}>
                         T-Bar
-                    </button>
+                    </button> */}
                 </div>
                 <div className="axis-size-container">
                     <div className="x-axis-container">
@@ -170,7 +168,7 @@ function AxisLayer({ dispatch, id }) {
                         <label>radians</label>
                         <input type="checkbox"></input>
                     </div> */}
-                    <div>
+                    {/* <div>
                         <label>Step:</label>
                         <input
                             type="number"
@@ -179,7 +177,7 @@ function AxisLayer({ dispatch, id }) {
                             value={ticksStep}
                             onChange={handleTickStepChange}
                         ></input>
-                    </div>
+                    </div> */}
                     {/* <div>
                         <label>Spacing:</label>
                         <input

@@ -5,12 +5,12 @@ import { useEffect } from "react";
 function GraphPointLayer({ dispatch, id }) {
     const [xCoordinate, setXCoordinate] = useState(0);
     const [yCoordinate, setYCoordinate] = useState(0);
-
+    const [filled, setFilled] = useState(false);
     const [size, setSize] = useState(1);
+    const [nodeText, setNodeText] = useState("");
 
     ///to be implemented:
     const [visible, setVisible] = useState(true);
-    const [filled, setFilled] = useState(true);
 
     useEffect(() => {
         console.log("Point sending dispatch");
@@ -22,12 +22,12 @@ function GraphPointLayer({ dispatch, id }) {
                 visible: visible,
                 xValue: xCoordinate,
                 yValue: yCoordinate,
-
                 filled: filled,
                 size: size,
+                nodeText: nodeText,
             },
         });
-    }, [xCoordinate, yCoordinate, size]);
+    }, [xCoordinate, yCoordinate, size, filled, nodeText]);
 
     function handleXCoordinateChange(e) {
         setXCoordinate(e.target.value);
@@ -41,25 +41,44 @@ function GraphPointLayer({ dispatch, id }) {
         setSize(e.target.value);
     }
 
+    function handleFilledChange(e) {
+        setFilled(!filled);
+    }
+
+    function handleNodeTextChange(e) {
+        setNodeText(e.target.value);
+    }
+
     return (
         <div>
             <div>
                 <Dropdown label="Point">
-                    <div>
+                    <div className="point-coordinates-container">
                         <label>Coordinates:</label>
-                        <label>x</label>
-                        <input
-                            type="number"
-                            value={xCoordinate}
-                            onChange={handleXCoordinateChange}
-                            step={0.1}
-                        ></input>
-                        <label>y</label>
+                        <div>
+                            <label>x: </label>
+                            <input
+                                type="number"
+                                value={xCoordinate}
+                                onChange={handleXCoordinateChange}
+                                step={0.1}
+                            ></input>
+                        </div>
+                        <label>y: </label>
                         <input
                             type="number"
                             value={yCoordinate}
                             onChange={handleYCoordinateChange}
                             step={0.1}
+                        ></input>
+                    </div>
+
+                    <div>
+                        <label>Filled:</label>
+                        <input
+                            type="checkbox"
+                            checked={filled}
+                            onChange={handleFilledChange}
                         ></input>
                     </div>
                     <div>
@@ -73,10 +92,14 @@ function GraphPointLayer({ dispatch, id }) {
                         ></input>
                     </div>
 
-                    <Dropdown label="Node">
+                    {/* <Dropdown label="Node">
                         <label>Node text:</label>
-                        <input type="text"></input>
-                    </Dropdown>
+                        <input
+                            type="text"
+                            value={nodeText}
+                            onChange={handleNodeTextChange}
+                        ></input>
+                    </Dropdown> */}
                 </Dropdown>
             </div>
         </div>

@@ -42,6 +42,8 @@ function createLayer(type, id) {
                 visible: true,
                 type: "Function",
                 function: null,
+                samples: 100,
+                thickness: "thick",
             };
         case "Axis":
             console.log("creating Axis");

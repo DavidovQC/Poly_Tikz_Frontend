@@ -16,32 +16,32 @@ function Layers({ options }) {
     return (
         <div>
             <div className="add-layer-options-container">
-                <button
-                    className="add-layer-button"
-                    onClick={() => {
-                        console.log(`${layerType}`);
-                        dispatch({
-                            type: "add_layer",
-                            payload: {
-                                type: layerType,
-                            },
-                        });
-                    }}
-                >
-                    +
-                </button>
-
                 <div className="Add-layer">
+                    <button
+                        className="add-layer-button"
+                        onClick={() => {
+                            console.log(`${layerType}`);
+                            dispatch({
+                                type: "add_layer",
+                                payload: {
+                                    type: layerType,
+                                },
+                            });
+                        }}
+                    >
+                        +
+                    </button>
+
                     <select
                         onChange={handleLayerTypeChange}
                         className="options-select"
                     >
                         <option value="Point">Point</option>
-                        <option value="Circle">Node</option>
+                        {/* <option value="Circle">Node</option> */}
                         <option value="Function">Function</option>
-                        <option value="Circle">Circle</option>
+                        {/* <option value="Circle">Circle</option>
                         <option value="Rectangle">Rectangle</option>
-                        <option value="Line Segment">Line Segment</option>
+                        <option value="Line Segment">Line Segment</option> */}
 
                         {/* {options.map((option) => {
                         return <option value={option}>{option}</option>;

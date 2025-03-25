@@ -66,8 +66,9 @@ function GraphComponent() {
             </Dropdown> */}
 
             <Layers></Layers>
-
-            <GenerateButton buttonFunction={GenerateGraph}></GenerateButton>
+            <div className="generate-graph-button-container">
+                <GenerateButton buttonFunction={GenerateGraph}></GenerateButton>
+            </div>
         </div>
     );
 }

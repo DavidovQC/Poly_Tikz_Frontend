@@ -3,9 +3,24 @@ import Dropdown from "../Dropdown";
 
 function FunctionLayer({ id, dispatch }) {
     const [functionInput, setFunctionInput] = useState("");
+    const [thickness, setThickness] = useState("thick");
+    const [stroke, setStroke] = useState("solid");
+    const [samples, setSamples] = useState(100);
 
     function handleFunctionChange(e) {
         setFunctionInput(e.target.value);
+    }
+
+    function handleThicknessChange(e) {
+        setThickness(e.target.value);
+    }
+
+    function handleStrokeChange(e) {
+        setStroke(e.target.value);
+    }
+
+    function handleSamplesChange(e) {
+        setSamples(e.target.value);
     }
 
     useEffect(() => {
@@ -15,9 +30,12 @@ function FunctionLayer({ id, dispatch }) {
                 type: "Function",
                 id: id,
                 function: functionInput,
+                thickness: thickness,
+                stroke: stroke,
+                samples: samples,
             },
         });
-    }, [functionInput]);
+    }, [functionInput, thickness, stroke, samples]);
 
     return (
         <Dropdown label="Function">
@@ -30,26 +48,49 @@ function FunctionLayer({ id, dispatch }) {
                     ></input>
                 </div>
                 <div>
-                    <label>Stroke: </label>
-                    <select className="stroke">
-                        <option>Fill</option>
-                        <option>Dotted</option>
+                    <label>Thickness: </label>
+                    <select
+                        className="thickness"
+                        value={thickness}
+                        onChange={handleThicknessChange}
+                    >
+                        <option>ultra thin</option>
+                        <option>very thin</option>
+                        <option>thin</option>
+                        <option>semithick</option>
+                        <option>thick</option>
+                        <option>very thick</option>
+                        <option>ultra thick</option>
                     </select>
                 </div>
-                <div className="checkbox-field">
+                <div>
+                    <label>Stroke: </label>
+                    <select
+                        className="stroke"
+                        value={stroke}
+                        onChange={handleStrokeChange}
+                    >
+                        <option>solid</option>
+                        <option>dotted</option>
+                        <option>dashed</option>
+                    </select>
+                </div>
+
+                {/* <div className="checkbox-field">
                     <label>radians</label>
                     <input type="checkbox"></input>
-                </div>
+                </div> */}
                 <div className="range-field">
                     <label>Samples</label>
                     <input
                         type="range"
                         min="1"
                         max="300"
-                        defaultValue="150"
+                        value={samples}
+                        onChange={handleSamplesChange}
                     ></input>
                 </div>
-                <Dropdown label={"Domain / Range"}>
+                {/* <Dropdown label={"Domain / Range"}>
                     <div className="text-input-field">
                         <label>Domain:</label>
 
@@ -59,7 +100,7 @@ function FunctionLayer({ id, dispatch }) {
                         <label>Range:</label>
                         <input defaultValue={"(-10, 10)"}></input>
                     </div>
-                </Dropdown>
+                </Dropdown> */}
             </div>
         </Dropdown>
     );

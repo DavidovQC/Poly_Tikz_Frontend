@@ -33,6 +33,7 @@ function GraphComponent() {
             "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
             {
                 method: "POST",
+                mode: "cors",
                 body: JSON.stringify(layers),
                 headers: {
                     "Content-Type": "application/json",

@@ -10,3 +10,8 @@
     max-height: 30px;
     font-size: 8pt;
 }
+
+.footer a {
+    text-decoration: none;
+    color: orange;
+}

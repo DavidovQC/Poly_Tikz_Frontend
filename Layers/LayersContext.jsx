@@ -15,6 +15,10 @@ function reducer(layers, action) {
             );
         case "delete_all_layers":
             return [];
+
+        case "delete_layer":
+            return layers.filter((layer) => layer.id != action.payload.id);
+
         default:
             console.log("error default");
     }

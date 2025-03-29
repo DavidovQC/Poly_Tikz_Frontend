@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Dropdown from "../Dropdown";
 import { useEffect } from "react";
+import DeleteLayerButton from "../DeleteLayerButton";
 
 function GraphPointLayer({ dispatch, id }) {
     const [xCoordinate, setXCoordinate] = useState(0);
@@ -100,6 +101,17 @@ function GraphPointLayer({ dispatch, id }) {
                             onChange={handleNodeTextChange}
                         ></input>
                     </Dropdown> */}
+
+                    <DeleteLayerButton
+                        clickFunction={() =>
+                            dispatch({
+                                type: "delete_layer",
+                                payload: {
+                                    id: id,
+                                },
+                            })
+                        }
+                    ></DeleteLayerButton>
                 </Dropdown>
             </div>
         </div>

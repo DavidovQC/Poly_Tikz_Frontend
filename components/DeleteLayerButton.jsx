@@ -1,3 +1,11 @@
+import "../styles/button-styles.css";
+
 function DeleteLayerButton({ clickFunction }) {
-    <button onClick={clickFunction}>Delete</button>;
+    return (
+        <button className="delete-button" onClick={clickFunction}>
+            Delete
+        </button>
+    );
 }
+
+export default DeleteLayerButton;

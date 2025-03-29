@@ -2,3 +2,8 @@
     color: white;
     background-color: green;
 }
+
+.delete-button {
+    color: white;
+    background-color: red;
+}

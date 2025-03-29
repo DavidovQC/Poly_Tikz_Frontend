@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown";
+import DeleteLayerButton from "../DeleteLayerButton";
 
 function FunctionLayer({ id, dispatch }) {
     const [functionInput, setFunctionInput] = useState("");
@@ -102,6 +103,16 @@ function FunctionLayer({ id, dispatch }) {
                     </div>
                 </Dropdown> */}
             </div>
+            <DeleteLayerButton
+                clickFunction={() =>
+                    dispatch({
+                        type: "delete_layer",
+                        payload: {
+                            id: id,
+                        },
+                    })
+                }
+            ></DeleteLayerButton>
         </Dropdown>
     );
 }

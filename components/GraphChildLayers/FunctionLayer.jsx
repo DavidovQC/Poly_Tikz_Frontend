@@ -82,14 +82,17 @@ function FunctionLayer({ id, dispatch }) {
                     <input type="checkbox"></input>
                 </div> */}
                 <div className="range-field">
-                    <label>Samples</label>
-                    <input
-                        type="range"
-                        min="1"
-                        max="300"
-                        value={samples}
-                        onChange={handleSamplesChange}
-                    ></input>
+                    <div className="range-input">
+                        <label>Samples</label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="300"
+                            value={samples}
+                            onChange={handleSamplesChange}
+                        ></input>
+                        <p>{samples}</p>
+                    </div>
                 </div>
                 {/* <Dropdown label={"Domain / Range"}>
                     <div className="text-input-field">

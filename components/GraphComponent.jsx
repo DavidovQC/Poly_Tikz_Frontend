@@ -30,7 +30,8 @@ function GraphComponent() {
         console.log(`Graph data: ${JSON.stringify(layers)}`);
 
         const response = await fetch(
-            "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
+            "http://localhost:3000/api/getGraphSVGv2",
+            // "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
             {
                 method: "POST",
                 body: JSON.stringify(layers),

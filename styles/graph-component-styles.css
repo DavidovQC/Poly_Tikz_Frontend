@@ -34,6 +34,11 @@ label {
     border: 1px solid red;
 }
 
+.range-field p {
+    margin: 0;
+    padding: 0;
+}
+
 /* -------------------------- Axis Container -------------------------------- */
 /* 
 .graph-options-container {

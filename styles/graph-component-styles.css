@@ -13,30 +13,68 @@ button {
     margin: 3px;
 }
 
-label {
-    margin: 2px;
-}
-
 .number-input-field {
     width: 40px;
     margin-left: 10px;
 }
 
+input {
+    background-color: rgb(59, 59, 59); /* Keeps the dark background */
+    color: white; /* Ensures white text */
+    border: 1px solid rgb(143, 143, 143);
+    border-radius: 2px; /* Adds rounded corners */
+    text-indent: 2px;
+}
+
+select {
+    background-color: rgb(59, 59, 59); /* Keeps the dark background */
+    color: white; /* Ensures white text */
+    border: 1px solid rgb(143, 143, 143);
+    border-radius: 2px; /* Adds rounded corners */
+}
+
 .checkbox-field {
-    border: 1px solid green;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-field label {
+    margin-left: 5px;
 }
 
 .text-input-field {
-    border: 1px solid blue;
+}
+
+.color-input-field {
+    display: flex;
+    align-items: center;
+    padding-left: 3px;
+}
+
+.color-input-field label {
+    margin-right: 5px;
+}
+
+.color-input-field input {
+    width: 27px;
+    height: 30px;
+    border: none;
+    background: none;
+    padding-top: 3px;
 }
 
 .range-field {
-    border: 1px solid red;
 }
 
 .range-field p {
     margin: 0;
     padding: 0;
+}
+
+.delete-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* -------------------------- Axis Container -------------------------------- */
@@ -48,18 +86,18 @@ label {
     flex-direction: column;
 } */
 
-.axis-size-container {
+/* .axis-size-container {
     display: flex;
     flex-direction: column;
     width: 400px;
     margin-top: 10px;
     margin-bottom: 10px;
-}
+} */
 
-.graph-button-container {
+/* .graph-button-container {
     margin-top: 5px;
     display: flex;
-}
+} */
 
 .generate-graph-button-container {
     display: flex;

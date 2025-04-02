@@ -18,7 +18,9 @@ function Dropdown({ children, label }) {
                 onClick={handleDisplayChange}
             >
                 <div className="arrow">▼</div>
-                <div className="label-container"> {label}</div>
+                <div className="label-container">
+                    <label>{label}</label>
+                </div>
             </div>
             {display && (
                 <div className="dropdown-contents-container">{children}</div>

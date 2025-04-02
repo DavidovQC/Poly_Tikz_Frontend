@@ -4,6 +4,7 @@ button {
 
 .arrow {
     margin-right: 10px;
+    color: white;
 }
 
 .arrow:hover {
@@ -18,9 +19,9 @@ button {
     outline-offset: -14px; /* moves the outline inward */
     padding-bottom: 14px;
     padding-right: 15px;
-    width: 450px;
+    width: 500px;
 
-    max-width: 90%;
+    max-width: 96%;
 }
 
 .dropdown-title-container:hover {
@@ -43,4 +44,9 @@ button {
     margin-right: 15px;
     margin-bottom: 15px;
     padding-left: 15px;
+}
+
+label {
+    font-size: 12pt;
+    /* margin: 0px; */
 }

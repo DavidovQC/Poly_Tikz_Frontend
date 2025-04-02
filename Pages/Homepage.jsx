@@ -15,10 +15,12 @@ function Homepage() {
             <div className="main-container">
                 <MainDynamicDropdown></MainDynamicDropdown>
                 <div className="output-container">
-                    <SVGDisplay
-                        svg={mySVG}
-                        className="SVG-Display"
-                    ></SVGDisplay>
+                    <div className="svg-image-container">
+                        <SVGDisplay
+                            svg={mySVG}
+                            className="SVG-Display"
+                        ></SVGDisplay>
+                    </div>
                     <div className="output-text-container">
                         <div className="tikz-section">
                             <label>LaTeX code:</label>
@@ -33,7 +35,7 @@ function Homepage() {
                         <div className="svg-section">
                             <label>svg code:</label>
                             <textarea
-                                type="text"
+                                className="svg-text-container"
                                 rows="15"
                                 cols="100"
                                 placeholder="svg"

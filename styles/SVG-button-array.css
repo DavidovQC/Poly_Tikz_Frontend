@@ -1,5 +1,7 @@
 .svg-button-array {
     display: flex;
     flex-direction: row;
-    padding: 1em;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
 }

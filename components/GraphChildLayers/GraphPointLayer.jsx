@@ -2,6 +2,7 @@ import { useState } from "react";
 import Dropdown from "../Dropdown";
 import { useEffect } from "react";
 import DeleteLayerButton from "../DeleteLayerButton";
+import "../../styles/graph-point-layers-styles.css";
 
 function GraphPointLayer({ dispatch, id }) {
     const [xCoordinate, setXCoordinate] = useState(0);
@@ -54,64 +55,82 @@ function GraphPointLayer({ dispatch, id }) {
         <div>
             <div>
                 <Dropdown label="Point">
-                    <div className="point-coordinates-container">
-                        <label>Coordinates:</label>
+                    <div className="main-graph-point-container">
+                        <div className="main-graph-point-container-grid">
+                            <div className="graph-point-coordinates-container">
+                                <label>Coordinates:</label>
+                                <div className="coordinate-input-container">
+                                    <div>
+                                        <label>x: </label>
+                                        <input
+                                            className="number-input-field"
+                                            type="number"
+                                            value={xCoordinate}
+                                            onChange={handleXCoordinateChange}
+                                            step={0.1}
+                                        ></input>
+                                    </div>
+                                    <div>
+                                        <label>y: </label>
+                                        <input
+                                            className="number-input-field"
+                                            type="number"
+                                            value={yCoordinate}
+                                            onChange={handleYCoordinateChange}
+                                            step={0.1}
+                                        ></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="graph-point-styles-container">
+                                <div className="size-container">
+                                    <label>size:</label>
+                                    <input
+                                        className="number-input-field"
+                                        type="number"
+                                        step={1}
+                                        min={1}
+                                        value={size}
+                                        onChange={handleSizeChange}
+                                    ></input>
+                                </div>
+
+                                <div className="color-input-field">
+                                    <label>color: </label>
+                                    <input type="color" value="#ff000"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <Dropdown label="Fill">
                         <div>
-                            <label>x: </label>
+                            <label>fill: </label>
                             <input
-                                type="number"
-                                value={xCoordinate}
-                                onChange={handleXCoordinateChange}
-                                step={0.1}
+                                type="checkbox"
+                                checked={filled}
+                                onChange={handleFilledChange}
                             ></input>
                         </div>
-                        <label>y: </label>
-                        <input
-                            type="number"
-                            value={yCoordinate}
-                            onChange={handleYCoordinateChange}
-                            step={0.1}
-                        ></input>
-                    </div>
 
-                    <div>
-                        <label>Filled:</label>
-                        <input
-                            type="checkbox"
-                            checked={filled}
-                            onChange={handleFilledChange}
-                        ></input>
-                    </div>
-                    <div>
-                        <label>Size:</label>
-                        <input
-                            type="number"
-                            step={1}
-                            min={1}
-                            value={size}
-                            onChange={handleSizeChange}
-                        ></input>
-                    </div>
+                        <div className="color-input-field">
+                            <label>fill color: </label>
+                            <input type="color" value="#ff000"></input>
+                        </div>
+                    </Dropdown>
 
-                    {/* <Dropdown label="Node">
-                        <label>Node text:</label>
-                        <input
-                            type="text"
-                            value={nodeText}
-                            onChange={handleNodeTextChange}
-                        ></input>
-                    </Dropdown> */}
-
-                    <DeleteLayerButton
-                        clickFunction={() =>
-                            dispatch({
-                                type: "delete_layer",
-                                payload: {
-                                    id: id,
-                                },
-                            })
-                        }
-                    ></DeleteLayerButton>
+                    <div className="delete-button-container">
+                        <DeleteLayerButton
+                            clickFunction={() =>
+                                dispatch({
+                                    type: "delete_layer",
+                                    payload: {
+                                        id: id,
+                                    },
+                                })
+                            }
+                        ></DeleteLayerButton>
+                    </div>
                 </Dropdown>
             </div>
         </div>

@@ -62,6 +62,15 @@ function createLayer(type, id) {
                 xAxisVisible: true,
                 yAxisVisible: true,
             };
+
+        case "Circle":
+            return {
+                id: id,
+                type: "Circle",
+                xOrigin: 0,
+                yOrigin: 0,
+                radius: 1,
+            };
         default:
             console.log("error, invalid type");
     }

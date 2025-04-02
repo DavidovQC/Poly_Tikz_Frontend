@@ -1,0 +1,45 @@
+.main-function-options-container {
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.main-function-options-container-grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.function-settings-container {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.function-style-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 3;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.samples-text-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.samples-container {
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,66 @@
+.main-axis-options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.main-axis-options-container-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
+    column-gap: 20px;
+}
+
+.ticks-options-container {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 10px;
+    padding-top: 2px;
+}
+
+.ticks-visible-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.ticks-options-container-grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 0px;
+}
+
+.grid-options-container {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 10px;
+    padding-top: 2px;
+}
+
+.grid-visible-container {
+    display: flex;
+}
+
+.grid-step-container label {
+    padding-right: 5px;
+}
+
+.grid-options-container-grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.advanced-options-container {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 10px;
+    padding-top: 2px;
+}
+
+.advanced-options-container-grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 2fr;
+}

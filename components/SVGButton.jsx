@@ -1,7 +1,11 @@
-import "./styles/svg-button.css";
+import "../styles/svg-button.css";
 
-function SVGButton({ svgTag }) {
-    return <button className="svg-button">{svgTag}</button>;
+function SVGButton({ svgTag, onClickFunction, value }) {
+    return (
+        <button className="svg-button" onClick={onClickFunction} value={value}>
+            {svgTag}
+        </button>
+    );
 }
 
 export default SVGButton;

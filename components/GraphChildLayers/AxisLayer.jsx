@@ -1,5 +1,9 @@
 import Dropdown from "../Dropdown";
 import { useState, useEffect } from "react";
+import SVGButton from "../SVGButton";
+import SVGButtonArray from "../SVGButtonArray";
+import svgData from "../../assets/SVGButtonData";
+import "../../styles/axis-layers-styles.css";
 
 function AxisLayer({ dispatch, id }) {
     //Working + Added to Layer
@@ -10,12 +14,12 @@ function AxisLayer({ dispatch, id }) {
     const [gridStep, setGridStep] = useState(1);
     const [xAxisVisible, setXAxisVisible] = useState(true);
     const [yAxisVisible, setYAxisVisible] = useState(true);
-
     const [gridOn, setGridOn] = useState(false);
     const [ticksOnX, setTicksOnX] = useState(false);
 
     //Working
     const [ticksOnY, setTicksOnY] = useState(false);
+    const [axisColor, setAxisColor] = useState("ff0000");
     //in progress
     const [ticksStep, setTicksStep] = useState(1);
 
@@ -35,6 +39,7 @@ function AxisLayer({ dispatch, id }) {
                 gridStep: gridStep,
                 ticksOnX: ticksOnX,
                 ticksStep: ticksStep,
+                color: axisColor,
             },
         });
     }, [
@@ -48,6 +53,7 @@ function AxisLayer({ dispatch, id }) {
         ticksStep,
         xAxisVisible,
         yAxisVisible,
+        axisColor,
     ]);
 
     // const xAxisSizeInput = useRef(1);
@@ -64,7 +70,7 @@ function AxisLayer({ dispatch, id }) {
     }
 
     function handleGraphTypeChange(event) {
-        setGraphType(event.target.value);
+        setGraphType(event.currentTarget.value);
     }
 
     function handleArrowsChange(event) {
@@ -75,7 +81,7 @@ function AxisLayer({ dispatch, id }) {
         setGridOn(!gridOn);
     }
 
-    function handleTicksChange() {
+    function handleTicksXChange() {
         setTicksOnX(!ticksOnX);
     }
 
@@ -95,141 +101,180 @@ function AxisLayer({ dispatch, id }) {
         setTicksStep(event.target.value);
     }
 
+    function handleAxisColorChange(event) {
+        setAxisColor(event.target.value);
+    }
+
     return (
         <Dropdown label="Axes">
             <div className="Axis-options graph-options-container">
-                <div className="graph-button-container">
-                    <button onClick={handleGraphTypeChange} value={"Cross"}>
-                        Cross
-                    </button>
-                    <button onClick={handleGraphTypeChange} value={"L-Shape"}>
-                        L-Shape
-                    </button>
-                    {/* <button onClick={handleGraphTypeChange} value={"T-Bar"}>
-                        T-Bar
-                    </button> */}
-                </div>
-                <div className="axis-size-container">
-                    <div className="x-axis-container">
-                        <label>x-axis size:</label>
-                        <input
-                            className="number-input-field"
-                            value={xAxisSize}
-                            type="number"
-                            min={0.1}
-                            max={10}
-                            step={0.1}
-                            onChange={handleXAxisSizeChange}
-                        ></input>
-                    </div>
-                    <div className="y-axis-container">
-                        <label>y-axis size:</label>
-                        <input
-                            className="number-input-field"
-                            value={yAxisSize}
-                            type="number"
-                            min={0.1}
-                            max={10}
-                            step={0.1}
-                            onChange={handleYAxisSizeChange}
-                        ></input>
-                    </div>
-                </div>
-
-                <div className="checkbox-field">
-                    <label>arrows</label>
-                    <input
-                        type="checkbox"
-                        checked={arrowsOn}
-                        onChange={handleArrowsChange}
-                    ></input>
-                </div>
-
-                <Dropdown label="Ticks">
-                    <div className="checkbox-field">
-                        <label>x-axis</label>
-                        <input
-                            type="checkbox"
-                            checked={ticksOnX}
-                            onChange={handleTicksChange}
-                        ></input>
-                    </div>
-
-                    {/* <div className="checkbox-field">
-                        <label>y-axis</label>
-                        <input
-                            type="checkbox"
-                            checked={ticksOn}
-                            onChange={handleTicksChange}
-                        ></input>
-                    </div> */}
-
-                    {/* <div className="checkbox-field">
-                        <label>radians</label>
-                        <input type="checkbox"></input>
-                    </div> */}
-                    {/* <div>
-                        <label>Step:</label>
-                        <input
-                            type="number"
-                            step={0.1}
-                            max="10"
-                            value={ticksStep}
-                            onChange={handleTickStepChange}
-                        ></input>
-                    </div> */}
-                    {/* <div>
-                        <label>Spacing:</label>
-                        <input
-                            type="number"
-                            step={0.1}
-                            max="10"
-                            defaultValue={1}
-                        ></input>
-                    </div> */}
-                </Dropdown>
-
-                <Dropdown label="Grid">
-                    <div className="Grid-options graph-options-container">
-                        <div className="checkbox-field">
-                            <label>grid</label>
+                <SVGButtonArray>
+                    {svgData.map((graph) => {
+                        return (
+                            <SVGButton
+                                onClickFunction={handleGraphTypeChange}
+                                value={graph.dataValue}
+                                svgTag={graph.svg}
+                            ></SVGButton>
+                        );
+                    })}
+                </SVGButtonArray>
+                <div className="main-axis-options-container">
+                    <div className="main-axis-options-container-grid">
+                        <div className="x-axis-container">
+                            <label>x-axis size:</label>
                             <input
-                                type="checkbox"
-                                checked={gridOn}
-                                onClick={handleGridChange}
+                                className="number-input-field"
+                                value={xAxisSize}
+                                type="number"
+                                min={0.1}
+                                max={10}
+                                step={0.1}
+                                onChange={handleXAxisSizeChange}
                             ></input>
                         </div>
 
-                        <div>
-                            <label>step: </label>
+                        <div className="checkbox-field">
                             <input
-                                type="number"
-                                value={gridStep}
-                                min=".1"
-                                max="3"
-                                step=".1"
-                                onChange={handleGridStepChange}
+                                type="checkbox"
+                                checked={arrowsOn}
+                                onChange={handleArrowsChange}
                             ></input>
+                            <label>arrows</label>
+                        </div>
+
+                        <div className="y-axis-container">
+                            <label>y-axis size:</label>
+                            <input
+                                className="number-input-field"
+                                value={yAxisSize}
+                                type="number"
+                                min={0.1}
+                                max={10}
+                                step={0.1}
+                                onChange={handleYAxisSizeChange}
+                            ></input>
+                        </div>
+
+                        <div className="color-input-field">
+                            <label>color: </label>
+                            <input
+                                type="color"
+                                id="colorPicker"
+                                value={axisColor}
+                                onChange={handleAxisColorChange}
+                            ></input>
+                        </div>
+                    </div>
+                </div>
+
+                <Dropdown label="Ticks">
+                    <div className="ticks-options-container">
+                        <div className="ticks-options-container-grid">
+                            <div className="ticks-visible-container">
+                                <div className="checkbox-field">
+                                    <input
+                                        type="checkbox"
+                                        checked={ticksOnX}
+                                        onChange={handleTicksXChange}
+                                    ></input>
+                                    <label>x-axis</label>
+                                </div>
+
+                                <div>
+                                    <div className="checkbox-field">
+                                        <input
+                                            type="checkbox"
+                                            checked={ticksOnY}
+                                            onChange={handleTicksXChange}
+                                        ></input>
+                                        <label>y-axis</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="ticks-step-container">
+                            <label>step:</label>
+                            <input
+                                className="number-input-field"
+                                type="number"
+                                min={0.1}
+                                max={10}
+                                step={0.1}
+                            ></input>
+                        </div>
+                    </div>
+                </Dropdown>
+
+                <Dropdown label="Grid">
+                    <div className="grid-options-container">
+                        <div className="grid-options-container-grid">
+                            <div className="grid-visible-container">
+                                <div className="checkbox-field">
+                                    <input
+                                        type="checkbox"
+                                        checked={gridOn}
+                                        onClick={handleGridChange}
+                                    ></input>
+                                    <label>grid</label>
+                                </div>
+                            </div>
+                            <div className="grid-step-container">
+                                <label>step: </label>
+                                <input
+                                    type="number"
+                                    value={gridStep}
+                                    min=".1"
+                                    max="3"
+                                    step=".1"
+                                    onChange={handleGridStepChange}
+                                ></input>
+                            </div>
+
+                            <div className="color-input-field">
+                                <label>color:</label>
+                                <input type="color" value="#ff000"></input>
+                            </div>
                         </div>
                     </div>
                 </Dropdown>
                 <Dropdown label="Advanced">
-                    <div className="checkbox-field">
-                        <label>x-axis visible:</label>
-                        <input
-                            type="checkbox"
-                            checked={xAxisVisible}
-                            onChange={handleXAxisVisibleChange}
-                        ></input>
-                    </div>
+                    <div className="advanced-options-container">
+                        <div className="advanced-options-container-grid">
+                            <div>
+                                <div className="checkbox-field">
+                                    <input
+                                        type="checkbox"
+                                        checked={xAxisVisible}
+                                        onChange={handleXAxisVisibleChange}
+                                    ></input>
+                                    <label>x-axis visible</label>
+                                </div>
 
-                    <div className="checkbox-field">
-                        <label>y-axis visible:</label>
-                        <input
-                            type="checkbox"
-                            checked={yAxisVisible}
-                            onChange={handleYAxisVisibleChange}
-                        ></input>
+                                <div className="checkbox-field">
+                                    <input
+                                        type="checkbox"
+                                        checked={yAxisVisible}
+                                        onChange={handleYAxisVisibleChange}
+                                    ></input>
+                                    <label>y-axis visible</label>
+                                </div>
+                            </div>
+
+                            <div className="scale container">
+                                <label>scale:</label>
+                                <input
+                                    className="number-input-field"
+                                    value={xAxisSize}
+                                    type="number"
+                                    min={0.1}
+                                    max={10}
+                                    step={0.1}
+                                    onChange={handleXAxisSizeChange}
+                                ></input>
+                            </div>
+                        </div>
                     </div>
                 </Dropdown>
             </div>

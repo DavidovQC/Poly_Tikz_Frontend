@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: space-between;
-    /* border: solid purple 1px; */
+
     margin-top: 20px;
 }
 
@@ -27,7 +27,33 @@
     resize: none;
 }
 
+.svg-text-container {
+    resize: none;
+}
+
 .svg-section {
     display: flex;
     flex-direction: column;
+}
+
+.svg-image-container {
+}
+
+@media (max-width: 320px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: space-between;
+        margin-top: 20px;
+    }
+
+    .svg-image-container {
+        order: -1;
+        margin-top: 10px;
+    }
+
+    .output-text-container {
+        width: 300px;
+    }
 }

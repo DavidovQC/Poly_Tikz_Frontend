@@ -4,6 +4,7 @@ import { LayerContext } from "./LayersContext";
 import FunctionLayer from "../components/GraphChildLayers/FunctionLayer";
 import AxisLayer from "../components/GraphChildLayers/AxisLayer";
 import "../styles/layers-styles.css";
+import CircleLayer from "../components/GraphChildLayers/CircleLayer";
 
 function Layers({ options }) {
     const { layers, dispatch } = useContext(LayerContext);
@@ -37,10 +38,11 @@ function Layers({ options }) {
                         className="options-select"
                     >
                         <option value="Point">Point</option>
-                        {/* <option value="Circle">Node</option> */}
+                        {/* <option value="Node">Node</option> */}
                         <option value="Function">Function</option>
-                        {/* <option value="Circle">Circle</option>
-                        <option value="Rectangle">Rectangle</option>
+
+                        <option value="Circle">Circle</option>
+                        {/* <option value="Rectangle">Rectangle</option>
                         <option value="Line Segment">Line Segment</option> */}
 
                         {/* {options.map((option) => {
@@ -77,6 +79,16 @@ function Layers({ options }) {
                                     id={layer.id}
                                     dispatch={dispatch}
                                 ></AxisLayer>
+                            );
+
+                        case "Circle":
+                            return (
+                                <CircleLayer
+                                    key={layer.id}
+                                    id={layer.id}
+                                    layer={layer.id}
+                                    dispatch={dispatch}
+                                ></CircleLayer>
                             );
                         default:
                             console.log("error while mapping");

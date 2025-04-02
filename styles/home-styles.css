@@ -68,8 +68,7 @@
     }
 
     .svg-image-container {
-        order: -1;
-
+        order: -2;
         margin-top: 20px;
         margin-bottom: 20px;
     }

@@ -10,10 +10,11 @@ import Footer from "../components/Footer";
 function Homepage() {
     const { latexCode, svgCode, mySVG, setMySVG } = useContext(AppContext);
     return (
-        <div>
+        <div className="homepage-container">
             <Navbar></Navbar>
             <div className="main-container">
                 <MainDynamicDropdown></MainDynamicDropdown>
+
                 <div className="output-container">
                     <div className="svg-image-container">
                         <SVGDisplay
@@ -21,6 +22,7 @@ function Homepage() {
                             className="SVG-Display"
                         ></SVGDisplay>
                     </div>
+
                     <div className="output-text-container">
                         <div className="tikz-section">
                             <label>LaTeX code:</label>
@@ -32,6 +34,7 @@ function Homepage() {
                                 value={latexCode}
                             ></textarea>
                         </div>
+
                         <div className="svg-section">
                             <label>svg code:</label>
                             <textarea

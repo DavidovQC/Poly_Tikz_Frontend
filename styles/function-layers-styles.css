@@ -43,3 +43,33 @@
     display: flex;
     align-items: center;
 }
+
+@media (min-width: 769px) and (max-width: 1080px) {
+    .main-function-options-container {
+        display: flex;
+        align-items: left;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .main-function-options-container-grid {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 1081px) and (max-width: 1280px) {
+    .main-function-options-container {
+        display: flex;
+        align-items: left;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .main-function-options-container-grid {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+}

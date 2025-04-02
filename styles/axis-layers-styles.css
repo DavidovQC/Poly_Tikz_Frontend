@@ -64,3 +64,77 @@
     grid-template-rows: 1fr;
     grid-template-columns: 3fr 2fr;
 }
+
+@media (min-width: 769px) and (max-width: 1080px) {
+    .main-axis-options-container-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: left;
+    }
+
+    .x-axis-container {
+        order: 0;
+    }
+
+    .y-axis-container {
+        order: 0;
+    }
+
+    .checkbox-field {
+        order: 1;
+    }
+
+    .ticks-options-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .grid-options-container-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .advanced-options-container-grid {
+        display: flex;
+        grid-template-rows: 1fr;
+        grid-template-columns: 3fr 2fr;
+    }
+}
+
+@media (min-width: 1081px) and (max-width: 1280px) {
+    .main-axis-options-container-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: left;
+    }
+
+    .x-axis-container {
+        order: 0;
+    }
+
+    .y-axis-container {
+        order: 0;
+    }
+
+    .checkbox-field {
+        order: 1;
+    }
+
+    .ticks-options-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .grid-options-container-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .advanced-options-container-grid {
+        display: flex;
+        grid-template-rows: 1fr;
+        grid-template-columns: 3fr 2fr;
+    }
+}

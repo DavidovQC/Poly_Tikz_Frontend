@@ -20,7 +20,7 @@ function AxisLayer({ dispatch, id }) {
     //Working
     const [ticksOnY, setTicksOnY] = useState(false);
     const [axisColor, setAxisColor] = useState("000000");
-    const [gridColor, setGridColor] = useState("000000");
+    const [gridColor, setGridColor] = useState("ff0000");
     //in progress
     const [ticksStep, setTicksStep] = useState(1);
 
@@ -58,6 +58,7 @@ function AxisLayer({ dispatch, id }) {
         xAxisVisible,
         yAxisVisible,
         axisColor,
+        gridColor,
     ]);
 
     // const xAxisSizeInput = useRef(1);
@@ -111,6 +112,10 @@ function AxisLayer({ dispatch, id }) {
 
     function handleAxisColorChange(event) {
         setAxisColor(event.target.value);
+    }
+
+    function handleGridColorChange(event) {
+        setGridColor(event.target.value);
     }
 
     return (
@@ -242,7 +247,11 @@ function AxisLayer({ dispatch, id }) {
 
                             <div className="color-input-field">
                                 <label>color:</label>
-                                <input type="color" value="#ff000"></input>
+                                <input
+                                    type="color"
+                                    value={gridColor}
+                                    onChange={handleGridColorChange}
+                                ></input>
                             </div>
                         </div>
                     </div>

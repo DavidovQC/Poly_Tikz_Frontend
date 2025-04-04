@@ -36,8 +36,8 @@
     flex-direction: column;
 }
 
-.svg-image-container {
-}
+/* .svg-image-container {
+} */
 
 @media (max-width: 320px) {
     .main-container {

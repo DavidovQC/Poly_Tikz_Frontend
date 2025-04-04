@@ -19,7 +19,8 @@ function AxisLayer({ dispatch, id }) {
 
     //Working
     const [ticksOnY, setTicksOnY] = useState(false);
-    const [axisColor, setAxisColor] = useState("ff0000");
+    const [axisColor, setAxisColor] = useState("000000");
+    const [gridColor, setGridColor] = useState("000000");
     //in progress
     const [ticksStep, setTicksStep] = useState(1);
 
@@ -38,8 +39,10 @@ function AxisLayer({ dispatch, id }) {
                 gridOn: gridOn,
                 gridStep: gridStep,
                 ticksOnX: ticksOnX,
+                ticksOnY: ticksOnY,
                 ticksStep: ticksStep,
-                color: axisColor,
+                axisColor: axisColor,
+                gridColor: gridColor,
             },
         });
     }, [
@@ -50,6 +53,7 @@ function AxisLayer({ dispatch, id }) {
         gridStep,
         gridOn,
         ticksOnX,
+        ticksOnY,
         ticksStep,
         xAxisVisible,
         yAxisVisible,
@@ -83,6 +87,10 @@ function AxisLayer({ dispatch, id }) {
 
     function handleTicksXChange() {
         setTicksOnX(!ticksOnX);
+    }
+
+    function handleTicksYChange() {
+        setTicksOnY(!ticksOnY);
     }
 
     function handleXAxisVisibleChange() {
@@ -186,7 +194,7 @@ function AxisLayer({ dispatch, id }) {
                                         <input
                                             type="checkbox"
                                             checked={ticksOnY}
-                                            onChange={handleTicksXChange}
+                                            onChange={handleTicksYChange}
                                         ></input>
                                         <label>y-axis</label>
                                     </div>
@@ -195,7 +203,7 @@ function AxisLayer({ dispatch, id }) {
                         </div>
 
                         <div className="ticks-step-container">
-                            <label>step:</label>
+                            <label>step</label>
                             <input
                                 className="number-input-field"
                                 type="number"

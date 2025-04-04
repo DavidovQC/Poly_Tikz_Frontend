@@ -11,8 +11,8 @@ button {
     cursor: pointer;
 }
 
-.dropdown-container {
-}
+/* .dropdown-container {
+} */
 
 .dropdown-container.open {
     outline: 1px solid gray;

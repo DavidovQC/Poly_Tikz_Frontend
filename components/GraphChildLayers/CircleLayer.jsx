@@ -7,6 +7,7 @@ function CircleLayer({ id, dispatch }) {
     const [xOrigin, setXOrigin] = useState(0);
     const [yOrigin, setYOrigin] = useState(0);
     const [radius, setRadius] = useState(1);
+    const [color, setColor] = useState("#00ff00");
 
     function handleXOriginChange(e) {
         setXOrigin(e.target.value);
@@ -20,6 +21,10 @@ function CircleLayer({ id, dispatch }) {
         setRadius(e.target.value);
     }
 
+    function handeColorChange(e) {
+        setColor(e.target.value);
+    }
+
     useEffect(() => {
         dispatch({
             type: "edit_layer",
@@ -29,6 +34,7 @@ function CircleLayer({ id, dispatch }) {
                 radius: radius,
                 xOrigin: xOrigin,
                 yOrigin: yOrigin,
+                color: color,
             },
         });
         console.log({
@@ -38,7 +44,7 @@ function CircleLayer({ id, dispatch }) {
             xOrigin: xOrigin,
             yOrigin: yOrigin,
         });
-    }, [xOrigin, yOrigin, radius]);
+    }, [xOrigin, yOrigin, radius, color]);
 
     return (
         <Dropdown label="Circle">
@@ -81,7 +87,11 @@ function CircleLayer({ id, dispatch }) {
 
                         <div className="color-input-field">
                             <label>color: </label>
-                            <input type="color" value="#ff000"></input>
+                            <input
+                                type="color"
+                                value={color}
+                                onChange={handeColorChange}
+                            ></input>
                         </div>
                     </div>
                 </div>

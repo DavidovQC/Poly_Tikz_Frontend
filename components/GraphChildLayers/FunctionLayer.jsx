@@ -8,6 +8,7 @@ function FunctionLayer({ id, dispatch }) {
     const [thickness, setThickness] = useState("thick");
     const [stroke, setStroke] = useState("solid");
     const [samples, setSamples] = useState(100);
+    const [color, setColor] = useState("#0000ff");
 
     function handleFunctionChange(e) {
         setFunctionInput(e.target.value);
@@ -25,6 +26,10 @@ function FunctionLayer({ id, dispatch }) {
         setSamples(e.target.value);
     }
 
+    function handleColorChange(e) {
+        setColor(e.target.value);
+    }
+
     useEffect(() => {
         dispatch({
             type: "edit_layer",
@@ -35,9 +40,10 @@ function FunctionLayer({ id, dispatch }) {
                 thickness: thickness,
                 stroke: stroke,
                 samples: samples,
+                color: color,
             },
         });
-    }, [functionInput, thickness, stroke, samples]);
+    }, [functionInput, thickness, stroke, samples, color]);
 
     return (
         <Dropdown label="Function">
@@ -108,8 +114,12 @@ function FunctionLayer({ id, dispatch }) {
                         </div>
 
                         <div className="color-input-field">
-                            <label>fill color: </label>
-                            <input type="color" value="#ff000"></input>
+                            <label>color: </label>
+                            <input
+                                type="color"
+                                value={color}
+                                onChange={handleColorChange}
+                            ></input>
                         </div>
                     </div>
                 </div>

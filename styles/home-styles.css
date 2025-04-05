@@ -36,6 +36,11 @@
     flex-direction: column;
 }
 
+.LaTeX-Container {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* .svg-image-container {
 } */
 

@@ -7,12 +7,14 @@ import "../../styles/graph-point-layers-styles.css";
 function GraphPointLayer({ dispatch, id }) {
     const [xCoordinate, setXCoordinate] = useState(0);
     const [yCoordinate, setYCoordinate] = useState(0);
-    const [filled, setFilled] = useState(false);
+
     const [size, setSize] = useState(1);
     const [nodeText, setNodeText] = useState("");
 
     ///to be implemented:
-    const [visible, setVisible] = useState(true);
+    const [radialColor, setRadialColor] = useState("#000000");
+    const [fillColor, setFillColor] = useState("#000000");
+    const [fillOn, setFillOn] = useState(true);
 
     useEffect(() => {
         console.log("Point sending dispatch");
@@ -21,15 +23,27 @@ function GraphPointLayer({ dispatch, id }) {
             newLayer: {
                 id: id,
                 type: "Point",
-                visible: visible,
+
                 xValue: xCoordinate,
                 yValue: yCoordinate,
-                filled: filled,
+
                 size: size,
                 nodeText: nodeText,
+
+                fillOn: fillOn,
+                fillColor: fillColor,
+                radialColor: radialColor,
             },
         });
-    }, [xCoordinate, yCoordinate, size, filled, nodeText]);
+    }, [
+        xCoordinate,
+        yCoordinate,
+        size,
+        nodeText,
+        radialColor,
+        fillColor,
+        fillOn,
+    ]);
 
     function handleXCoordinateChange(e) {
         setXCoordinate(e.target.value);
@@ -43,12 +57,20 @@ function GraphPointLayer({ dispatch, id }) {
         setSize(e.target.value);
     }
 
-    function handleFilledChange(e) {
-        setFilled(!filled);
-    }
-
     function handleNodeTextChange(e) {
         setNodeText(e.target.value);
+    }
+
+    function handleRadialColorChange(e) {
+        setRadialColor(e.target.value);
+    }
+
+    function handleFillColorChange(e) {
+        setFillColor(e.target.value);
+    }
+
+    function handleFillChange() {
+        setFillOn(!fillOn);
     }
 
     return (
@@ -97,7 +119,11 @@ function GraphPointLayer({ dispatch, id }) {
 
                                 <div className="color-input-field">
                                     <label>color: </label>
-                                    <input type="color" value="#ff000"></input>
+                                    <input
+                                        type="color"
+                                        value={radialColor}
+                                        onChange={handleRadialColorChange}
+                                    ></input>
                                 </div>
                             </div>
                         </div>
@@ -108,14 +134,18 @@ function GraphPointLayer({ dispatch, id }) {
                             <label>fill: </label>
                             <input
                                 type="checkbox"
-                                checked={filled}
-                                onChange={handleFilledChange}
+                                checked={fillOn}
+                                onChange={handleFillChange}
                             ></input>
                         </div>
 
                         <div className="color-input-field">
                             <label>fill color: </label>
-                            <input type="color" value="#ff000"></input>
+                            <input
+                                type="color"
+                                value={fillColor}
+                                onChange={handleFillColorChange}
+                            ></input>
                         </div>
                     </Dropdown>
 

@@ -8,6 +8,7 @@ import Layers from "../Layers/Layers";
 import "../styles/graph-component-styles.css";
 import GenerateButton from "./GenerateButton";
 
+// import { symbolsSVG } from "../assets/SVGSymbols.jsx";
 function GraphComponent() {
     const { setLatexCode, setSVGCode, setMySVG } = useContext(AppContext);
     const { layers, dispatch } = useContext(LayerContext);
@@ -29,23 +30,28 @@ function GraphComponent() {
     async function GenerateGraph() {
         console.log(`Graph data: ${JSON.stringify(layers)}`);
 
-        const response = await fetch(
-            // "http://localhost:3000/api/getGraphSVGv2",
-            "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
-            {
-                method: "POST",
-                body: JSON.stringify(layers),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+        try {
+            const response = await fetch(
+                "http://localhost:3000/api/getGraphSVGv2",
+                // "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
+                {
+                    method: "POST",
+                    body: JSON.stringify(layers),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
-        const data = await response.json();
-        const newSVG = data.SVG;
-        setLatexCode(data.TikZ);
-        setSVGCode(data.SVG);
-        setMySVG(newSVG);
+            const data = await response.json();
+            const newSVG = data.SVG;
+            setLatexCode(data.TikZ);
+            setSVGCode(data.SVG);
+            setMySVG(newSVG);
+        } catch {
+            setLatexCode("Error, check inputs.");
+            setSVGCode("Error, check inputs.");
+        }
     }
 
     async function PostTest() {
@@ -62,10 +68,6 @@ function GraphComponent() {
 
     return (
         <div className="graph-component-container">
-            {/* <Dropdown label="Testing">
-                <button onClick={PostTest}>Show Current Test</button>
-            </Dropdown> */}
-
             <Layers></Layers>
             <div className="generate-graph-button-container">
                 <GenerateButton buttonFunction={GenerateGraph}></GenerateButton>

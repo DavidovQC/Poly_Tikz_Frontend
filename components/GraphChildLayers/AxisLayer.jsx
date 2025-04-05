@@ -16,11 +16,12 @@ function AxisLayer({ dispatch, id }) {
     const [yAxisVisible, setYAxisVisible] = useState(true);
     const [gridOn, setGridOn] = useState(false);
     const [ticksOnX, setTicksOnX] = useState(false);
-
-    //Working
     const [ticksOnY, setTicksOnY] = useState(false);
     const [axisColor, setAxisColor] = useState("000000");
-    const [gridColor, setGridColor] = useState("ff0000");
+    const [gridColor, setGridColor] = useState("#ff0000");
+
+    //Working
+
     //in progress
     const [ticksStep, setTicksStep] = useState(1);
 
@@ -59,6 +60,7 @@ function AxisLayer({ dispatch, id }) {
         yAxisVisible,
         axisColor,
         gridColor,
+        ticksStep,
     ]);
 
     // const xAxisSizeInput = useRef(1);
@@ -207,16 +209,18 @@ function AxisLayer({ dispatch, id }) {
                             </div>
                         </div>
 
-                        <div className="ticks-step-container">
+                        {/* <div className="ticks-step-container">
                             <label>step</label>
                             <input
                                 className="number-input-field"
                                 type="number"
+                                value={ticksStep}
+                                onChange={handleTickStepChange}
                                 min={0.1}
                                 max={10}
                                 step={0.1}
                             ></input>
-                        </div>
+                        </div> */}
                     </div>
                 </Dropdown>
 
@@ -279,7 +283,7 @@ function AxisLayer({ dispatch, id }) {
                                 </div>
                             </div>
 
-                            <div className="scale container">
+                            {/* <div className="scale container">
                                 <label>scale:</label>
                                 <input
                                     className="number-input-field"
@@ -290,7 +294,7 @@ function AxisLayer({ dispatch, id }) {
                                     step={0.1}
                                     onChange={handleXAxisSizeChange}
                                 ></input>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </Dropdown>

@@ -32,8 +32,8 @@ function GraphComponent() {
 
         try {
             const response = await fetch(
-                "http://localhost:3000/api/getGraphSVGv2",
-                // "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
+                // "http://localhost:3000/api/getGraphSVGv2",
+                "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
                 {
                     method: "POST",
                     body: JSON.stringify(layers),

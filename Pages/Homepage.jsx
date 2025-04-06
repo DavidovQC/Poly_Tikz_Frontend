@@ -10,7 +10,8 @@ import Footer from "../components/Footer";
 function Homepage() {
     const { latexCode, svgCode, setSVGCode, mySVG, setMySVG } =
         useContext(AppContext);
-    const [wrapTikz, setWrapTikz] = useState(true);
+
+    const [wrapTikz, setWrapTikz] = useState(false);
 
     function handleWrapTikzChange() {
         setWrapTikz(!wrapTikz);
@@ -42,7 +43,7 @@ function Homepage() {
                                     <input
                                         type="checkbox"
                                         value={wrapTikz}
-                                        defaultChecked={true}
+                                        defaultChecked={wrapTikz}
                                         onChange={handleWrapTikzChange}
                                     ></input>
                                     <label>\begin-\end wrap</label>

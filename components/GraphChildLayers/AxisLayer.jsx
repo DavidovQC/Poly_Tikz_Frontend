@@ -17,10 +17,11 @@ function AxisLayer({ dispatch, id }) {
     const [gridOn, setGridOn] = useState(false);
     const [ticksOnX, setTicksOnX] = useState(false);
     const [ticksOnY, setTicksOnY] = useState(false);
-    const [axisColor, setAxisColor] = useState("000000");
+    const [axisColor, setAxisColor] = useState("#000000");
     const [gridColor, setGridColor] = useState("#ff0000");
 
     //Working
+    const [chosenGraphIndex, setChosenGraphIndex] = useState(0);
 
     //in progress
     const [ticksStep, setTicksStep] = useState(1);
@@ -127,9 +128,13 @@ function AxisLayer({ dispatch, id }) {
                     {svgData.map((graph) => {
                         return (
                             <SVGButton
+                                key={graph.dataValue}
                                 onClickFunction={handleGraphTypeChange}
                                 value={graph.dataValue}
                                 svgTag={graph.svg}
+                                focus={
+                                    graph.dataValue == graphType ? true : false
+                                }
                             ></SVGButton>
                         );
                     })}

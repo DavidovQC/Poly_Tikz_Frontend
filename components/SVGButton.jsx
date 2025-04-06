@@ -1,8 +1,17 @@
+import { useState } from "react";
 import "../styles/svg-button.css";
 
-function SVGButton({ svgTag, onClickFunction, value }) {
+function SVGButton({ svgTag, onClickFunction, value, focus }) {
+    function handleClick(event) {
+        onClickFunction(event);
+    }
+
     return (
-        <button className="svg-button" onClick={onClickFunction} value={value}>
+        <button
+            className={focus ? "svg-button selected" : "svg-button"}
+            onClick={handleClick}
+            value={value}
+        >
             {svgTag}
         </button>
     );

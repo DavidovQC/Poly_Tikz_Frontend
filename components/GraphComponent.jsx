@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from "react";
-import Dropdown from "./Dropdown";
 
 import { AppContext } from "../src/AppContext";
 import { LayerContext } from "../Layers/LayersContext";
@@ -8,9 +7,11 @@ import Layers from "../Layers/Layers";
 import "../styles/graph-component-styles.css";
 import GenerateButton from "./GenerateButton";
 
-// import { symbolsSVG } from "../assets/SVGSymbols.jsx";
+import symbolsSVG from "../assets/SVGSymbols";
+
 function GraphComponent() {
-    const { setLatexCode, setSVGCode, setMySVG } = useContext(AppContext);
+    const { setLatexCode, setSVGCode, setMySVG, setIsLoading } =
+        useContext(AppContext);
     const { layers, dispatch } = useContext(LayerContext);
 
     useEffect(() => {
@@ -28,6 +29,7 @@ function GraphComponent() {
     }, []);
 
     async function GenerateGraph() {
+        setIsLoading(true);
         console.log(`Graph data: ${JSON.stringify(layers)}`);
 
         try {
@@ -43,27 +45,22 @@ function GraphComponent() {
                 }
             );
 
+            if (!response.ok) {
+                throw new Error("Server error");
+            }
+
             const data = await response.json();
             const newSVG = data.SVG;
             setLatexCode(data.TikZ);
             setSVGCode(data.SVG);
             setMySVG(newSVG);
-        } catch {
+        } catch (err) {
             setLatexCode("Error, check inputs.");
             setSVGCode("Error, check inputs.");
+            setMySVG(symbolsSVG[0].svg);
+        } finally {
+            setIsLoading(false);
         }
-    }
-
-    async function PostTest() {
-        const response = await fetch("http://localhost:3000/api/postTest", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        const newSVG = await response.text();
-        setMySVG(newSVG);
     }
 
     return (

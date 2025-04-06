@@ -1,15 +1,3 @@
-//Done:
-
-//Add function input  [DONE, 2/28]
-//put each component of graph layer into a dropdown  [DONE, 2/28]
-//create navbar [DONE, 3/13]
-//improve/clean up current styling
-//add textboxes for return latex and svg code
-//refactor homepage
-//make svg container an internal window should the svg overflow
-//add layers to graph component
-//organize/modularize server code
-
 //To do:
 //implement mathjax for matrices and tables
 
@@ -35,6 +23,7 @@ function App() {
     const [mySVG, setMySVG] = useState();
     const [svgCode, setSVGCode] = useState(``);
     const [latexCode, setLatexCode] = useState(``);
+    const [isLoading, setIsLoading] = useState(false);
 
     return (
         <AppContext.Provider
@@ -47,6 +36,8 @@ function App() {
                 setMySVG,
                 selectedOption,
                 setSelectedOption,
+                isLoading,
+                setIsLoading,
             }}
         >
             <Router>

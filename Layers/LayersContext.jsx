@@ -71,6 +71,19 @@ function createLayer(type, id) {
                 yOrigin: 0,
                 radius: 1,
             };
+        case "Vector":
+            return {
+                id: id,
+                type: "Vector",
+                xCoordinate: 1,
+                yCoordinate: 1,
+            };
+
+        case "Rectangle":
+            return {
+                id: id,
+                type: "Rectangle",
+            };
         default:
             console.log("error, invalid type");
     }

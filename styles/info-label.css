@@ -1,0 +1,45 @@
+.info-label-container {
+}
+
+.info-container {
+    background-color: black;
+    border-radius: 3px;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-container p {
+    font-size: 8px;
+}
+
+.invisible {
+    height: 0px;
+    width: 0px;
+    visibility: collapse;
+}
+
+.visible {
+    height: 25px;
+    width: 150px;
+    visibility: visible;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    background-color: rgb(57, 56, 56);
+    border-radius: 3px;
+}
+
+.visible p {
+    font-size: 8px;
+}
+
+.info-label-container {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+}

@@ -5,6 +5,7 @@ import FunctionLayer from "../components/GraphChildLayers/FunctionLayer";
 import AxisLayer from "../components/GraphChildLayers/AxisLayer";
 import "../styles/layers-styles.css";
 import CircleLayer from "../components/GraphChildLayers/CircleLayer";
+import VectorLayer from "../components/GraphChildLayers/VectorLayer";
 
 function Layers({ options }) {
     const { layers, dispatch } = useContext(LayerContext);
@@ -42,6 +43,7 @@ function Layers({ options }) {
                         <option value="Function">Function</option>
 
                         <option value="Circle">Circle</option>
+                        <option value="Vector">Vector</option>
                         {/* <option value="Rectangle">Rectangle</option>
                         <option value="Line Segment">Line Segment</option> */}
 
@@ -86,9 +88,17 @@ function Layers({ options }) {
                                 <CircleLayer
                                     key={layer.id}
                                     id={layer.id}
-                                    layer={layer.id}
+                                    // layer={layer.id}
                                     dispatch={dispatch}
                                 ></CircleLayer>
+                            );
+                        case "Vector":
+                            return (
+                                <VectorLayer
+                                    key={layer.id}
+                                    id={layer.id}
+                                    dispatch={dispatch}
+                                ></VectorLayer>
                             );
                         default:
                             console.log("error while mapping");

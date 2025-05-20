@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../styles/info-label.css";
 
-function InfoLabel({ infoText, labelName }) {
-    const [hovered, setHovered] = useState(true);
+function InfoLabel({ infoText }) {
+    const [hovered, setHovered] = useState(false);
 
     function handleHoverChange() {
         setHovered(!hovered);
@@ -21,9 +21,11 @@ function InfoLabel({ infoText, labelName }) {
                 </div>
             </div>
 
-            <div className={hovered ? "invisible" : "visible"}>
-                <p>{infoText}</p>
-            </div>
+            {hovered && (
+                <div className="tooltip">
+                    <p>{infoText}</p>
+                </div>
+            )}
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown";
+import InfoLabel from "../InfoLabel";
 import DeleteLayerButton from "../DeleteLayerButton";
 import "../../styles/function-layers-styles.css";
 
@@ -58,6 +59,7 @@ function FunctionLayer({ id, dispatch }) {
                                     onChange={handleFunctionChange}
                                 ></input>
                             </div>
+                            <InfoLabel infoText="Write '\x' in place of 'x' (e.g, (\x)^2)"></InfoLabel>
                         </div>
 
                         <div className="thickness-container">

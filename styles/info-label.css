@@ -1,4 +1,6 @@
 .info-label-container {
+    position: relative;
+    display: inline-block;
 }
 
 .info-container {
@@ -9,37 +11,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 5px;
 }
 
 .info-container p {
     font-size: 8px;
 }
 
-.invisible {
-    height: 0px;
-    width: 0px;
-    visibility: collapse;
+.tooltip p {
+    text-align: center;
+    margin: 0;
 }
 
-.visible {
-    height: 25px;
-    width: 150px;
-    visibility: visible;
-
+.tooltip {
+    position: absolute;
+    z-index: 1000;
+    width: 200px;
+    height: 70px;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgb(34, 34, 34);
+    font-size: 12px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding-left: 10px;
-    background-color: rgb(57, 56, 56);
+    justify-content: center;
     border-radius: 3px;
-}
-
-.visible p {
-    font-size: 8px;
-}
-
-.info-label-container {
-    display: flex;
-    flex-direction: row;
-    height: 50px;
 }

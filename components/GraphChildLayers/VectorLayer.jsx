@@ -22,16 +22,23 @@ function VectorLayer({ id, dispatch }) {
 
     return (
         <Dropdown label="Vector">
-            <InfoLabel
-                labelName="Label"
-                infoText="This is info text This is info text This is info text This is info text "
-            ></InfoLabel>
+            <div>
+                <label>Vector start:</label>
+                <input
+                    type="text"
+                    onChange={handleCoordinateChange}
+                    value={coordinate}
+                ></input>
+            </div>
 
-            {/* <input
-                type="text"
-                onChange={handleCoordinateChange}
-                value={coordinate}
-            ></input> */}
+            <div>
+                <label>Vector end:</label>
+                <input
+                    type="text"
+                    onChange={handleCoordinateChange}
+                    value={coordinate}
+                ></input>
+            </div>
         </Dropdown>
     );
 }

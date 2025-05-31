@@ -1,0 +1,9 @@
+.number-input-field-container {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+}
+
+.number-input-field-container label {
+    margin-right: 10px;
+}

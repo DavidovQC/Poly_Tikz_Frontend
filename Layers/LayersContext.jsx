@@ -84,6 +84,12 @@ function createLayer(type, id) {
                 id: id,
                 type: "Rectangle",
             };
+
+        case "Path":
+            return {
+                id: id,
+                type: "Path",
+            };
         default:
             console.log("error, invalid type");
     }

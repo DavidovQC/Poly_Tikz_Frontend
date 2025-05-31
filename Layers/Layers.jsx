@@ -6,6 +6,8 @@ import AxisLayer from "../components/GraphChildLayers/AxisLayer";
 import "../styles/layers-styles.css";
 import CircleLayer from "../components/GraphChildLayers/CircleLayer";
 import VectorLayer from "../components/GraphChildLayers/VectorLayer";
+import RectangleLayer from "../components/GraphChildLayers/RectangleLayer";
+import PathLayer from "../components/GraphChildLayers/PathLayer";
 
 function Layers({ options }) {
     const { layers, dispatch } = useContext(LayerContext);
@@ -41,11 +43,10 @@ function Layers({ options }) {
                         <option value="Point">Point</option>
                         {/* <option value="Node">Node</option> */}
                         <option value="Function">Function</option>
-
                         <option value="Circle">Circle</option>
-                        {/* <option value="Vector">Vector</option> */}
-                        {/* <option value="Rectangle">Rectangle</option>
-                        <option value="Line Segment">Line Segment</option> */}
+                        {/* <option value="Vector">Vector</option>
+                        <option value="Rectangle">Rectangle</option>
+                        <option value="Path">Path</option> */}
 
                         {/* {options.map((option) => {
                         return <option value={option}>{option}</option>;
@@ -99,6 +100,22 @@ function Layers({ options }) {
                                     id={layer.id}
                                     dispatch={dispatch}
                                 ></VectorLayer>
+                            );
+                        case "Rectangle":
+                            return (
+                                <RectangleLayer
+                                    key={layer.id}
+                                    id={layer.id}
+                                    dispatch={dispatch}
+                                ></RectangleLayer>
+                            );
+                        case "Path":
+                            return (
+                                <PathLayer
+                                    key={layer.id}
+                                    id={layer.id}
+                                    dispatch={dispatch}
+                                ></PathLayer>
                             );
                         default:
                             console.log("error while mapping");

@@ -1,3 +1,5 @@
+import "../../styles/InputWidgetStyles/text-input-field-styles.css";
+
 function TextInputField({ label, onChangeFunction, value }) {
     return (
         <div className="text-input-field-container">

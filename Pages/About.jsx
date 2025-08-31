@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import "../styles/about-page-styles.css";
+import "../styles/PageStyles/about-page-styles.css";
 
 function About() {
     return (

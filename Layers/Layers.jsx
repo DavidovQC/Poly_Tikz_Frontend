@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+
 import GraphPointLayer from "../components/GraphChildLayers/GraphPointLayer";
 import { LayerContext } from "./LayersContext";
 import FunctionLayer from "../components/GraphChildLayers/FunctionLayer";
@@ -44,9 +45,8 @@ function Layers({ options }) {
                         {/* <option value="Node">Node</option> */}
                         <option value="Function">Function</option>
                         <option value="Circle">Circle</option>
-                        {/* <option value="Vector">Vector</option>
                         <option value="Rectangle">Rectangle</option>
-                        <option value="Path">Path</option> */}
+                        {/* <option value="Path">Path</option> */}
 
                         {/* {options.map((option) => {
                         return <option value={option}>{option}</option>;
@@ -93,14 +93,7 @@ function Layers({ options }) {
                                     dispatch={dispatch}
                                 ></CircleLayer>
                             );
-                        case "Vector":
-                            return (
-                                <VectorLayer
-                                    key={layer.id}
-                                    id={layer.id}
-                                    dispatch={dispatch}
-                                ></VectorLayer>
-                            );
+
                         case "Rectangle":
                             return (
                                 <RectangleLayer

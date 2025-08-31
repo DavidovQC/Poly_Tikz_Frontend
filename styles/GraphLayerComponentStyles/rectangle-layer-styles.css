@@ -1,0 +1,33 @@
+.dimension-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.fill-container {
+    display: flex;
+    gap: 1vw;
+}
+
+.fill-container-col-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+.fill-container-col-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.center-field-container {
+    display: flex;
+    align-items: center;
+}
+
+.bottom-field-container {
+    display: flex;
+    align-items: center;
+}

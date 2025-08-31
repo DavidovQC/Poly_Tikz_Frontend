@@ -32,8 +32,8 @@ label {
 }
 
 body {
-    margin: 0; /* Removes default margins */
-    padding: 0; /* Removes default padding */
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -71,3 +71,18 @@ button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 } */
+
+@media (max-width: 320px) {
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+}
+
+@media (min-width: 769px) and (max-width: 1080px) {
+}
+
+@media (min-width: 1081px) and (max-width: 1280px) {
+}

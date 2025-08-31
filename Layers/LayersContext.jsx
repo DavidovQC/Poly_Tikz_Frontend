@@ -2,12 +2,17 @@ import { useReducer, createContext } from "react";
 
 const LayerContext = createContext();
 
+let layerIDCounter = 0;
+
 function reducer(layers, action) {
     console.log("dispatch called");
     console.log(layers);
     switch (action.type) {
         case "add_layer":
-            return [...layers, createLayer(action.payload.type, Date.now())];
+            return [
+                ...layers,
+                createLayer(action.payload.type, layerIDCounter++),
+            ];
 
         case "edit_layer":
             return layers.map((layer) =>
@@ -27,6 +32,13 @@ function reducer(layers, action) {
 function createLayer(type, id) {
     console.log(`the type is + ${type}`);
     switch (type) {
+        case "Settings":
+            console.log("settings generated");
+            return {
+                id: id,
+                type: "Settings",
+            };
+
         case "Point":
             console.log("creating point");
             return {

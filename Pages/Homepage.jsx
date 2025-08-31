@@ -1,4 +1,4 @@
-import "../styles/home-styles.css";
+import "../styles/PageStyles/home-styles.css";
 
 import MainDynamicDropdown from "../components/MainDynamicDropdown";
 import Navbar from "../components/Navbar";

@@ -1,0 +1,12 @@
+.color-input-field-container {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.color-input-field-container input {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+}

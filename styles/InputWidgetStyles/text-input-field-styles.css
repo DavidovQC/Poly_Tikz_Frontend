@@ -1,2 +1,8 @@
 .text-input-field-container {
+    display: flex;
+    gap: 5px;
+}
+
+.text-input-field-container input {
+    max-width: 50%;
 }

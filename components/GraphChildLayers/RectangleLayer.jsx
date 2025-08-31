@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 import Dropdown from "../Dropdown";
-import "../../styles/rectangle-layer-styles.css";
+import "../../styles/GraphLayerComponentStyles/rectangle-layer-styles.css";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
-import InfoLabel from "../InfoLabel";
+import TextInputField from "../InputWidgets/TextInputField";
+import DeleteLayerButton from "../DeleteLayerButton";
+import SliderInputField from "../InputWidgets/SliderInputField";
+import ColorInputField from "../InputWidgets/ColorInputField";
 
 function RectangleLayer({ id, dispatch }) {
+    //basic settings
     const [height, setHeight] = useState(0.5);
     const [width, setWidth] = useState(0.5);
+
+    //position settings
     const [posCenter, setPosCenter] = useState(false);
-    const [posCenterValue, setPosCenterValue] = useState("0, 0");
-    const [bottomValue, setBottomValue] = useState("");
+    const [centerValue, setCenterValue] = useState("(0, 0)");
+    const [bottomValue, setBottomValue] = useState("(0, 0)");
+
+    //fill settings
+    const [fill, setFill] = useState(false);
+    const [opacity, setOpacity] = useState(100);
+    const [fillColor, setFillColor] = useState("000000");
 
     function handleHeightChange(e) {
         setHeight(e.target.value);
@@ -20,8 +31,28 @@ function RectangleLayer({ id, dispatch }) {
         setWidth(e.target.value);
     }
 
+    function handleCenterValueChange(e) {
+        setCenterValue(e.target.value);
+    }
+
+    function handleBottomChange(e) {
+        setBottomValue(e.target.value);
+    }
+
     function handlePosChange() {
         setPosCenter(!posCenter);
+    }
+
+    function handleFillChange() {
+        setFill(!fill);
+    }
+
+    function handleOpacityChange(e) {
+        setOpacity(e.target.value);
+    }
+
+    function handleFillColorChange(e) {
+        setFillColor(e.target.value);
     }
 
     useEffect(() => {
@@ -33,9 +64,23 @@ function RectangleLayer({ id, dispatch }) {
                 height: height,
                 width: width,
                 posCenter: posCenter,
+                centerValue: centerValue,
+                bottomValue: bottomValue,
+                fill: fill,
+                fillColor: fillColor,
+                opacity: opacity,
             },
         });
-    }, [height, width, posCenter]);
+    }, [
+        height,
+        width,
+        posCenter,
+        centerValue,
+        bottomValue,
+        fill,
+        fillColor,
+        opacity,
+    ]);
 
     return (
         <Dropdown label={"Rectangle"}>
@@ -61,46 +106,72 @@ function RectangleLayer({ id, dispatch }) {
 
             <Dropdown label={"Positioning"}>
                 <div
+                    className="center-field-container"
                     onClick={() => {
                         if (!posCenter) {
                             handlePosChange();
                         }
                     }}
                 >
-                    <input
-                        type="checkbox"
-                        checked={posCenter}
-                        onChange={handlePosChange}
-                    ></input>
-                    <label>center:</label>
-                    <input type="text"></input>
-                    <InfoLabel
-                        infoText={"Enter as an ordered pair, e.g (0, 0)"}
-                    ></InfoLabel>
+                    <CheckboxInputField
+                        label={"center: "}
+                        value={posCenter}
+                        onChangeFunction={handlePosChange}
+                    ></CheckboxInputField>
+                    <TextInputField
+                        value={centerValue}
+                        onChangeFunction={handleCenterValueChange}
+                    ></TextInputField>
                 </div>
+
                 <div
+                    className="bottom-field-container"
                     onClick={() => {
                         if (posCenter) {
                             handlePosChange();
                         }
                     }}
                 >
-                    <input
-                        type="checkbox"
-                        checked={!posCenter}
-                        onChange={handlePosChange}
-                    ></input>
-                    <label>bottom-left:</label>
-                    <input type="text"></input>
-                    <InfoLabel
-                        infoText={"Enter as an ordered pair, e.g (0, 0)"}
-                    ></InfoLabel>
+                    <CheckboxInputField
+                        label={"bottom left: "}
+                        value={!posCenter}
+                        onChangeFunction={handlePosChange}
+                    ></CheckboxInputField>
+                    <TextInputField
+                        value={bottomValue}
+                        onChangeFunction={handleBottomChange}
+                    ></TextInputField>
                 </div>
             </Dropdown>
+
             <Dropdown label={"Fill"}>
-                <label>Opacity</label>
+                <div className="fill-container">
+                    <div className="fill-container-col-1">
+                        <CheckboxInputField
+                            onChangeFunction={handleFillChange}
+                            value={fill}
+                            label={"fill"}
+                        ></CheckboxInputField>
+
+                        <ColorInputField
+                            label={"color:"}
+                            value={fillColor}
+                            onChangeFunction={handleFillColorChange}
+                        ></ColorInputField>
+                    </div>
+                    <div className="fill-container-col-2">
+                        <SliderInputField
+                            label={"opacity:"}
+                            min={0}
+                            max={100}
+                            value={opacity}
+                            onChangeFunction={handleOpacityChange}
+                        ></SliderInputField>
+                    </div>
+                </div>
             </Dropdown>
-            <Dropdown label={"Advanced"}>
+
+            {/* <Dropdown label={"Advanced"}>
                 <CheckboxInputField label={"outline"}></CheckboxInputField>
 
                 <NumberInputField
@@ -109,7 +180,20 @@ function RectangleLayer({ id, dispatch }) {
                     max={10}
                     step={0.1}
                 ></NumberInputField>
-            </Dropdown>
+            </Dropdown> */}
+
+            <div className="delete-button-container">
+                <DeleteLayerButton
+                    clickFunction={() =>
+                        dispatch({
+                            type: "delete_layer",
+                            payload: {
+                                id: id,
+                            },
+                        })
+                    }
+                ></DeleteLayerButton>
+            </div>
         </Dropdown>
     );
 }

@@ -6,9 +6,10 @@ function CheckboxInputField({ label, onChangeFunction, value }) {
             <input
                 type="checkbox"
                 onChange={onChangeFunction}
-                value={value}
+                checked={value}
+                defaultChecked={value}
             ></input>
-            ;<label>{label}</label>
+            <label>{label}</label>
         </div>
     );
 }

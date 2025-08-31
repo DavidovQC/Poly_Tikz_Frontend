@@ -1,0 +1,49 @@
+.slider-input-field-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.slider-input-field-display input {
+}
+
+.slider-text-display {
+    display: flex;
+    padding-left: 25px;
+    gap: 4px;
+    max-width: 50%;
+}
+
+.slider-text-display label,
+.slider-text-display p {
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 320px) {
+    .slider-input-field-display input {
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+}
+
+@media (min-width: 769px) and (max-width: 1080px) {
+    .slider-input-field-display input {
+        max-width: 50%;
+    }
+
+    .slider-text-display {
+        padding-left: 0px;
+        gap: 2px;
+    }
+}
+
+@media (min-width: 1081px) and (max-width: 1280px) {
+}

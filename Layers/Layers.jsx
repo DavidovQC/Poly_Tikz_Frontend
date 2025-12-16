@@ -126,6 +126,7 @@ function Layers({ options }) {
                                     <RectangleLayer
                                         key={layer.id}
                                         id={layer.id}
+                                        layer={layer} //<- new
                                         dispatch={dispatch}
                                     ></RectangleLayer>
                                 </GraphLayerWrapper>

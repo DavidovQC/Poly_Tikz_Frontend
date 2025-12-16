@@ -8,20 +8,24 @@ import DeleteLayerButton from "../DeleteLayerButton";
 import SliderInputField from "../InputWidgets/SliderInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 
-function RectangleLayer({ id, dispatch }) {
+function RectangleLayer({ id, dispatch, layer }) {
     //basic settings
-    const [height, setHeight] = useState(0.5);
-    const [width, setWidth] = useState(0.5);
+    const [height, setHeight] = useState(layer.height ?? 0.5);
+    const [width, setWidth] = useState(layer.width ?? 0.5);
 
     //position settings
-    const [posCenter, setPosCenter] = useState(false);
-    const [centerValue, setCenterValue] = useState("(0, 0)");
-    const [bottomValue, setBottomValue] = useState("(0, 0)");
+    const [posCenter, setPosCenter] = useState(layer.posCenter ?? false);
+    const [centerValue, setCenterValue] = useState(
+        layer.centerValue ?? "(0, 0)"
+    );
+    const [bottomValue, setBottomValue] = useState(
+        layer.bottomValue ?? "(0, 0)"
+    );
 
     //fill settings
-    const [fill, setFill] = useState(false);
-    const [opacity, setOpacity] = useState(100);
-    const [fillColor, setFillColor] = useState("000000");
+    const [fill, setFill] = useState(layer.fill ?? false);
+    const [opacity, setOpacity] = useState(layer.opacity ?? 100);
+    const [fillColor, setFillColor] = useState(layer.fillColor ?? "000000");
 
     const objectData = [
         height,

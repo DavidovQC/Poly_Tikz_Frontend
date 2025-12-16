@@ -2,19 +2,47 @@ import { useState } from "react";
 import Dropdown from "../Dropdown";
 import { useEffect } from "react";
 import DeleteLayerButton from "../DeleteLayerButton";
+import TextInputField from "../InputWidgets/TextInputField";
+
 import "../../styles/graph-point-layers-styles.css";
+import DropdownInputField from "../InputWidgets/DropdownInputField";
 
 function GraphPointLayer({ dispatch, id }) {
     const [xCoordinate, setXCoordinate] = useState(0);
     const [yCoordinate, setYCoordinate] = useState(0);
 
     const [size, setSize] = useState(1);
-    const [nodeText, setNodeText] = useState("");
+
+    const [pointLabel, setPointLabel] = useState("");
+    const [labelOrientation, setLabelOrientation] = useState("right");
 
     ///to be implemented:
     const [radialColor, setRadialColor] = useState("#000000");
     const [fillColor, setFillColor] = useState("#000000");
     const [fillOn, setFillOn] = useState(true);
+
+    const objectData = [
+        xCoordinate,
+        yCoordinate,
+        size,
+
+        pointLabel,
+        labelOrientation,
+        radialColor,
+        fillColor,
+        fillOn,
+    ];
+
+    const orientationValues = [
+        { value: "right", label: "Right" },
+        { value: "left", label: "Left" },
+        { value: "above", label: "Above" },
+        { value: "below", label: "Below" },
+        { value: "above right", label: "Above Right" },
+        { value: "above left", label: "Above Left" },
+        { value: "below right", label: "Below Right" },
+        { value: "below left", label: "Below Left" },
+    ];
 
     useEffect(() => {
         console.log("Point sending dispatch");
@@ -28,22 +56,16 @@ function GraphPointLayer({ dispatch, id }) {
                 yValue: yCoordinate,
 
                 size: size,
-                nodeText: nodeText,
 
                 fillOn: fillOn,
                 fillColor: fillColor,
                 radialColor: radialColor,
+                pointLabel: pointLabel,
+
+                labelOrientation: labelOrientation,
             },
         });
-    }, [
-        xCoordinate,
-        yCoordinate,
-        size,
-        nodeText,
-        radialColor,
-        fillColor,
-        fillOn,
-    ]);
+    }, objectData);
 
     function handleXCoordinateChange(e) {
         setXCoordinate(e.target.value);
@@ -57,10 +79,6 @@ function GraphPointLayer({ dispatch, id }) {
         setSize(e.target.value);
     }
 
-    function handleNodeTextChange(e) {
-        setNodeText(e.target.value);
-    }
-
     function handleRadialColorChange(e) {
         setRadialColor(e.target.value);
     }
@@ -71,6 +89,14 @@ function GraphPointLayer({ dispatch, id }) {
 
     function handleFillChange() {
         setFillOn(!fillOn);
+    }
+
+    function handlePointLabelChange(e) {
+        setPointLabel(e.target.value);
+    }
+
+    function handleLabelOrientationChange(e) {
+        setLabelOrientation(e.target.value);
     }
 
     return (
@@ -147,6 +173,20 @@ function GraphPointLayer({ dispatch, id }) {
                                 onChange={handleFillColorChange}
                             ></input>
                         </div>
+                    </Dropdown>
+
+                    <Dropdown label="Label">
+                        <TextInputField
+                            label={"label:"}
+                            onChangeFunction={handlePointLabelChange}
+                            value={pointLabel}
+                        ></TextInputField>
+
+                        <DropdownInputField
+                            label={"orientation:"}
+                            values={orientationValues}
+                            onSelectFunction={handleLabelOrientationChange}
+                        ></DropdownInputField>
                     </Dropdown>
 
                     <div className="delete-button-container">

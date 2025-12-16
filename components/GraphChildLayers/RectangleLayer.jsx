@@ -23,6 +23,17 @@ function RectangleLayer({ id, dispatch }) {
     const [opacity, setOpacity] = useState(100);
     const [fillColor, setFillColor] = useState("000000");
 
+    const objectData = [
+        height,
+        width,
+        posCenter,
+        centerValue,
+        bottomValue,
+        fill,
+        opacity,
+        fillColor,
+    ];
+
     function handleHeightChange(e) {
         setHeight(e.target.value);
     }
@@ -71,16 +82,7 @@ function RectangleLayer({ id, dispatch }) {
                 opacity: opacity,
             },
         });
-    }, [
-        height,
-        width,
-        posCenter,
-        centerValue,
-        bottomValue,
-        fill,
-        fillColor,
-        opacity,
-    ]);
+    }, objectData);
 
     return (
         <Dropdown label={"Rectangle"}>

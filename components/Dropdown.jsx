@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/dropdown-styles.css";
 
-function Dropdown({ children, label }) {
+function Dropdown({ children, label, draggable }) {
     const [display, setDisplay] = useState(false);
     function handleDisplayChange() {
         setDisplay(!display);

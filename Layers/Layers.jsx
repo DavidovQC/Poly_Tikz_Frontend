@@ -1,14 +1,19 @@
+import "../styles/layers-styles.css";
+
 import { useContext, useState } from "react";
+import { LayerContext } from "./LayersContext";
+
+import AxisLayer from "../components/GraphChildLayers/AxisLayer";
 
 import GraphPointLayer from "../components/GraphChildLayers/GraphPointLayer";
-import { LayerContext } from "./LayersContext";
 import FunctionLayer from "../components/GraphChildLayers/FunctionLayer";
-import AxisLayer from "../components/GraphChildLayers/AxisLayer";
-import "../styles/layers-styles.css";
 import CircleLayer from "../components/GraphChildLayers/CircleLayer";
-import VectorLayer from "../components/GraphChildLayers/VectorLayer";
 import RectangleLayer from "../components/GraphChildLayers/RectangleLayer";
 import PathLayer from "../components/GraphChildLayers/PathLayer";
+import VectorLayer from "../components/GraphChildLayers/VectorLayer";
+
+import Draggable from "../components/GraphChildLayers/DraggableLayer";
+import GraphLayerWrapper from "../components/GraphLayerWrapper";
 
 function Layers({ options }) {
     const { layers, dispatch } = useContext(LayerContext);
@@ -18,6 +23,15 @@ function Layers({ options }) {
         setLayerType(event.target.value);
     }
 
+    function addLayer() {
+        dispatch({
+            type: "add_layer",
+            payload: {
+                type: layerType,
+            },
+        });
+    }
+
     return (
         <div>
             <div className="add-layer-options-container">
@@ -25,13 +39,7 @@ function Layers({ options }) {
                     <button
                         className="add-layer-button"
                         onClick={() => {
-                            console.log(`${layerType}`);
-                            dispatch({
-                                type: "add_layer",
-                                payload: {
-                                    type: layerType,
-                                },
-                            });
+                            addLayer();
                         }}
                     >
                         +
@@ -46,33 +54,43 @@ function Layers({ options }) {
                         <option value="Function">Function</option>
                         <option value="Circle">Circle</option>
                         <option value="Rectangle">Rectangle</option>
-                        {/* <option value="Path">Path</option> */}
-
-                        {/* {options.map((option) => {
-                        return <option value={option}>{option}</option>;
-                    })} */}
+                        <option value="Path">Path</option>
+                        <option value="Dragable">Dragable</option>
                     </select>
                 </div>
             </div>
+
+            {/* Renders the Layer object: */}
+
             <div className="layers-container">
-                {layers.map((layer) => {
+                {layers.map((layer, index) => {
                     switch (layer.type) {
                         case "Point":
                             return (
-                                <GraphPointLayer
-                                    key={layer.id}
-                                    id={layer.id}
-                                    dispatch={dispatch}
-                                ></GraphPointLayer>
+                                <GraphLayerWrapper
+                                    draggable={true}
+                                    index={index}
+                                >
+                                    <GraphPointLayer
+                                        key={layer.id}
+                                        id={layer.id}
+                                        dispatch={dispatch}
+                                    ></GraphPointLayer>
+                                </GraphLayerWrapper>
                             );
 
                         case "Function":
                             return (
-                                <FunctionLayer
-                                    key={layer.id}
-                                    id={layer.id}
-                                    dispatch={dispatch}
-                                ></FunctionLayer>
+                                <GraphLayerWrapper
+                                    draggable={true}
+                                    index={index}
+                                >
+                                    <FunctionLayer
+                                        key={layer.id}
+                                        id={layer.id}
+                                        dispatch={dispatch}
+                                    ></FunctionLayer>
+                                </GraphLayerWrapper>
                             );
 
                         case "Axis":
@@ -86,21 +104,31 @@ function Layers({ options }) {
 
                         case "Circle":
                             return (
-                                <CircleLayer
-                                    key={layer.id}
-                                    id={layer.id}
-                                    // layer={layer.id}
-                                    dispatch={dispatch}
-                                ></CircleLayer>
+                                <GraphLayerWrapper
+                                    draggable={true}
+                                    index={index}
+                                >
+                                    <CircleLayer
+                                        key={layer.id}
+                                        id={layer.id}
+                                        // layer={layer.id}
+                                        dispatch={dispatch}
+                                    ></CircleLayer>
+                                </GraphLayerWrapper>
                             );
 
                         case "Rectangle":
                             return (
-                                <RectangleLayer
-                                    key={layer.id}
-                                    id={layer.id}
-                                    dispatch={dispatch}
-                                ></RectangleLayer>
+                                <GraphLayerWrapper
+                                    draggable={true}
+                                    index={index}
+                                >
+                                    <RectangleLayer
+                                        key={layer.id}
+                                        id={layer.id}
+                                        dispatch={dispatch}
+                                    ></RectangleLayer>
+                                </GraphLayerWrapper>
                             );
                         case "Path":
                             return (
@@ -110,6 +138,16 @@ function Layers({ options }) {
                                     dispatch={dispatch}
                                 ></PathLayer>
                             );
+
+                        case "Dragable":
+                            return (
+                                <Draggable
+                                    key={layer.id}
+                                    id={layer.id}
+                                    dispatch={dispatch}
+                                ></Draggable>
+                            );
+
                         default:
                             console.log("error while mapping");
                             return;

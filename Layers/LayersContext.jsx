@@ -24,6 +24,13 @@ function reducer(layers, action) {
         case "delete_layer":
             return layers.filter((layer) => layer.id != action.payload.id);
 
+        case "move_layer":
+            const { fromIndex, toIndex } = action.payload;
+            const updated = [...layers];
+            const [moved] = updated.splice(fromIndex, 1);
+            updated.splice(toIndex, 0, moved);
+            return updated;
+
         default:
             console.log("error default");
     }
@@ -31,80 +38,25 @@ function reducer(layers, action) {
 
 function createLayer(type, id) {
     console.log(`the type is + ${type}`);
-    switch (type) {
-        case "Settings":
-            console.log("settings generated");
-            return {
-                id: id,
-                type: "Settings",
-            };
+    const typeList = [
+        "Axis",
+        "Function",
+        "Circle",
+        "Rectangle",
+        "Path",
+        "Point",
+        "Dragable",
+    ];
 
-        case "Point":
-            console.log("creating point");
-            return {
-                id: id,
-                visible: true,
-                type: "Point",
-                xValue: 0,
-                yValue: 0,
-
-                filled: true,
-                size: 1,
-            };
-        case "Function":
-            console.log("creating function");
-            return {
-                id: id,
-                visible: true,
-                type: "Function",
-                function: null,
-                samples: 100,
-                thickness: "thick",
-            };
-        case "Axis":
-            console.log("creating Axis");
-            return {
-                id: id,
-                visible: true,
-                type: "Axis",
-                xAxisSize: 1,
-                yAxisSize: 1,
-                axisType: "Cross",
-                arrowsOn: true,
-                xAxisVisible: true,
-                yAxisVisible: true,
-            };
-
-        case "Circle":
-            return {
-                id: id,
-                type: "Circle",
-                xOrigin: 0,
-                yOrigin: 0,
-                radius: 1,
-            };
-        case "Vector":
-            return {
-                id: id,
-                type: "Vector",
-                xCoordinate: 1,
-                yCoordinate: 1,
-            };
-
-        case "Rectangle":
-            return {
-                id: id,
-                type: "Rectangle",
-            };
-
-        case "Path":
-            return {
-                id: id,
-                type: "Path",
-            };
-        default:
-            console.log("error, invalid type");
+    if (!typeList.includes(type)) {
+        console.log("Error, invalid type");
+        return;
     }
+
+    return {
+        id: id,
+        type: type,
+    };
 }
 
 export function LayersProvider({ children }) {

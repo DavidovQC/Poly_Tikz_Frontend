@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "../styles/dropdown-styles.css";
 
-function Dropdown({ children, label, draggable }) {
-    const [display, setDisplay] = useState(false);
+function Dropdown({ children, label, isOpen, setIsOpen }) {
+    const [display, setDisplay] = useState(isOpen ?? false);
     function handleDisplayChange() {
         setDisplay(!display);
+        setIsOpen(!display);
     }
 
     return (

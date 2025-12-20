@@ -27,6 +27,11 @@ function RectangleLayer({ id, dispatch, layer }) {
     const [opacity, setOpacity] = useState(layer.opacity ?? 100);
     const [fillColor, setFillColor] = useState(layer.fillColor ?? "000000");
 
+    //dropdown options
+    const [isOpen, setIsOpen] = useState(layer.isOpen ?? false);
+    const [isPosOpen, setIsPosOpen] = useState(layer.isPosOpen ?? false);
+    const [isFillOpen, setIsFillOpen] = useState(layer.isFillOpen ?? false);
+
     const objectData = [
         height,
         width,
@@ -37,6 +42,8 @@ function RectangleLayer({ id, dispatch, layer }) {
         opacity,
         fillColor,
     ];
+
+    const dropDownData = [isOpen, isPosOpen, isFillOpen];
 
     function handleHeightChange(e) {
         setHeight(e.target.value);
@@ -76,6 +83,7 @@ function RectangleLayer({ id, dispatch, layer }) {
             newLayer: {
                 type: "Rectangle",
                 id: id,
+                //Maybe submit ObjectData and DropdownData instead of all of these various things?
                 height: height,
                 width: width,
                 posCenter: posCenter,
@@ -84,12 +92,16 @@ function RectangleLayer({ id, dispatch, layer }) {
                 fill: fill,
                 fillColor: fillColor,
                 opacity: opacity,
+
+                isOpen: isOpen,
+                isPosOpen: isPosOpen,
+                isFillOpen: isFillOpen,
             },
         });
-    }, objectData);
+    }, [objectData, dropDownData]);
 
     return (
-        <Dropdown label={"Rectangle"}>
+        <Dropdown label={"Rectangle"} isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className="dimension-container">
                 <NumberInputField
                     label={"Height:"}
@@ -110,7 +122,11 @@ function RectangleLayer({ id, dispatch, layer }) {
                 ></NumberInputField>
             </div>
 
-            <Dropdown label={"Positioning"}>
+            <Dropdown
+                label={"Positioning"}
+                isOpen={isPosOpen}
+                setIsOpen={setIsPosOpen}
+            >
                 <div
                     className="center-field-container"
                     onClick={() => {
@@ -150,7 +166,11 @@ function RectangleLayer({ id, dispatch, layer }) {
                 </div>
             </Dropdown>
 
-            <Dropdown label={"Fill"}>
+            <Dropdown
+                label={"Fill"}
+                isOpen={isFillOpen}
+                setIsOpen={setIsFillOpen}
+            >
                 <div className="fill-container">
                     <div className="fill-container-col-1">
                         <CheckboxInputField

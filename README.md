@@ -8,6 +8,8 @@
 
 -Currently all components trigger drag and drop, make it so only label is draggable.
 
+-onDragover should have an orange line above the layer appear
+
 -Improve UI component design
 
 -Currently only Rectangle tool uses current utils, update all other layers

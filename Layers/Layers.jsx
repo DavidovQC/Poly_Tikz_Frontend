@@ -55,7 +55,6 @@ function Layers({ options }) {
                         <option value="Circle">Circle</option>
                         <option value="Rectangle">Rectangle</option>
                         <option value="Path">Path</option>
-                        <option value="Dragable">Dragable</option>
                     </select>
                 </div>
             </div>
@@ -138,15 +137,6 @@ function Layers({ options }) {
                                     id={layer.id}
                                     dispatch={dispatch}
                                 ></PathLayer>
-                            );
-
-                        case "Dragable":
-                            return (
-                                <Draggable
-                                    key={layer.id}
-                                    id={layer.id}
-                                    dispatch={dispatch}
-                                ></Draggable>
                             );
 
                         default:

@@ -45,7 +45,6 @@ function createLayer(type, id) {
         "Rectangle",
         "Path",
         "Point",
-        "Dragable",
     ];
 
     if (!typeList.includes(type)) {

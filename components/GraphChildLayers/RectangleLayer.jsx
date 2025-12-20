@@ -9,11 +9,12 @@ import SliderInputField from "../InputWidgets/SliderInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 
 function RectangleLayer({ id, dispatch, layer }) {
-    //basic settings
+    //Object data
+    //Basic settings
     const [height, setHeight] = useState(layer.height ?? 0.5);
     const [width, setWidth] = useState(layer.width ?? 0.5);
 
-    //position settings
+    //Position settings
     const [posCenter, setPosCenter] = useState(layer.posCenter ?? false);
     const [centerValue, setCenterValue] = useState(
         layer.centerValue ?? "(0, 0)"
@@ -22,12 +23,12 @@ function RectangleLayer({ id, dispatch, layer }) {
         layer.bottomValue ?? "(0, 0)"
     );
 
-    //fill settings
+    //Fill settings
     const [fill, setFill] = useState(layer.fill ?? false);
     const [opacity, setOpacity] = useState(layer.opacity ?? 100);
     const [fillColor, setFillColor] = useState(layer.fillColor ?? "000000");
 
-    //dropdown options
+    //Dropdown options
     const [isOpen, setIsOpen] = useState(layer.isOpen ?? false);
     const [isPosOpen, setIsPosOpen] = useState(layer.isPosOpen ?? false);
     const [isFillOpen, setIsFillOpen] = useState(layer.isFillOpen ?? false);
@@ -45,6 +46,7 @@ function RectangleLayer({ id, dispatch, layer }) {
 
     const dropdownData = [isOpen, isPosOpen, isFillOpen];
 
+    //Handlers
     function handleHeightChange(e) {
         setHeight(e.target.value);
     }
@@ -196,17 +198,6 @@ function RectangleLayer({ id, dispatch, layer }) {
                     </div>
                 </div>
             </Dropdown>
-
-            {/* <Dropdown label={"Advanced"}>
-                <CheckboxInputField label={"outline"}></CheckboxInputField>
-
-                <NumberInputField
-                    label={"rounded-corners"}
-                    min={0}
-                    max={10}
-                    step={0.1}
-                ></NumberInputField>
-            </Dropdown> */}
 
             <div className="delete-button-container">
                 <DeleteLayerButton

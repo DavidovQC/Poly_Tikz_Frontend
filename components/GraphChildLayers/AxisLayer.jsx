@@ -29,6 +29,23 @@ function AxisLayer({ dispatch, id }) {
     //in progress
     const [ticksStep, setTicksStep] = useState(1);
 
+    const objectData = [
+        xAxisSize,
+        yAxisSize,
+        graphType,
+        arrowsOn,
+        gridStep,
+        gridOn,
+        ticksOnX,
+        ticksOnY,
+        ticksStep,
+        xAxisVisible,
+        yAxisVisible,
+        axisColor,
+        gridColor,
+        ticksStep,
+    ];
+
     useEffect(() => {
         dispatch({
             type: "edit_layer",
@@ -50,22 +67,7 @@ function AxisLayer({ dispatch, id }) {
                 gridColor: gridColor,
             },
         });
-    }, [
-        xAxisSize,
-        yAxisSize,
-        graphType,
-        arrowsOn,
-        gridStep,
-        gridOn,
-        ticksOnX,
-        ticksOnY,
-        ticksStep,
-        xAxisVisible,
-        yAxisVisible,
-        axisColor,
-        gridColor,
-        ticksStep,
-    ]);
+    }, objectData);
 
     // const xAxisSizeInput = useRef(1);
     // const yAxisSizeInput = useRef(1);

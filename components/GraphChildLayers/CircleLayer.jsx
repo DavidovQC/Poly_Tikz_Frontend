@@ -2,13 +2,21 @@ import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown";
 import DeleteLayerButton from "../DeleteLayerButton";
 import "../../styles/circle-layers-styles.css";
+import NumberInputField from "../InputWidgets/NumberInputField";
+import ColorInputField from "../InputWidgets/ColorInputField";
 
-function CircleLayer({ id, dispatch }) {
-    const [xOrigin, setXOrigin] = useState(0);
-    const [yOrigin, setYOrigin] = useState(0);
-    const [radius, setRadius] = useState(1);
-    const [color, setColor] = useState("#00ff00");
+function CircleLayer({ id, dispatch, layer }) {
+    //Object Data
+    //Basic settings
+    const [xOrigin, setXOrigin] = useState(layer.xOrigin ?? 0);
+    const [yOrigin, setYOrigin] = useState(layer.yOrigin ?? 0);
+    const [radius, setRadius] = useState(layer.radius ?? 1);
+    const [color, setColor] = useState(layer.color ?? "#00ff00");
 
+    //Dropdown Data
+    const [isOpen, setIsOpen] = useState(layer.isOpen ?? false);
+
+    //Handlers
     function handleXOriginChange(e) {
         setXOrigin(e.target.value);
     }
@@ -25,74 +33,60 @@ function CircleLayer({ id, dispatch }) {
         setColor(e.target.value);
     }
 
+    const objectData = [xOrigin, yOrigin, radius, color];
+    const dropdownData = [isOpen];
+
     useEffect(() => {
         dispatch({
             type: "edit_layer",
             newLayer: {
                 type: "Circle",
                 id: id,
+
+                //Object data:
                 radius: radius,
                 xOrigin: xOrigin,
                 yOrigin: yOrigin,
                 color: color,
+
+                //Dropdown data:
+                isOpen: isOpen,
             },
         });
-        console.log({
-            type: "Circle",
-            id: id,
-            radius: radius,
-            xOrigin: xOrigin,
-            yOrigin: yOrigin,
-        });
-    }, [xOrigin, yOrigin, radius, color]);
+    }, [objectData, dropdownData]);
 
     return (
-        <Dropdown label="Circle">
+        <Dropdown label="Circle" isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className="main-circle-container">
                 <div className="main-circle-container-grid">
                     <div className="center-coordinates-container">
-                        <div>
-                            <label>origin x:</label>
-                            <input
-                                className="number-input-field"
-                                type="number"
-                                step={0.1}
-                                value={xOrigin}
-                                onChange={handleXOriginChange}
-                            ></input>
-                        </div>
+                        <NumberInputField
+                            label={"origin x:"}
+                            step={0.1}
+                            value={xOrigin}
+                            onChangeFunction={handleXOriginChange}
+                        ></NumberInputField>
 
-                        <div>
-                            <label>origin y:</label>
-                            <input
-                                className="number-input-field"
-                                type="number"
-                                step={0.1}
-                                value={yOrigin}
-                                onChange={handleYOriginChange}
-                            ></input>
-                        </div>
+                        <NumberInputField
+                            label={"origin y:"}
+                            step={0.1}
+                            value={yOrigin}
+                            onChangeFunction={handleYOriginChange}
+                        ></NumberInputField>
                     </div>
                     <div>
-                        <div>
-                            <label>radius:</label>
-                            <input
-                                className="number-input-field"
-                                type="number"
-                                step={0.1}
-                                value={radius}
-                                onChange={handleRadiusChange}
-                            ></input>
-                        </div>
+                        <NumberInputField
+                            label={"radius:"}
+                            step={0.1}
+                            value={radius}
+                            onChangeFunction={handleRadiusChange}
+                        ></NumberInputField>
 
-                        <div className="color-input-field">
-                            <label>color: </label>
-                            <input
-                                type="color"
-                                value={color}
-                                onChange={handeColorChange}
-                            ></input>
-                        </div>
+                        <ColorInputField
+                            label={"color"}
+                            value={color}
+                            onChangeFunction={handeColorChange}
+                        ></ColorInputField>
                     </div>
                 </div>
             </div>

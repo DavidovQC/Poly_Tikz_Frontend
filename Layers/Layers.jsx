@@ -65,6 +65,15 @@ function Layers({ options }) {
             <div className="layers-container">
                 {layers.map((layer, index) => {
                     switch (layer.type) {
+                        case "Axis":
+                            return (
+                                <AxisLayer
+                                    key={layer.id}
+                                    id={layer.id}
+                                    dispatch={dispatch}
+                                ></AxisLayer>
+                            );
+
                         case "Point":
                             return (
                                 <GraphLayerWrapper
@@ -93,15 +102,6 @@ function Layers({ options }) {
                                 </GraphLayerWrapper>
                             );
 
-                        case "Axis":
-                            return (
-                                <AxisLayer
-                                    key={layer.id}
-                                    id={layer.id}
-                                    dispatch={dispatch}
-                                ></AxisLayer>
-                            );
-
                         case "Circle":
                             return (
                                 <GraphLayerWrapper
@@ -111,7 +111,7 @@ function Layers({ options }) {
                                     <CircleLayer
                                         key={layer.id}
                                         id={layer.id}
-                                        // layer={layer.id}
+                                        layer={layer}
                                         dispatch={dispatch}
                                     ></CircleLayer>
                                 </GraphLayerWrapper>
@@ -126,7 +126,7 @@ function Layers({ options }) {
                                     <RectangleLayer
                                         key={layer.id}
                                         id={layer.id}
-                                        layer={layer} //<- new
+                                        layer={layer}
                                         dispatch={dispatch}
                                     ></RectangleLayer>
                                 </GraphLayerWrapper>

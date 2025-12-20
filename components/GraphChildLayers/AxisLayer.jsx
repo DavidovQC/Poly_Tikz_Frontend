@@ -4,6 +4,9 @@ import SVGButton from "../SVGButton";
 import SVGButtonArray from "../SVGButtonArray";
 import svgData from "../../assets/SVGButtonData";
 import "../../styles/axis-layers-styles.css";
+import NumberInputField from "../InputWidgets/NumberInputField";
+import CheckboxInputField from "../InputWidgets/CheckboxInputField";
+import ColorInputField from "../InputWidgets/ColorInputField";
 
 function AxisLayer({ dispatch, id }) {
     //Working + Added to Layer
@@ -142,48 +145,41 @@ function AxisLayer({ dispatch, id }) {
                 <div className="main-axis-options-container">
                     <div className="main-axis-options-container-grid">
                         <div className="x-axis-container">
-                            <label>x-axis size:</label>
-                            <input
-                                className="number-input-field"
-                                value={xAxisSize}
-                                type="number"
+                            <NumberInputField
+                                label={"x-axis size:"}
                                 min={0.1}
                                 max={10}
                                 step={0.1}
-                                onChange={handleXAxisSizeChange}
-                            ></input>
+                                value={xAxisSize}
+                                onChangeFunction={handleXAxisSizeChange}
+                            ></NumberInputField>
                         </div>
 
                         <div className="checkbox-field">
-                            <input
-                                type="checkbox"
-                                checked={arrowsOn}
-                                onChange={handleArrowsChange}
-                            ></input>
-                            <label>arrows</label>
+                            <CheckboxInputField
+                                label={"arrows"}
+                                onChangeFunction={handleArrowsChange}
+                                value={arrowsOn}
+                            ></CheckboxInputField>
                         </div>
 
                         <div className="y-axis-container">
-                            <label>y-axis size:</label>
-                            <input
-                                className="number-input-field"
-                                value={yAxisSize}
-                                type="number"
+                            <NumberInputField
+                                label={"y-axis size:"}
                                 min={0.1}
                                 max={10}
                                 step={0.1}
-                                onChange={handleYAxisSizeChange}
-                            ></input>
+                                value={yAxisSize}
+                                onChangeFunction={handleYAxisSizeChange}
+                            ></NumberInputField>
                         </div>
 
                         <div className="color-input-field">
-                            <label>color: </label>
-                            <input
-                                type="color"
-                                id="colorPicker"
+                            <ColorInputField
+                                label={"color:"}
                                 value={axisColor}
-                                onChange={handleAxisColorChange}
-                            ></input>
+                                onChangeFunction={handleAxisColorChange}
+                            ></ColorInputField>
                         </div>
                     </div>
                 </div>
@@ -193,39 +189,26 @@ function AxisLayer({ dispatch, id }) {
                         <div className="ticks-options-container-grid">
                             <div className="ticks-visible-container">
                                 <div className="checkbox-field">
-                                    <input
-                                        type="checkbox"
-                                        checked={ticksOnX}
-                                        onChange={handleTicksXChange}
-                                    ></input>
-                                    <label>x-axis</label>
+                                    <CheckboxInputField
+                                        label={"x-axis"}
+                                        onChangeFunction={handleTicksXChange}
+                                        value={ticksOnX}
+                                    ></CheckboxInputField>
                                 </div>
 
                                 <div>
                                     <div className="checkbox-field">
-                                        <input
-                                            type="checkbox"
-                                            checked={ticksOnY}
-                                            onChange={handleTicksYChange}
-                                        ></input>
-                                        <label>y-axis</label>
+                                        <CheckboxInputField
+                                            label={"y-axis"}
+                                            onChangeFunction={
+                                                handleTicksYChange
+                                            }
+                                            value={ticksOnY}
+                                        ></CheckboxInputField>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        {/* <div className="ticks-step-container">
-                            <label>step</label>
-                            <input
-                                className="number-input-field"
-                                type="number"
-                                value={ticksStep}
-                                onChange={handleTickStepChange}
-                                min={0.1}
-                                max={10}
-                                step={0.1}
-                            ></input>
-                        </div> */}
                     </div>
                 </Dropdown>
 
@@ -234,33 +217,30 @@ function AxisLayer({ dispatch, id }) {
                         <div className="grid-options-container-grid">
                             <div className="grid-visible-container">
                                 <div className="checkbox-field">
-                                    <input
-                                        type="checkbox"
-                                        checked={gridOn}
-                                        onClick={handleGridChange}
-                                    ></input>
-                                    <label>grid</label>
+                                    <CheckboxInputField
+                                        label={"grid"}
+                                        onChangeFunction={handleGridChange}
+                                        value={gridOn}
+                                    ></CheckboxInputField>
                                 </div>
                             </div>
                             <div className="grid-step-container">
-                                <label>step: </label>
-                                <input
-                                    type="number"
+                                <NumberInputField
+                                    label={"step:"}
                                     value={gridStep}
-                                    min=".1"
-                                    max="3"
-                                    step=".1"
-                                    onChange={handleGridStepChange}
-                                ></input>
+                                    min={0.1}
+                                    max={3}
+                                    step={0.1}
+                                    onChangeFunction={handleGridStepChange}
+                                ></NumberInputField>
                             </div>
 
                             <div className="color-input-field">
-                                <label>color:</label>
-                                <input
-                                    type="color"
+                                <ColorInputField
+                                    label={"color:"}
                                     value={gridColor}
-                                    onChange={handleGridColorChange}
-                                ></input>
+                                    onChangeFunction={handleGridColorChange}
+                                ></ColorInputField>
                             </div>
                         </div>
                     </div>
@@ -270,36 +250,25 @@ function AxisLayer({ dispatch, id }) {
                         <div className="advanced-options-container-grid">
                             <div>
                                 <div className="checkbox-field">
-                                    <input
-                                        type="checkbox"
-                                        checked={xAxisVisible}
-                                        onChange={handleXAxisVisibleChange}
-                                    ></input>
-                                    <label>x-axis visible</label>
+                                    <CheckboxInputField
+                                        label={"x-axis visible"}
+                                        value={xAxisVisible}
+                                        onChangeFunction={
+                                            handleXAxisVisibleChange
+                                        }
+                                    ></CheckboxInputField>
                                 </div>
 
                                 <div className="checkbox-field">
-                                    <input
-                                        type="checkbox"
-                                        checked={yAxisVisible}
-                                        onChange={handleYAxisVisibleChange}
-                                    ></input>
-                                    <label>y-axis visible</label>
+                                    <CheckboxInputField
+                                        label={"y-axis visible"}
+                                        value={yAxisVisible}
+                                        onChangeFunction={
+                                            handleYAxisVisibleChange
+                                        }
+                                    ></CheckboxInputField>
                                 </div>
                             </div>
-
-                            {/* <div className="scale container">
-                                <label>scale:</label>
-                                <input
-                                    className="number-input-field"
-                                    value={xAxisSize}
-                                    type="number"
-                                    min={0.1}
-                                    max={10}
-                                    step={0.1}
-                                    onChange={handleXAxisSizeChange}
-                                ></input>
-                            </div> */}
                         </div>
                     </div>
                 </Dropdown>

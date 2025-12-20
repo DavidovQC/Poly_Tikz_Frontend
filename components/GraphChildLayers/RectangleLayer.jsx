@@ -43,7 +43,7 @@ function RectangleLayer({ id, dispatch, layer }) {
         fillColor,
     ];
 
-    const dropDownData = [isOpen, isPosOpen, isFillOpen];
+    const dropdownData = [isOpen, isPosOpen, isFillOpen];
 
     function handleHeightChange(e) {
         setHeight(e.target.value);
@@ -83,7 +83,7 @@ function RectangleLayer({ id, dispatch, layer }) {
             newLayer: {
                 type: "Rectangle",
                 id: id,
-                //Maybe submit ObjectData and DropdownData instead of all of these various things?
+
                 height: height,
                 width: width,
                 posCenter: posCenter,
@@ -98,7 +98,7 @@ function RectangleLayer({ id, dispatch, layer }) {
                 isFillOpen: isFillOpen,
             },
         });
-    }, [objectData, dropDownData]);
+    }, [objectData, dropdownData]);
 
     return (
         <Dropdown label={"Rectangle"} isOpen={isOpen} setIsOpen={setIsOpen}>

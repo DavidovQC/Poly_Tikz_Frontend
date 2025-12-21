@@ -1,6 +1,6 @@
 import "../../styles/InputWidgetStyles/text-input-field-styles.css";
 
-function TextInputField({ label, onChangeFunction, value }) {
+function TextInputField({ label, onChangeFunction, value, placeholder }) {
     return (
         <div className="text-input-field-container">
             <label>{label}</label>
@@ -8,6 +8,7 @@ function TextInputField({ label, onChangeFunction, value }) {
                 type="text"
                 onChange={onChangeFunction}
                 value={value}
+                placeholder={placeholder}
             ></input>
         </div>
     );

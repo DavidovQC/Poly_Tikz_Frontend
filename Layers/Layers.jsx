@@ -12,7 +12,6 @@ import RectangleLayer from "../components/GraphChildLayers/RectangleLayer";
 import PathLayer from "../components/GraphChildLayers/PathLayer";
 import VectorLayer from "../components/GraphChildLayers/VectorLayer";
 
-import Draggable from "../components/GraphChildLayers/DraggableLayer";
 import GraphLayerWrapper from "../components/GraphLayerWrapper";
 
 function Layers({ options }) {

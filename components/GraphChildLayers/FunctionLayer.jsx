@@ -3,9 +3,13 @@ import Dropdown from "../Dropdown";
 import InfoLabel from "../InfoLabel";
 import DeleteLayerButton from "../DeleteLayerButton";
 import "../../styles/function-layers-styles.css";
+import TextInputField from "../InputWidgets/TextInputField";
+import DropdownInputField from "../InputWidgets/DropdownInputField";
+import SliderInputField from "../InputWidgets/SliderInputField";
+import ColorInputField from "../InputWidgets/ColorInputField";
 
 function FunctionLayer({ id, dispatch }) {
-    const [functionInput, setFunctionInput] = useState("");
+    const [functionInput, setFunctionInput] = useState("(\\x)^2");
     const [thickness, setThickness] = useState("thick");
     const [stroke, setStroke] = useState("solid");
     const [samples, setSamples] = useState(100);
@@ -31,6 +35,22 @@ function FunctionLayer({ id, dispatch }) {
         setColor(e.target.value);
     }
 
+    const thicknessOptions = [
+        { value: "ultra thin", label: "ultra thin" },
+        { value: "very thin", label: "very thin" },
+        { value: "thin", label: "thin" },
+        { value: "semithick", label: "semithick" },
+        { value: "thick", label: "thick" },
+        { value: "very thick", label: "very thick" },
+        { value: "ultra thick", label: "ultra thick" },
+    ];
+
+    const strokeOptions = [
+        { value: "solid", label: "solid" },
+        { value: "dotted", label: "dotted" },
+        { value: "dashed", label: "dashed" },
+    ];
+
     useEffect(() => {
         dispatch({
             type: "edit_layer",
@@ -53,45 +73,32 @@ function FunctionLayer({ id, dispatch }) {
                     <div className="function-settings-container">
                         <div className="function-input-container">
                             <div className="text-input-field">
-                                <label>f(x) = </label>
-                                <input
-                                    placeholder="function"
-                                    onChange={handleFunctionChange}
-                                ></input>
+                                <TextInputField
+                                    label={"f(x) = "}
+                                    placeholder={"function"}
+                                    onChangeFunction={handleFunctionChange}
+                                    value={functionInput}
+                                ></TextInputField>
                             </div>
                             <InfoLabel infoText="Write '\x' in place of 'x' (e.g, (\x)^2)"></InfoLabel>
                         </div>
 
                         <div className="thickness-container">
                             <div>
-                                <label>Thickness: </label>
-                                <select
-                                    className="thickness"
-                                    value={thickness}
-                                    onChange={handleThicknessChange}
-                                >
-                                    <option>ultra thin</option>
-                                    <option>very thin</option>
-                                    <option>thin</option>
-                                    <option>semithick</option>
-                                    <option>thick</option>
-                                    <option>very thick</option>
-                                    <option>ultra thick</option>
-                                </select>
+                                <DropdownInputField
+                                    label={"thickness:"}
+                                    onSelectFunction={handleThicknessChange}
+                                    values={thicknessOptions}
+                                ></DropdownInputField>
                             </div>
                         </div>
 
                         <div className="stroke-container">
-                            <label>Stroke: </label>
-                            <select
-                                className="stroke"
-                                value={stroke}
-                                onChange={handleStrokeChange}
-                            >
-                                <option>solid</option>
-                                <option>dotted</option>
-                                <option>dashed</option>
-                            </select>
+                            <DropdownInputField
+                                label={"stroke: "}
+                                onSelectFunction={handleStrokeChange}
+                                values={strokeOptions}
+                            ></DropdownInputField>
                         </div>
                     </div>
 
@@ -99,29 +106,23 @@ function FunctionLayer({ id, dispatch }) {
                         <div className="samples-container">
                             <div className="range-field">
                                 <div className="range-input">
-                                    <div className="samples-text-display">
-                                        <label>Samples</label>{" "}
-                                        <p>: {samples}</p>
-                                    </div>
-
-                                    <input
-                                        type="range"
-                                        min="1"
-                                        max="300"
+                                    <SliderInputField
+                                        label={"samples"}
                                         value={samples}
-                                        onChange={handleSamplesChange}
-                                    ></input>
+                                        onChangeFunction={handleSamplesChange}
+                                        min={1}
+                                        max={300}
+                                    ></SliderInputField>
                                 </div>
                             </div>
                         </div>
 
                         <div className="color-input-field">
-                            <label>color: </label>
-                            <input
-                                type="color"
+                            <ColorInputField
+                                label={"color:"}
                                 value={color}
-                                onChange={handleColorChange}
-                            ></input>
+                                onChangeFunction={handleColorChange}
+                            ></ColorInputField>
                         </div>
                     </div>
                 </div>

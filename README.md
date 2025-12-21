@@ -6,13 +6,15 @@
 
 -~~Make sure dropdown status persists with each drag and drop~~
 
+-Currently only Rectangle tool uses current utils, update all other layers
+Completed: Rectangle, Circle, GraphPoint, Axis
+Remaining: Path, Function
+
 -Currently all components trigger drag and drop, make it so only label is draggable.
 
 -onDragover should have an orange line above the layer appear
 
 -Improve UI component design
-
--Currently only Rectangle tool uses current utils, update all other layers
 
 -Finish Path Layer + Points Layer
 

@@ -6,8 +6,10 @@ import TextInputField from "../InputWidgets/TextInputField";
 
 import "../../styles/graph-point-layers-styles.css";
 import DropdownInputField from "../InputWidgets/DropdownInputField";
+import NumberInputField from "../InputWidgets/NumberInputField";
+import ColorInputField from "../InputWidgets/ColorInputField";
 
-function GraphPointLayer({ dispatch, id }) {
+function GraphPointLayer({ dispatch, id, layer }) {
     const [xCoordinate, setXCoordinate] = useState(0);
     const [yCoordinate, setYCoordinate] = useState(0);
 
@@ -31,17 +33,6 @@ function GraphPointLayer({ dispatch, id }) {
         radialColor,
         fillColor,
         fillOn,
-    ];
-
-    const orientationValues = [
-        { value: "right", label: "Right" },
-        { value: "left", label: "Left" },
-        { value: "above", label: "Above" },
-        { value: "below", label: "Below" },
-        { value: "above right", label: "Above Right" },
-        { value: "above left", label: "Above Left" },
-        { value: "below right", label: "Below Right" },
-        { value: "below left", label: "Below Left" },
     ];
 
     useEffect(() => {
@@ -99,6 +90,17 @@ function GraphPointLayer({ dispatch, id }) {
         setLabelOrientation(e.target.value);
     }
 
+    const orientationValues = [
+        { value: "right", label: "Right" },
+        { value: "left", label: "Left" },
+        { value: "above", label: "Above" },
+        { value: "below", label: "Below" },
+        { value: "above right", label: "Above Right" },
+        { value: "above left", label: "Above Left" },
+        { value: "below right", label: "Below Right" },
+        { value: "below left", label: "Below Left" },
+    ];
+
     return (
         <div>
             <div>
@@ -108,48 +110,43 @@ function GraphPointLayer({ dispatch, id }) {
                             <div className="graph-point-coordinates-container">
                                 <label>Coordinates:</label>
                                 <div className="coordinate-input-container">
-                                    <div>
-                                        <label>x: </label>
-                                        <input
-                                            className="number-input-field"
-                                            type="number"
-                                            value={xCoordinate}
-                                            onChange={handleXCoordinateChange}
-                                            step={0.1}
-                                        ></input>
-                                    </div>
-                                    <div>
-                                        <label>y: </label>
-                                        <input
-                                            className="number-input-field"
-                                            type="number"
-                                            value={yCoordinate}
-                                            onChange={handleYCoordinateChange}
-                                            step={0.1}
-                                        ></input>
-                                    </div>
+                                    <NumberInputField
+                                        label={"x"}
+                                        value={xCoordinate}
+                                        onChangeFunction={
+                                            handleXCoordinateChange
+                                        }
+                                        step={0.1}
+                                    ></NumberInputField>
+
+                                    <NumberInputField
+                                        label={"y"}
+                                        value={yCoordinate}
+                                        onChangeFunction={
+                                            handleYCoordinateChange
+                                        }
+                                        step={0.1}
+                                    ></NumberInputField>
                                 </div>
                             </div>
                             <div className="graph-point-styles-container">
                                 <div className="size-container">
-                                    <label>size:</label>
-                                    <input
-                                        className="number-input-field"
-                                        type="number"
+                                    <NumberInputField
                                         step={1}
                                         min={1}
                                         value={size}
-                                        onChange={handleSizeChange}
-                                    ></input>
+                                        onChangeFunction={handleSizeChange}
+                                    ></NumberInputField>
                                 </div>
 
                                 <div className="color-input-field">
-                                    <label>color: </label>
-                                    <input
-                                        type="color"
+                                    <ColorInputField
+                                        label={"color:"}
                                         value={radialColor}
-                                        onChange={handleRadialColorChange}
-                                    ></input>
+                                        onChangeFunction={
+                                            handleRadialColorChange
+                                        }
+                                    ></ColorInputField>
                                 </div>
                             </div>
                         </div>

@@ -109,7 +109,7 @@ function GraphPointLayer({ dispatch, id, layer }) {
             <div>
                 <Dropdown label="Point">
                     <div className="main-graph-point-container">
-                        <div className="coordinates-input-container">
+                        <div className="main-graph-point-column-1">
                             <LargeTextInputField
                                 label={"Coordinates: "}
                                 infoText={
@@ -117,48 +117,60 @@ function GraphPointLayer({ dispatch, id, layer }) {
                                 }
                             ></LargeTextInputField>
                         </div>
-                    </div>
-                    <div className="graph-point-styles-container">
-                        <NumberInputField
-                            step={1}
-                            min={1}
-                            value={size}
-                            onChangeFunction={handleSizeChange}
-                        ></NumberInputField>
 
-                        <ColorInputField
-                            label={"color:"}
-                            value={radialColor}
-                            onChangeFunction={handleRadialColorChange}
-                        ></ColorInputField>
+                        <div className="main-graph-point-column-2">
+                            <NumberInputField
+                                label={"size: "}
+                                step={1}
+                                min={1}
+                                value={size}
+                                onChangeFunction={handleSizeChange}
+                            ></NumberInputField>
+
+                            <ColorInputField
+                                label={"color: "}
+                                value={radialColor}
+                                onChangeFunction={handleRadialColorChange}
+                            ></ColorInputField>
+                        </div>
                     </div>
 
                     <Dropdown label="Fill">
-                        <CheckboxInputField
-                            label={"fill:"}
-                            value={fillOn}
-                            onChangeFunction={handleFillChange}
-                        ></CheckboxInputField>
+                        <div className="fill-graph-point-container">
+                            <div className="fill-graph-point-column-1">
+                                <CheckboxInputField
+                                    label={"fill:"}
+                                    value={fillOn}
+                                    onChangeFunction={handleFillChange}
+                                ></CheckboxInputField>
 
-                        <ColorInputField
-                            label={"fill color:"}
-                            value={fillColor}
-                            onChangeFunction={handleFillColorChange}
-                        ></ColorInputField>
+                                <ColorInputField
+                                    label={"fill color:"}
+                                    value={fillColor}
+                                    onChangeFunction={handleFillColorChange}
+                                ></ColorInputField>
+                            </div>
+                        </div>
                     </Dropdown>
 
                     <Dropdown label="Label">
-                        <TextInputField
-                            label={"label:"}
-                            onChangeFunction={handlePointLabelChange}
-                            value={pointLabel}
-                        ></TextInputField>
+                        <div className="label-graph-point-container">
+                            <div className="label-graph-point-column-1">
+                                <TextInputField
+                                    label={"label:"}
+                                    onChangeFunction={handlePointLabelChange}
+                                    value={pointLabel}
+                                ></TextInputField>
 
-                        <DropdownInputField
-                            label={"orientation:"}
-                            values={orientationValues}
-                            onSelectFunction={handleLabelOrientationChange}
-                        ></DropdownInputField>
+                                <DropdownInputField
+                                    label={"orientation:"}
+                                    values={orientationValues}
+                                    onSelectFunction={
+                                        handleLabelOrientationChange
+                                    }
+                                ></DropdownInputField>
+                            </div>
+                        </div>
                     </Dropdown>
 
                     <div className="delete-button-container">

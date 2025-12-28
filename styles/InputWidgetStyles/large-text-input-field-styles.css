@@ -3,7 +3,6 @@
     flex-direction: column;
     gap: 4px; /* space between label and input */
     padding: 2px 0;
-    width: 75%;
 }
 
 /* Label */

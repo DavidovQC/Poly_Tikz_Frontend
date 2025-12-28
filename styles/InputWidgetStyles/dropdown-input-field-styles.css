@@ -2,8 +2,10 @@
     display: flex;
     align-items: center;
     gap: 2px; /* spacing between label and input/select */
-
     height: 25px;
+    min-width: 100px;
+    max-width: 170px; /* fixed width for consistency */
+    /* border: solid blue 1px; */
 }
 
 /* Label */
@@ -16,7 +18,8 @@
 
 /* Dropdown select */
 .dropdown-input-field-container select {
-    width: 100px; /* fixed width for consistency */
+    /* width: 100px;  */
+    /* fixed width for consistency */
     height: 25px;
     padding: 1px 6px;
 

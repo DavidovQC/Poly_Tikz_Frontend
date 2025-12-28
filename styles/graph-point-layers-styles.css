@@ -1,13 +1,71 @@
 .main-graph-point-container {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 10px;
     margin-bottom: 10px;
-    gap: 10px;
+    gap: 15px;
 }
 
-.coordinates-input-container {
+.main-graph-point-column-1 {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+}
+
+.main-graph-point-column-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fill-graph-point-container {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.fill-graph-point-column-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-graph-point-container {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.label-graph-point-column-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+@media (min-width: 769px) and (max-width: 1080px) {
+    .main-graph-point-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fill-graph-point-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .label-graph-point-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .label-graph-point-column-1 {
+        justify-content: center;
+        align-items: center;
+    }
 }

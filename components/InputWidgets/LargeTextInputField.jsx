@@ -12,7 +12,7 @@ function LargeTextInputField({
         <div className="large-text-input-field-container">
             <div className="large-text-input-header">
                 <label>{label}</label>
-                <InfoLabel infoText={infoText} />
+                {infoText && <InfoLabel infoText={infoText} />}
             </div>
 
             <textarea

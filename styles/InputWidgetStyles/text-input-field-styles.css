@@ -3,7 +3,8 @@
     align-items: center;
     gap: 1px; /* spacing between label and input */
     padding: 1px 0;
-    /* border: solid red 1px; */
+    height: 25px;
+    /* border: solid green 1px; */
 }
 
 /* Label */
@@ -16,7 +17,7 @@
 /* Text input */
 .text-input-field-container input[type="text"] {
     width: 60px; /* fixed width for consistency, can adjust */
-    height: 20px;
+    height: 25px;
     padding: 2px 6px;
 
     font-size: 12px;

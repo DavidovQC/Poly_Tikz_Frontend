@@ -58,36 +58,34 @@ function CircleLayer({ id, dispatch, layer }) {
     return (
         <Dropdown label="Circle" isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className="main-circle-container">
-                <div className="main-circle-container-grid">
-                    <div className="center-coordinates-container">
-                        <NumberInputField
-                            label={"origin x:"}
-                            step={0.1}
-                            value={xOrigin}
-                            onChangeFunction={handleXOriginChange}
-                        ></NumberInputField>
+                <div className="main-circle-column-1">
+                    <NumberInputField
+                        label={"origin x:"}
+                        step={0.1}
+                        value={xOrigin}
+                        onChangeFunction={handleXOriginChange}
+                    ></NumberInputField>
 
-                        <NumberInputField
-                            label={"origin y:"}
-                            step={0.1}
-                            value={yOrigin}
-                            onChangeFunction={handleYOriginChange}
-                        ></NumberInputField>
-                    </div>
-                    <div>
-                        <NumberInputField
-                            label={"radius:"}
-                            step={0.1}
-                            value={radius}
-                            onChangeFunction={handleRadiusChange}
-                        ></NumberInputField>
+                    <NumberInputField
+                        label={"origin y:"}
+                        step={0.1}
+                        value={yOrigin}
+                        onChangeFunction={handleYOriginChange}
+                    ></NumberInputField>
+                </div>
+                <div className="main-circle-column-2">
+                    <NumberInputField
+                        label={"radius:"}
+                        step={0.1}
+                        value={radius}
+                        onChangeFunction={handleRadiusChange}
+                    ></NumberInputField>
 
-                        <ColorInputField
-                            label={"color"}
-                            value={color}
-                            onChangeFunction={handeColorChange}
-                        ></ColorInputField>
-                    </div>
+                    <ColorInputField
+                        label={"color"}
+                        value={color}
+                        onChangeFunction={handeColorChange}
+                    ></ColorInputField>
                 </div>
             </div>
             <div className="delete-button-container">

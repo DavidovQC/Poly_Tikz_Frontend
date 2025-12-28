@@ -1,19 +1,18 @@
 .main-circle-container {
-    margin-top: 10px;
-    margin-left: 10px;
     display: flex;
-    align-items: left;
-    justify-content: left;
-    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 12px;
 }
 
-.main-circle-container-grid {
-    display: grid;
-    grid-gap: 30px;
-    grid-template-columns: 1fr 1fr;
+.main-circle-column-1 {
+    display: flex;
+    flex-direction: column;
 }
 
-.center-coordinates-container {
+.main-circle-column-2 {
     display: flex;
     flex-direction: column;
 }

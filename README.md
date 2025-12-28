@@ -14,9 +14,9 @@
 ~~-Improve layer components design~~
 ~~Completed: Axis Layer, Function, Rectangle, GraphPoint, Circle~~
 
--Copy and hide functionality (maybe a wrapper around each layer?)
+~~-Currently all components trigger drag and drop, make it so only label is draggable.~~
 
--Currently all components trigger drag and drop, make it so only label is draggable.
+-Copy and hide functionality (maybe a wrapper around each layer?)
 
 -onDragover should have a blue line above the layer appear
 

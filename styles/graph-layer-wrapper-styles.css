@@ -1,0 +1,9 @@
+.GraphLayerWrapper {
+    border: solid red 1px;
+    height: 25px;
+    position: relative;
+    margin-bottom: -25px;
+    cursor: grab;
+}
+
+/* Fun note: ChatGPT told me to do a bunch of weird nonsense to get this to work. Take that, Sam Altman! */

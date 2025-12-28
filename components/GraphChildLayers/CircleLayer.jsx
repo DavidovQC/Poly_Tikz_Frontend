@@ -11,7 +11,7 @@ function CircleLayer({ id, dispatch, layer }) {
     const [xOrigin, setXOrigin] = useState(layer.xOrigin ?? 0);
     const [yOrigin, setYOrigin] = useState(layer.yOrigin ?? 0);
     const [radius, setRadius] = useState(layer.radius ?? 1);
-    const [color, setColor] = useState(layer.color ?? "#00ff00");
+    const [color, setColor] = useState(layer.color ?? "#009900");
 
     //Dropdown Data
     const [isOpen, setIsOpen] = useState(layer.isOpen ?? false);
@@ -82,7 +82,7 @@ function CircleLayer({ id, dispatch, layer }) {
                     ></NumberInputField>
 
                     <ColorInputField
-                        label={"color"}
+                        label={"color: "}
                         value={color}
                         onChangeFunction={handeColorChange}
                     ></ColorInputField>

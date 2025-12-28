@@ -10,7 +10,6 @@ import FunctionLayer from "../components/GraphChildLayers/FunctionLayer";
 import CircleLayer from "../components/GraphChildLayers/CircleLayer";
 import RectangleLayer from "../components/GraphChildLayers/RectangleLayer";
 import PathLayer from "../components/GraphChildLayers/PathLayer";
-import VectorLayer from "../components/GraphChildLayers/VectorLayer";
 
 import GraphLayerWrapper from "../components/GraphLayerWrapper";
 
@@ -49,7 +48,6 @@ function Layers({ options }) {
                         className="options-select"
                     >
                         <option value="Point">Point</option>
-                        {/* <option value="Node">Node</option> */}
                         <option value="Function">Function</option>
                         <option value="Circle">Circle</option>
                         <option value="Rectangle">Rectangle</option>

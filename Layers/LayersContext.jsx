@@ -43,8 +43,8 @@ function createLayer(type, id) {
         "Function",
         "Circle",
         "Rectangle",
-        "Path",
         "Point",
+        // "Path",
     ];
 
     if (!typeList.includes(type)) {

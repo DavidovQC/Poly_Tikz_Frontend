@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { LayerContext } from "../Layers/LayersContext";
 
+import "../styles/graph-layer-wrapper-styles.css";
+
 function GraphLayerWrapper({ index, children, draggable }) {
     const { dispatch } = useContext(LayerContext);
 
@@ -26,12 +28,14 @@ function GraphLayerWrapper({ index, children, draggable }) {
 
     return (
         //If not draggable (as in the case with the axes) then no behavior should be defined
-        <div
-            draggable={draggable}
-            onDragStart={draggable ? onDragStart : undefined}
-            onDragOver={draggable ? onDragOver : undefined}
-            onDrop={draggable ? onDrop : undefined}
-        >
+        <div>
+            <div
+                className="GraphLayerWrapper"
+                draggable={draggable}
+                onDragStart={draggable ? onDragStart : undefined}
+                onDragOver={draggable ? onDragOver : undefined}
+                onDrop={draggable ? onDrop : undefined}
+            ></div>
             {children}
         </div>
     );

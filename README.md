@@ -12,8 +12,8 @@
 ~~-Improve UI component design~~
 
 -Improve layer components design
-~Completed: ~~Axis Layer, Function~~
-Remaining: Rectangle, Circle, GraphPoint,
+~Completed: ~~Axis Layer, Function, Rectangle~~
+Remaining: GraphPoint, Circle,
 
 -Currently all components trigger drag and drop, make it so only label is draggable.
 

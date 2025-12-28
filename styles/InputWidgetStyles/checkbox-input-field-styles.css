@@ -3,10 +3,9 @@
     align-items: center;
 
     gap: 2px;
-    /* width: 125px;
-     */
     height: 25px;
     margin-left: -5px;
+    /* border: solid red 1px; */
 }
 
 /* Checkbox input */

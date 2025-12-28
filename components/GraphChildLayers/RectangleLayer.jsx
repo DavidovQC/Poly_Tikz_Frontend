@@ -7,6 +7,7 @@ import TextInputField from "../InputWidgets/TextInputField";
 import DeleteLayerButton from "../DeleteLayerButton";
 import SliderInputField from "../InputWidgets/SliderInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
+import DropdownInputField from "../InputWidgets/DropdownInputField";
 
 function RectangleLayer({ id, dispatch, layer }) {
     //Object data
@@ -45,6 +46,12 @@ function RectangleLayer({ id, dispatch, layer }) {
     ];
 
     const dropdownData = [isOpen, isPosOpen, isFillOpen];
+
+    const strokeOptions = [
+        { value: "solid", label: "solid" },
+        { value: "dotted", label: "dotted" },
+        { value: "dashed", label: "dashed" },
+    ];
 
     //Handlers
     function handleHeightChange(e) {
@@ -104,24 +111,35 @@ function RectangleLayer({ id, dispatch, layer }) {
 
     return (
         <Dropdown label={"Rectangle"} isOpen={isOpen} setIsOpen={setIsOpen}>
-            <div className="dimension-container">
-                <NumberInputField
-                    label={"Height:"}
-                    min={0.1}
-                    max={10}
-                    step={0.1}
-                    value={height}
-                    onChangeFunction={handleHeightChange}
-                ></NumberInputField>
+            <div className="main-rectangle-options-container">
+                <div className="main-rectangle-column-1">
+                    <NumberInputField
+                        label={"height:"}
+                        min={0.1}
+                        max={10}
+                        step={0.1}
+                        value={height}
+                        onChangeFunction={handleHeightChange}
+                    ></NumberInputField>
 
-                <NumberInputField
-                    label={"Width:"}
-                    min={0.1}
-                    max={10}
-                    step={0.1}
-                    value={width}
-                    onChangeFunction={handeWidthChange}
-                ></NumberInputField>
+                    <NumberInputField
+                        label={"width: "}
+                        min={0.1}
+                        max={10}
+                        step={0.1}
+                        value={width}
+                        onChangeFunction={handeWidthChange}
+                    ></NumberInputField>
+                </div>
+
+                <div className="main-rectangle-column-2">
+                    <DropdownInputField
+                        label={"stroke: "}
+                        values={strokeOptions}
+                    ></DropdownInputField>
+
+                    <ColorInputField label={"color: "}></ColorInputField>
+                </div>
             </div>
 
             <Dropdown
@@ -173,8 +191,8 @@ function RectangleLayer({ id, dispatch, layer }) {
                 isOpen={isFillOpen}
                 setIsOpen={setIsFillOpen}
             >
-                <div className="fill-container">
-                    <div className="fill-container-col-1">
+                <div className="fill-rectangle-container">
+                    <div className="fill-rectangle-column-1">
                         <CheckboxInputField
                             onChangeFunction={handleFillChange}
                             value={fill}
@@ -187,7 +205,7 @@ function RectangleLayer({ id, dispatch, layer }) {
                             onChangeFunction={handleFillColorChange}
                         ></ColorInputField>
                     </div>
-                    <div className="fill-container-col-2">
+                    <div className="fill-rectangle-column-1">
                         <SliderInputField
                             label={"opacity:"}
                             min={0}

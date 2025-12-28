@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown";
 import DeleteLayerButton from "../DeleteLayerButton";
-import "../../styles/circle-layers-styles.css";
+import "../../styles/GraphLayerComponentStyles/circle-layers-styles.css";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 

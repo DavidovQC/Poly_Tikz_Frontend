@@ -4,12 +4,11 @@ import { useEffect } from "react";
 import DeleteLayerButton from "../DeleteLayerButton";
 import TextInputField from "../InputWidgets/TextInputField";
 
-import "../../styles/graph-point-layers-styles.css";
+import "../../styles/GraphLayerComponentStyles/graph-point-layers-styles.css";
 import DropdownInputField from "../InputWidgets/DropdownInputField";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
-import InfoLabel from "../InfoLabel";
 import LargeTextInputField from "../InputWidgets/LargeTextInputField";
 
 function GraphPointLayer({ dispatch, id, layer }) {

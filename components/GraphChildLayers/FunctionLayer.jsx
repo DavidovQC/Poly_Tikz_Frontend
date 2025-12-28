@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown";
 import InfoLabel from "../InfoLabel";
 import DeleteLayerButton from "../DeleteLayerButton";
-import "../../styles/function-layers-styles.css";
+import "../../styles/GraphLayerComponentStyles/function-layers-styles.css";
 import TextInputField from "../InputWidgets/TextInputField";
 import DropdownInputField from "../InputWidgets/DropdownInputField";
 import SliderInputField from "../InputWidgets/SliderInputField";

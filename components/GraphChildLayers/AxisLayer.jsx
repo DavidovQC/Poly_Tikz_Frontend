@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import SVGButton from "../SVGButton";
 import SVGButtonArray from "../SVGButtonArray";
 import svgData from "../../assets/SVGButtonData";
-import "../../styles/axis-layers-styles.css";
+import "../../styles/GraphLayerComponentStyles/axis-layers-styles.css";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
-import TextInputField from "../InputWidgets/TextInputField";
 
 function AxisLayer({ dispatch, id }) {
     //Working + Added to Layer
@@ -69,11 +68,6 @@ function AxisLayer({ dispatch, id }) {
             },
         });
     }, objectData);
-
-    // const xAxisSizeInput = useRef(1);
-    // const yAxisSizeInput = useRef(1);
-    // const gridStep = useRef(1);
-    // const ticksStep = useRef(1);
 
     function handleXAxisSizeChange(event) {
         setXAxisSize(event.target.value);

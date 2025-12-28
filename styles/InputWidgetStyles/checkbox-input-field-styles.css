@@ -1,3 +1,53 @@
 .checkbox-input-field {
     display: flex;
+    align-items: center;
+
+    gap: 2px;
+    /* width: 125px;
+     */
+    height: 25px;
+    margin-left: -5px;
+}
+
+/* Checkbox input */
+.checkbox-input-field input[type="checkbox"] {
+    width: 16px; /* back to original size */
+    height: 16px; /* back to original size */
+    background-color: rgb(36, 36, 36); /* panel background */
+    border: 1px solid rgb(57, 56, 56); /* layer color */
+    border-radius: 2px;
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Checkmark when checked (same small size) */
+.checkbox-input-field input[type="checkbox"]:checked::after {
+    content: "";
+    width: 2px; /* small check width */
+    height: 4px; /* small check height */
+    border: solid rgb(220, 220, 220); /* accent color */
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+    display: block;
+}
+
+/* Hover / focus states */
+.checkbox-input-field input[type="checkbox"]:hover,
+.checkbox-input-field input[type="checkbox"]:focus-visible {
+    border-color: rgb(220, 220, 220);
+}
+
+/* Label */
+.checkbox-input-field label {
+    font-size: 12px;
+    color: rgb(180, 180, 180);
+    user-select: none;
+    line-height: 16px; /* align with larger checkbox */
 }

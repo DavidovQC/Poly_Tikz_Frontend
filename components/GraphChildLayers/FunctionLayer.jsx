@@ -69,64 +69,52 @@ function FunctionLayer({ id, dispatch }) {
     return (
         <Dropdown label="Function">
             <div className="main-function-options-container">
-                <div className="main-function-options-container-grid">
-                    <div className="function-settings-container">
-                        <div className="function-input-container">
-                            <div className="text-input-field">
-                                <TextInputField
-                                    label={"f(x) = "}
-                                    placeholder={"function"}
-                                    onChangeFunction={handleFunctionChange}
-                                    value={functionInput}
-                                ></TextInputField>
-                            </div>
-                            <InfoLabel infoText="Write '\x' in place of 'x' (e.g, (\x)^2)"></InfoLabel>
+                <div className="main-function-column-1">
+                    <div className="function-input-container">
+                        <div className="text-input-field">
+                            <TextInputField
+                                label={"f(x) = "}
+                                placeholder={"function"}
+                                onChangeFunction={handleFunctionChange}
+                                value={functionInput}
+                            ></TextInputField>
                         </div>
-
-                        <div className="thickness-container">
-                            <div>
-                                <DropdownInputField
-                                    label={"thickness:"}
-                                    onSelectFunction={handleThicknessChange}
-                                    values={thicknessOptions}
-                                ></DropdownInputField>
-                            </div>
-                        </div>
-
-                        <div className="stroke-container">
-                            <DropdownInputField
-                                label={"stroke: "}
-                                onSelectFunction={handleStrokeChange}
-                                values={strokeOptions}
-                            ></DropdownInputField>
-                        </div>
+                        <InfoLabel infoText="Write '\x' in place of 'x' (e.g, (\x)^2)"></InfoLabel>
                     </div>
 
-                    <div className="function-style-container">
-                        <div className="samples-container">
-                            <div className="range-field">
-                                <div className="range-input">
-                                    <SliderInputField
-                                        label={"samples"}
-                                        value={samples}
-                                        onChangeFunction={handleSamplesChange}
-                                        min={1}
-                                        max={300}
-                                    ></SliderInputField>
-                                </div>
-                            </div>
-                        </div>
+                    <DropdownInputField
+                        label={"stroke: "}
+                        onSelectFunction={handleStrokeChange}
+                        values={strokeOptions}
+                    ></DropdownInputField>
+                </div>
+                <div className="main-function-column-2">
+                    <DropdownInputField
+                        label={"thickness:"}
+                        onSelectFunction={handleThicknessChange}
+                        values={thicknessOptions}
+                    ></DropdownInputField>
 
-                        <div className="color-input-field">
-                            <ColorInputField
-                                label={"color:"}
-                                value={color}
-                                onChangeFunction={handleColorChange}
-                            ></ColorInputField>
-                        </div>
-                    </div>
+                    <ColorInputField
+                        label={"color:"}
+                        value={color}
+                        onChangeFunction={handleColorChange}
+                    ></ColorInputField>
                 </div>
             </div>
+            <Dropdown label={"Advanced"}>
+                <div className="advanced-function-container">
+                    <div className="advanced-function-row-1">
+                        <SliderInputField
+                            label={"samples"}
+                            value={samples}
+                            onChangeFunction={handleSamplesChange}
+                            min={1}
+                            max={300}
+                        ></SliderInputField>
+                    </div>
+                </div>
+            </Dropdown>
             <div className="delete-button-container">
                 <DeleteLayerButton
                     clickFunction={() =>

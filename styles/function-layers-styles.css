@@ -1,97 +1,59 @@
 .main-function-options-container {
     display: flex;
-    align-items: left;
     justify-content: center;
+    align-items: center;
     margin-bottom: 10px;
+    gap: 20px;
 }
 
-.main-function-options-container-grid {
-    margin-top: 10px;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
-
+/* contains function input and tooltip */
 .function-input-container {
     display: flex;
     flex-direction: row;
-    justify-content: left;
     align-items: center;
 }
 
-.function-settings-container {
+.main-function-column-1 {
     display: flex;
     flex-direction: column;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
 }
 
-.function-style-container {
+.main-function-column-2 {
     display: flex;
     flex-direction: column;
+}
+
+.advanced-function-container {
+    display: flex;
     justify-content: center;
     align-items: center;
-    grid-column-start: 3;
-    grid-column-end: -1;
-    grid-row-start: 1;
-    grid-row-end: 2;
 }
 
-.samples-text-display {
+.advanced-function-row-1 {
+    margin-top: 10px;
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-
-.samples-container {
-    display: flex;
     align-items: center;
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-    .main-function-options-container {
-        display: flex;
-        align-items: left;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-
-    .main-function-options-container-grid {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 @media (min-width: 769px) and (max-width: 1080px) {
     .main-function-options-container {
         display: flex;
-        align-items: left;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-
-    .main-function-options-container-grid {
-        margin-top: 10px;
-        display: flex;
         flex-direction: column;
-    }
-}
-
-@media (min-width: 1081px) and (max-width: 1280px) {
-    .main-function-options-container {
-        display: flex;
-        align-items: left;
         justify-content: center;
-        margin-bottom: 10px;
+        align-items: center;
+        gap: 1px;
     }
 
-    .main-function-options-container-grid {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
+    .main-function-column-1 {
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .main-function-column-2 {
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
     }
 }

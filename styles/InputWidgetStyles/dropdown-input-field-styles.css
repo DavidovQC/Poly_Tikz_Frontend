@@ -1,0 +1,37 @@
+.dropdown-input-field-container {
+    display: flex;
+    align-items: center;
+    gap: 2px; /* spacing between label and input/select */
+
+    height: 25px;
+}
+
+/* Label */
+.dropdown-input-field-container label {
+    font-size: 12px;
+    color: rgb(180, 180, 180);
+    /* //color: rgb(255, 255, 255);
+    min-width: 40px; /* aligns with other input fields */
+}
+
+/* Dropdown select */
+.dropdown-input-field-container select {
+    width: 100px; /* fixed width for consistency */
+    height: 25px;
+    padding: 1px 6px;
+
+    font-size: 12px;
+    color: rgb(220, 220, 220);
+
+    background-color: rgb(36, 36, 36);
+    border: 1px solid rgb(57, 56, 56);
+
+    outline: none;
+    cursor: pointer;
+}
+
+/* Hover & focus */
+.dropdown-input-field-container select:hover,
+.dropdown-input-field-container select:focus-visible {
+    border-color: rgb(220, 220, 220);
+}

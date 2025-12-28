@@ -8,6 +8,7 @@ import "../../styles/graph-point-layers-styles.css";
 import DropdownInputField from "../InputWidgets/DropdownInputField";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
+import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 
 function GraphPointLayer({ dispatch, id, layer }) {
     const [xCoordinate, setXCoordinate] = useState(0);
@@ -154,21 +155,19 @@ function GraphPointLayer({ dispatch, id, layer }) {
 
                     <Dropdown label="Fill">
                         <div>
-                            <label>fill: </label>
-                            <input
-                                type="checkbox"
-                                checked={fillOn}
-                                onChange={handleFillChange}
-                            ></input>
+                            <CheckboxInputField
+                                label={"fill:"}
+                                value={fillOn}
+                                onChangeFunction={handleFillChange}
+                            ></CheckboxInputField>
                         </div>
 
                         <div className="color-input-field">
-                            <label>fill color: </label>
-                            <input
-                                type="color"
+                            <ColorInputField
+                                label={"fill color:"}
                                 value={fillColor}
-                                onChange={handleFillColorChange}
-                            ></input>
+                                onChangeFunction={handleFillColorChange}
+                            ></ColorInputField>
                         </div>
                     </Dropdown>
 

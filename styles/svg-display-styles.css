@@ -9,8 +9,8 @@
     align-items: center;
 
     border-radius: 7px;
-    border: 2px solid rgb(215, 105, 3);
-
+    /* border: 2px solid rgb(215, 105, 3); <- original color */
+    border: 2px solid rgb(3, 77, 215);
     padding: 10px;
 }
 

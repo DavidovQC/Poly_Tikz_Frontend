@@ -11,19 +11,20 @@
 
 ~~-Improve UI component design~~
 
--Improve layer components design
-~Completed: ~~Axis Layer, Function, Rectangle, GraphPoint~~
-Remaining: Circle,
+~~-Improve layer components design~~
+~~Completed: Axis Layer, Function, Rectangle, GraphPoint, Circle~~
+
+-Copy and hide functionality (maybe a wrapper around each layer?)
 
 -Currently all components trigger drag and drop, make it so only label is draggable.
 
--onDragover should have an orange line above the layer appear
-
--Finish Path Layer + Points Layer
+-onDragover should have a blue line above the layer appear
 
 -Save up to 10 changes
 
 -Ctrl + Z to previous generation
+
+-Finish points layer and create point layer
 
 -Launch
 

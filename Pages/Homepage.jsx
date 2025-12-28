@@ -1,11 +1,11 @@
 import "../styles/PageStyles/home-styles.css";
 
 import MainDynamicDropdown from "../components/MainDynamicDropdown";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/SiteComponents/Navbar";
 import { useContext, useState } from "react";
 import { AppContext } from "../src/AppContext";
 import SVGDisplay from "../components/SVGDisplay";
-import Footer from "../components/Footer";
+import Footer from "../components/SiteComponents/Footer";
 
 function Homepage() {
     const { latexCode, svgCode, setSVGCode, mySVG, setMySVG } =

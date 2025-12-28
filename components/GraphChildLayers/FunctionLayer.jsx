@@ -115,18 +115,6 @@ function FunctionLayer({ id, dispatch }) {
                     </div>
                 </div>
             </Dropdown>
-            <div className="delete-button-container">
-                <DeleteLayerButton
-                    clickFunction={() =>
-                        dispatch({
-                            type: "delete_layer",
-                            payload: {
-                                id: id,
-                            },
-                        })
-                    }
-                ></DeleteLayerButton>
-            </div>
         </Dropdown>
     );
 }

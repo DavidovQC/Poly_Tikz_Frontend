@@ -1,9 +1,28 @@
-.GraphLayerWrapper {
-    border: solid red 1px;
+.graph-layer-wrapper {
+}
+
+.drag-bar-container {
+    /* border: solid red 1px; */
     height: 25px;
+    margin-left: 30px;
+    margin-right: 20px;
     position: relative;
     margin-bottom: -25px;
     cursor: grab;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* cursor: pointer; */
+    /* border: solid rgb(0, 170, 255) 1px; */
+    background-color: RGB(57, 56, 56);
+    width: 38px;
+    /* margin-top: 3px; */
+    margin-right: 10px;
 }
 
 /* Fun note: ChatGPT told me to do a bunch of weird nonsense to get this to work. Take that, Sam Altman! */

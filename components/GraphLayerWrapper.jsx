@@ -3,7 +3,10 @@ import { LayerContext } from "../Layers/LayersContext";
 
 import "../styles/graph-layer-wrapper-styles.css";
 
-function GraphLayerWrapper({ index, children, draggable }) {
+import CopyLayerButton from "./CopyLayerButton";
+import DltLayerButton from "./DltLayerButton";
+
+function GraphLayerWrapper({ index, children, draggable, id }) {
     const { dispatch } = useContext(LayerContext);
 
     function onDragStart(e) {
@@ -26,16 +29,42 @@ function GraphLayerWrapper({ index, children, draggable }) {
         }
     }
 
+    function deleteLayer() {
+        dispatch({
+            type: "delete_layer",
+            payload: {
+                id: id,
+            },
+        });
+    }
+
+    function copyLayer() {
+        dispatch({
+            type: "copy_layer",
+            payload: {
+                id: id,
+            },
+        });
+    }
+
     return (
         //If not draggable (as in the case with the axes) then no behavior should be defined
-        <div>
+        <div className="graph-layer-wrapper">
             <div
-                className="GraphLayerWrapper"
+                className="drag-bar-container"
                 draggable={draggable}
                 onDragStart={draggable ? onDragStart : undefined}
                 onDragOver={draggable ? onDragOver : undefined}
                 onDrop={draggable ? onDrop : undefined}
-            ></div>
+            >
+                <div className="buttons-container">
+                    <CopyLayerButton></CopyLayerButton>
+                    <DltLayerButton
+                        onClickFunction={deleteLayer}
+                    ></DltLayerButton>
+                </div>
+            </div>
+
             {children}
         </div>
     );

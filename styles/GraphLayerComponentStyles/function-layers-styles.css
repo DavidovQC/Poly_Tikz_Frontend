@@ -16,11 +16,13 @@
 .main-function-column-1 {
     display: flex;
     flex-direction: column;
+    gap: 3px;
 }
 
 .main-function-column-2 {
     display: flex;
     flex-direction: column;
+    gap: 3px;
 }
 
 .advanced-function-container {

@@ -1,0 +1,16 @@
+.delete-button-container {
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.delete-button-container svg {
+    color: rgb(180, 180, 180);
+}
+
+.delete-button-container svg:hover {
+    color: red;
+}
+
+.delete-button-container:hover {
+    background-color: rgb(180, 180, 180);
+}

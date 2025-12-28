@@ -17,6 +17,13 @@
     gap: 3px;
 }
 
+.position-recntalge-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 5px;
+}
+
 .center-field-container {
     display: flex;
     gap: 3px;

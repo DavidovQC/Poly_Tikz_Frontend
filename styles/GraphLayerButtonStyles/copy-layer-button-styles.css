@@ -1,0 +1,18 @@
+.copy-button-container {
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.copy-button-container svg {
+    color: rgb(180, 180, 180);
+}
+
+.copy-button-container:hover svg {
+    color: green;
+}
+
+.copy-button-container:hover {
+    background-color: rgb(180, 180, 180);
+}

@@ -89,6 +89,8 @@ function Layers({ options }) {
                                 <GraphLayerWrapper
                                     draggable={true}
                                     index={index}
+                                    id={layer.id}
+                                    dispatch={dispatch}
                                 >
                                     <FunctionLayer
                                         key={layer.id}

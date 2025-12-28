@@ -16,7 +16,7 @@
 
 ~~-Currently all components trigger drag and drop, make it so only label is draggable.~~
 
--Copy and hide functionality (maybe a wrapper around each layer?)
+~~-Copy and hide functionality (maybe a wrapper around each layer?)~~
 
 -onDragover should have a blue line above the layer appear
 

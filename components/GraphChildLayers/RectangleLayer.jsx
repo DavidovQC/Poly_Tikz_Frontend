@@ -147,42 +147,44 @@ function RectangleLayer({ id, dispatch, layer }) {
                 isOpen={isPosOpen}
                 setIsOpen={setIsPosOpen}
             >
-                <div
-                    className="center-field-container"
-                    onClick={() => {
-                        if (!posCenter) {
-                            handlePosChange();
-                        }
-                    }}
-                >
-                    <CheckboxInputField
-                        label={"center: "}
-                        value={posCenter}
-                        onChangeFunction={handlePosChange}
-                    ></CheckboxInputField>
-                    <TextInputField
-                        value={centerValue}
-                        onChangeFunction={handleCenterValueChange}
-                    ></TextInputField>
-                </div>
+                <div className="position-recntalge-container">
+                    <div
+                        className="center-field-container"
+                        onClick={() => {
+                            if (!posCenter) {
+                                handlePosChange();
+                            }
+                        }}
+                    >
+                        <CheckboxInputField
+                            label={"center: "}
+                            value={posCenter}
+                            onChangeFunction={handlePosChange}
+                        ></CheckboxInputField>
+                        <TextInputField
+                            value={centerValue}
+                            onChangeFunction={handleCenterValueChange}
+                        ></TextInputField>
+                    </div>
 
-                <div
-                    className="bottom-field-container"
-                    onClick={() => {
-                        if (posCenter) {
-                            handlePosChange();
-                        }
-                    }}
-                >
-                    <CheckboxInputField
-                        label={"bottom left: "}
-                        value={!posCenter}
-                        onChangeFunction={handlePosChange}
-                    ></CheckboxInputField>
-                    <TextInputField
-                        value={bottomValue}
-                        onChangeFunction={handleBottomChange}
-                    ></TextInputField>
+                    <div
+                        className="bottom-field-container"
+                        onClick={() => {
+                            if (posCenter) {
+                                handlePosChange();
+                            }
+                        }}
+                    >
+                        <CheckboxInputField
+                            label={"bottom left: "}
+                            value={!posCenter}
+                            onChangeFunction={handlePosChange}
+                        ></CheckboxInputField>
+                        <TextInputField
+                            value={bottomValue}
+                            onChangeFunction={handleBottomChange}
+                        ></TextInputField>
+                    </div>
                 </div>
             </Dropdown>
 
@@ -216,19 +218,6 @@ function RectangleLayer({ id, dispatch, layer }) {
                     </div>
                 </div>
             </Dropdown>
-
-            <div className="delete-button-container">
-                <DeleteLayerButton
-                    clickFunction={() =>
-                        dispatch({
-                            type: "delete_layer",
-                            payload: {
-                                id: id,
-                            },
-                        })
-                    }
-                ></DeleteLayerButton>
-            </div>
         </Dropdown>
     );
 }

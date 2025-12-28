@@ -9,6 +9,8 @@ import DropdownInputField from "../InputWidgets/DropdownInputField";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
+import InfoLabel from "../InfoLabel";
+import LargeTextInputField from "../InputWidgets/LargeTextInputField";
 
 function GraphPointLayer({ dispatch, id, layer }) {
     const [xCoordinate, setXCoordinate] = useState(0);
@@ -107,68 +109,42 @@ function GraphPointLayer({ dispatch, id, layer }) {
             <div>
                 <Dropdown label="Point">
                     <div className="main-graph-point-container">
-                        <div className="main-graph-point-container-grid">
-                            <div className="graph-point-coordinates-container">
-                                <label>Coordinates:</label>
-                                <div className="coordinate-input-container">
-                                    <NumberInputField
-                                        label={"x"}
-                                        value={xCoordinate}
-                                        onChangeFunction={
-                                            handleXCoordinateChange
-                                        }
-                                        step={0.1}
-                                    ></NumberInputField>
-
-                                    <NumberInputField
-                                        label={"y"}
-                                        value={yCoordinate}
-                                        onChangeFunction={
-                                            handleYCoordinateChange
-                                        }
-                                        step={0.1}
-                                    ></NumberInputField>
-                                </div>
-                            </div>
-                            <div className="graph-point-styles-container">
-                                <div className="size-container">
-                                    <NumberInputField
-                                        step={1}
-                                        min={1}
-                                        value={size}
-                                        onChangeFunction={handleSizeChange}
-                                    ></NumberInputField>
-                                </div>
-
-                                <div className="color-input-field">
-                                    <ColorInputField
-                                        label={"color:"}
-                                        value={radialColor}
-                                        onChangeFunction={
-                                            handleRadialColorChange
-                                        }
-                                    ></ColorInputField>
-                                </div>
-                            </div>
+                        <div className="coordinates-input-container">
+                            <LargeTextInputField
+                                label={"Coordinates: "}
+                                infoText={
+                                    "Input as a comma separated list of coordinates, (e.g, (0, 0), (1, 1))"
+                                }
+                            ></LargeTextInputField>
                         </div>
+                    </div>
+                    <div className="graph-point-styles-container">
+                        <NumberInputField
+                            step={1}
+                            min={1}
+                            value={size}
+                            onChangeFunction={handleSizeChange}
+                        ></NumberInputField>
+
+                        <ColorInputField
+                            label={"color:"}
+                            value={radialColor}
+                            onChangeFunction={handleRadialColorChange}
+                        ></ColorInputField>
                     </div>
 
                     <Dropdown label="Fill">
-                        <div>
-                            <CheckboxInputField
-                                label={"fill:"}
-                                value={fillOn}
-                                onChangeFunction={handleFillChange}
-                            ></CheckboxInputField>
-                        </div>
+                        <CheckboxInputField
+                            label={"fill:"}
+                            value={fillOn}
+                            onChangeFunction={handleFillChange}
+                        ></CheckboxInputField>
 
-                        <div className="color-input-field">
-                            <ColorInputField
-                                label={"fill color:"}
-                                value={fillColor}
-                                onChangeFunction={handleFillColorChange}
-                            ></ColorInputField>
-                        </div>
+                        <ColorInputField
+                            label={"fill color:"}
+                            value={fillColor}
+                            onChangeFunction={handleFillColorChange}
+                        ></ColorInputField>
                     </Dropdown>
 
                     <Dropdown label="Label">

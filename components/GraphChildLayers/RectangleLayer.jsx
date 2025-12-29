@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import Dropdown from "../Dropdown";
+
 import "../../styles/GraphLayerComponentStyles/rectangle-layer-styles.css";
+
+import Dropdown from "../Dropdown";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import TextInputField from "../InputWidgets/TextInputField";
-import DeleteLayerButton from "../DeleteLayerButton";
 import SliderInputField from "../InputWidgets/SliderInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 import DropdownInputField from "../InputWidgets/DropdownInputField";

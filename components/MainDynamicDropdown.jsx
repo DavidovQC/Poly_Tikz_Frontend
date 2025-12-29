@@ -18,8 +18,8 @@ function MainDynamicDropdown() {
             <div className="selection-container">
                 <select value={selectedOption} onChange={changeOption}>
                     <option value="Graph">Graph</option>
-                    {/* <option value="Table">Table</option>
-                    <option value="Venn-Diagram">Venn Diagram</option>
+                    <option value="Table">Table</option>
+                    {/* <option value="Venn-Diagram">Venn Diagram</option>
                     <option value="Lienar-Transform">Linear Transform</option> */}
                 </select>
             </div>

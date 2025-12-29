@@ -122,7 +122,7 @@ function AxisLayer({ dispatch, id }) {
     }
 
     return (
-        <Dropdown label="Axes">
+        <Dropdown label="Axes" isOpen={true}>
             <div className="Axis-options graph-options-container">
                 <SVGButtonArray>
                     {svgData.map((graph) => {

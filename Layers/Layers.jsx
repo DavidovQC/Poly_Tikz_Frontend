@@ -12,13 +12,16 @@ import RectangleLayer from "../components/GraphChildLayers/RectangleLayer";
 import PathLayer from "../components/GraphChildLayers/PathLayer";
 
 import GraphLayerWrapper from "../components/GraphLayerWrapper";
+import LayerSearchbar from "../components/SiteComponents/LayerSearchbar";
+import AddLayerButton from "../components/Buttons/AddLayerButton";
 
 function Layers({ options }) {
     const { layers, dispatch } = useContext(LayerContext);
-    const [layerType, setLayerType] = useState("Point");
+    const [layerType, setLayerType] = useState("");
 
-    function handleLayerTypeChange(event) {
-        setLayerType(event.target.value);
+    function handleLayerTypeChange(option) {
+        setLayerType(option.label);
+        console.log(`Type is ` + layerType);
     }
 
     function addLayer() {
@@ -30,33 +33,51 @@ function Layers({ options }) {
         });
     }
 
+    function handleAddLayer(option) {
+        if (
+            graphOptions.some(
+                (option) =>
+                    option.label.toLowerCase() === layerType.toLowerCase()
+            )
+        ) {
+            addLayer();
+        }
+    }
+
+    const graphOptions = [
+        {
+            label: "Rectangle",
+            terms: ["Square", "Polygon", "Quadrilateral", "Diamond"],
+        },
+        {
+            label: "Circle",
+            terms: ["Ellipse", "Round"],
+        },
+        {
+            label: "Function",
+            terms: ["Relation", "Transformation"],
+        },
+        {
+            label: "Point",
+            terms: ["Node", "Label"],
+        },
+    ];
+
     return (
         <div>
             <div className="add-layer-options-container">
-                <div className="Add-layer">
-                    <button
-                        className="add-layer-button"
-                        onClick={() => {
-                            addLayer();
-                        }}
-                    >
-                        +
-                    </button>
+                <AddLayerButton
+                    buttonText={"+"}
+                    onClickFunction={handleAddLayer}
+                ></AddLayerButton>
 
-                    <select
-                        onChange={handleLayerTypeChange}
-                        className="options-select"
-                    >
-                        <option value="Point">Point</option>
-                        <option value="Function">Function</option>
-                        <option value="Circle">Circle</option>
-                        <option value="Rectangle">Rectangle</option>
-                        <option value="Path">Path</option>
-                    </select>
-                </div>
+                <LayerSearchbar
+                    options={graphOptions}
+                    onSelectionFunction={handleLayerTypeChange}
+                    query={layerType}
+                    setQuery={setLayerType}
+                ></LayerSearchbar>
             </div>
-
-            {/* Renders the Layer object: */}
 
             <div className="layers-container">
                 {layers.map((layer, index) => {
@@ -75,6 +96,7 @@ function Layers({ options }) {
                                 <GraphLayerWrapper
                                     draggable={true}
                                     index={index}
+                                    id={layer.id}
                                 >
                                     <GraphPointLayer
                                         key={layer.id}
@@ -90,7 +112,6 @@ function Layers({ options }) {
                                     draggable={true}
                                     index={index}
                                     id={layer.id}
-                                    dispatch={dispatch}
                                 >
                                     <FunctionLayer
                                         key={layer.id}
@@ -105,6 +126,7 @@ function Layers({ options }) {
                                 <GraphLayerWrapper
                                     draggable={true}
                                     index={index}
+                                    id={layer.id}
                                 >
                                     <CircleLayer
                                         key={layer.id}
@@ -120,6 +142,7 @@ function Layers({ options }) {
                                 <GraphLayerWrapper
                                     draggable={true}
                                     index={index}
+                                    id={layer.id}
                                 >
                                     <RectangleLayer
                                         key={layer.id}

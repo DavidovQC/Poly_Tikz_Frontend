@@ -1,0 +1,59 @@
+.layer-searchbar-container {
+    position: relative;
+    display: flex;
+    height: 20px;
+}
+
+/* Search input */
+.layer-searchbar-container input {
+    width: 340px;
+    height: 20px;
+
+    padding: 2px 10px;
+
+    font-size: 12px;
+    color: rgb(220, 220, 220);
+
+    background-color: rgb(36, 36, 36);
+    border: 1px solid rgb(57, 56, 56);
+    border-radius: 3px;
+
+    outline: none;
+}
+
+.layer-searchbar-container input:hover,
+.layer-searchbar-container input:focus-visible {
+    border-color: rgb(255, 247, 241);
+}
+
+/* Dropdown */
+.layer-search-results {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 100%;
+
+    background-color: rgb(30, 30, 30);
+    border: 1px solid rgb(57, 56, 56);
+    border-radius: 3px;
+
+    z-index: 100;
+}
+
+/* Items */
+.layer-search-item {
+    padding: 4px 6px;
+    font-size: 12px;
+    color: rgb(220, 220, 220);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.layer-search-item:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.layer-search-item.muted {
+    color: rgb(140, 140, 140);
+    cursor: default;
+}

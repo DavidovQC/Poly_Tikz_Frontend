@@ -18,13 +18,15 @@
 
 ~~-Copy and hide functionality (maybe a wrapper around each layer?)~~
 
+-Convert layer selection from dropdown to searchbar
+
 -onDragover should have a blue line above the layer appear
 
 -Save up to 10 changes
 
 -Ctrl + Z to previous generation
 
--Finish points layer and create point layer
+-Finish points layer and create path layer
 
 -Launch
 

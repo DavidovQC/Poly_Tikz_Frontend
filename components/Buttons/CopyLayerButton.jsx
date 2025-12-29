@@ -1,4 +1,4 @@
-import "../styles/GraphLayerButtonStyles/copy-layer-button-styles.css";
+import "../../styles/GraphLayerButtonStyles/copy-layer-button-styles.css";
 
 function CopyLayerButton({ clickFunction }) {
     return (

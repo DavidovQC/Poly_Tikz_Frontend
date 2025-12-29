@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import Dropdown from "../Dropdown";
-import DeleteLayerButton from "../DeleteLayerButton";
+
 import "../../styles/GraphLayerComponentStyles/circle-layers-styles.css";
+
+import Dropdown from "../Dropdown";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 
@@ -87,18 +88,6 @@ function CircleLayer({ id, dispatch, layer }) {
                         onChangeFunction={handeColorChange}
                     ></ColorInputField>
                 </div>
-            </div>
-            <div className="delete-button-container">
-                <DeleteLayerButton
-                    clickFunction={() =>
-                        dispatch({
-                            type: "delete_layer",
-                            payload: {
-                                id: id,
-                            },
-                        })
-                    }
-                ></DeleteLayerButton>
             </div>
         </Dropdown>
     );

@@ -1,4 +1,4 @@
-import "../styles/GraphLayerButtonStyles/delete-layer-button-styles.css";
+import "../../styles/GraphLayerButtonStyles/delete-layer-button-styles.css";
 
 function DltLayerButton({ onClickFunction }) {
     return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Dropdown from "../Dropdown";
 import { useEffect } from "react";
-import DeleteLayerButton from "../DeleteLayerButton";
+import DeleteLayerButton from "../Buttons/DeleteLayerButton";
 import TextInputField from "../InputWidgets/TextInputField";
 
 import "../../styles/GraphLayerComponentStyles/graph-point-layers-styles.css";
@@ -171,19 +171,6 @@ function GraphPointLayer({ dispatch, id, layer }) {
                             </div>
                         </div>
                     </Dropdown>
-
-                    <div className="delete-button-container">
-                        <DeleteLayerButton
-                            clickFunction={() =>
-                                dispatch({
-                                    type: "delete_layer",
-                                    payload: {
-                                        id: id,
-                                    },
-                                })
-                            }
-                        ></DeleteLayerButton>
-                    </div>
                 </Dropdown>
             </div>
         </div>

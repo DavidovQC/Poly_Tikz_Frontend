@@ -3,8 +3,8 @@ import { LayerContext } from "../Layers/LayersContext";
 
 import "../styles/graph-layer-wrapper-styles.css";
 
-import CopyLayerButton from "./CopyLayerButton";
-import DltLayerButton from "./DltLayerButton";
+import CopyLayerButton from "./Buttons/CopyLayerButton";
+import DltLayerButton from "./Buttons/DeleteLayerButton";
 
 function GraphLayerWrapper({ index, children, draggable, id }) {
     const { dispatch } = useContext(LayerContext);

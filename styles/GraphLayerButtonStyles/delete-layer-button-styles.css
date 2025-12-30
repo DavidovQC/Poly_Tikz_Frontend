@@ -1,5 +1,6 @@
 .delete-button-container {
     border-radius: 3px;
+    display: flex;
     cursor: pointer;
 }
 

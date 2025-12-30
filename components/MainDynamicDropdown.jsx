@@ -3,6 +3,7 @@ import { useContext } from "react";
 import GraphComponent from "./GraphComponent";
 import { AppContext } from "../src/AppContext";
 import { LayersProvider } from "../Layers/LayersContext";
+import DropdownInputField from "./InputWidgets/DropdownInputField";
 
 function MainDynamicDropdown() {
     const { selectedOption, setSelectedOption } = useContext(AppContext);
@@ -13,15 +14,23 @@ function MainDynamicDropdown() {
         setTikzData((tikzData) => ({ ...tikzData, type: event.target.value }));
     }
 
+    const dropdownOptions = [
+        { value: "Graph", label: "Graph" },
+        { value: "Table", label: "Table" },
+    ];
+
     return (
         <div className="options-container">
             <div className="selection-container">
-                <select value={selectedOption} onChange={changeOption}>
+                {/* <DropdownInputField
+                    values={dropdownOptions}
+                    onSelectFunction={changeOption}
+                    label={"Workspace: "}
+                ></DropdownInputField> */}
+                {/* <select value={selectedOption} onChange={changeOption}>
                     <option value="Graph">Graph</option>
                     <option value="Table">Table</option>
-                    {/* <option value="Venn-Diagram">Venn Diagram</option>
-                    <option value="Lienar-Transform">Linear Transform</option> */}
-                </select>
+                </select> */}
             </div>
             <div className="to-center">
                 {selectedOption == "Graph" && (

@@ -10,7 +10,7 @@ import SliderInputField from "../InputWidgets/SliderInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 import DropdownInputField from "../InputWidgets/DropdownInputField";
 
-function RectangleLayer({ id, dispatch, layer }) {
+function RectangleLayer({ id, dispatch, layer, isVisible }) {
     //Object data
     //Basic settings
     const [height, setHeight] = useState(layer.height ?? 0.5);
@@ -93,6 +93,7 @@ function RectangleLayer({ id, dispatch, layer }) {
             newLayer: {
                 type: "Rectangle",
                 id: id,
+                isVisible: isVisible,
 
                 height: height,
                 width: width,

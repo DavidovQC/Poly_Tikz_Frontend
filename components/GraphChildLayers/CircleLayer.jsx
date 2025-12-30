@@ -6,9 +6,8 @@ import Dropdown from "../Dropdown";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 
-function CircleLayer({ id, dispatch, layer }) {
-    //Object Data
-    //Basic settings
+function CircleLayer({ id, dispatch, layer, isVisible }) {
+    //Main
     const [xOrigin, setXOrigin] = useState(layer.xOrigin ?? 0);
     const [yOrigin, setYOrigin] = useState(layer.yOrigin ?? 0);
     const [radius, setRadius] = useState(layer.radius ?? 1);
@@ -16,6 +15,9 @@ function CircleLayer({ id, dispatch, layer }) {
 
     //Dropdown Data
     const [isOpen, setIsOpen] = useState(layer.isOpen ?? false);
+
+    const objectData = [xOrigin, yOrigin, radius, color];
+    const dropdownData = [isOpen];
 
     //Handlers
     function handleXOriginChange(e) {
@@ -34,15 +36,13 @@ function CircleLayer({ id, dispatch, layer }) {
         setColor(e.target.value);
     }
 
-    const objectData = [xOrigin, yOrigin, radius, color];
-    const dropdownData = [isOpen];
-
     useEffect(() => {
         dispatch({
             type: "edit_layer",
             newLayer: {
                 type: "Circle",
                 id: id,
+                isVisible: isVisible,
 
                 //Object data:
                 radius: radius,

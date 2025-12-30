@@ -20,6 +20,7 @@ function GraphComponent() {
             payload: { type: "Axis" },
         });
 
+        console.log("Initial created");
         return () => {
             dispatch({
                 type: "delete_all_layers",

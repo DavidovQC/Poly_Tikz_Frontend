@@ -31,6 +31,13 @@ function reducer(layers, action) {
             updated.splice(toIndex, 0, moved);
             return updated;
 
+        case "toggle_visible":
+            return layers.map((layer) =>
+                layer.id === action.payload.id
+                    ? { ...layer, isVisible: !layer.isVisible }
+                    : layer
+            );
+
         default:
             console.log("error default");
     }
@@ -38,23 +45,19 @@ function reducer(layers, action) {
 
 function createLayer(type, id) {
     console.log(`the type is + ${type}`);
-    const typeList = [
-        "Axis",
-        "Function",
-        "Circle",
-        "Rectangle",
-        "Point",
-        // "Path",
-    ];
+    const typeList = ["Axis", "Function", "Circle", "Rectangle", "Point"];
 
     if (!typeList.includes(type)) {
         console.log("Error, invalid type");
         return;
     }
 
+    console.log("Layer created in createLayer");
+
     return {
         id: id,
         type: type,
+        isVisible: true,
     };
 }
 

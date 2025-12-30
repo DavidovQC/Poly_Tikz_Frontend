@@ -8,23 +8,38 @@ import NumberInputField from "../InputWidgets/NumberInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 
-function AxisLayer({ dispatch, id }) {
-    //Working + Added to Layer
-    const [xAxisSize, setXAxisSize] = useState(1);
-    const [yAxisSize, setYAxisSize] = useState(1);
-    const [graphType, setGraphType] = useState("Cross");
-    const [arrowsOn, setArrowsOn] = useState(true);
-    const [gridStep, setGridStep] = useState(1);
-    const [xAxisVisible, setXAxisVisible] = useState(true);
-    const [yAxisVisible, setYAxisVisible] = useState(true);
-    const [gridOn, setGridOn] = useState(false);
-    const [ticksOnX, setTicksOnX] = useState(false);
-    const [ticksOnY, setTicksOnY] = useState(false);
-    const [axisColor, setAxisColor] = useState("#000000");
-    const [gridColor, setGridColor] = useState("#ff0000");
+function AxisLayer({ dispatch, id, layer }) {
+    //Main
+    const [graphType, setGraphType] = useState(layer.graphType ?? "Cross");
+    const [xAxisSize, setXAxisSize] = useState(layer.xAxisSize ?? 1);
+    const [yAxisSize, setYAxisSize] = useState(layer.yAxisSize ?? 1);
+    const [axisColor, setAxisColor] = useState(layer.axisColor ?? "#000000");
+    const [arrowsOn, setArrowsOn] = useState(layer.arrowsOn ?? true);
 
-    //Working
-    const [chosenGraphIndex, setChosenGraphIndex] = useState(0);
+    //Ticks
+    const [ticksOnX, setTicksOnX] = useState(layer.ticksOnX ?? false);
+    const [ticksOnY, setTicksOnY] = useState(layer.ticksOnY ?? false);
+
+    //Grid
+    const [gridOn, setGridOn] = useState(layer.gridOn ?? false);
+    const [gridStep, setGridStep] = useState(layer.gridStep ?? 1);
+    const [gridColor, setGridColor] = useState(layer.gridColor ?? "#ff0000");
+
+    //Advanced
+    const [xAxisVisible, setXAxisVisible] = useState(
+        layer.xAxisVisible ?? true
+    );
+    const [yAxisVisible, setYAxisVisible] = useState(
+        layer.yAxisVisible ?? true
+    );
+
+    //Dropdown options
+    const [isOpen, setIsOpen] = useState(layer.isOpen ?? true);
+    const [isTicksOpen, setIsTicksOpen] = useState(layer.isTicksOpen ?? false);
+    const [isGridOpen, setIsGridOpen] = useState(layer.isGridOpen ?? false);
+    const [isAdvancedOpen, setIsAdvancedOpen] = useState(
+        layer.isAdvancedOpen ?? false
+    );
 
     //in progress
     const [ticksStep, setTicksStep] = useState(1);
@@ -46,10 +61,13 @@ function AxisLayer({ dispatch, id }) {
         ticksStep,
     ];
 
+    const dropdownData = [isOpen, isTicksOpen, isGridOpen, isAdvancedOpen];
+
     useEffect(() => {
         dispatch({
             type: "edit_layer",
             newLayer: {
+                //Main
                 type: "Axis",
                 id: id,
                 xAxisSize: xAxisSize,
@@ -65,9 +83,15 @@ function AxisLayer({ dispatch, id }) {
                 ticksStep: ticksStep,
                 axisColor: axisColor,
                 gridColor: gridColor,
+
+                //Dropdown
+                isOpen: isOpen,
+                isTicksOpen: isTicksOpen,
+                isGridOpen: isGridOpen,
+                isAdvancedOpen: isAdvancedOpen,
             },
         });
-    }, objectData);
+    }, [objectData, dropdownData]);
 
     function handleXAxisSizeChange(event) {
         setXAxisSize(event.target.value);
@@ -122,7 +146,7 @@ function AxisLayer({ dispatch, id }) {
     }
 
     return (
-        <Dropdown label="Axes" isOpen={true}>
+        <Dropdown label="Axes" isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className="Axis-options graph-options-container">
                 <SVGButtonArray>
                     {svgData.map((graph) => {
@@ -174,7 +198,11 @@ function AxisLayer({ dispatch, id }) {
                     </div>
                 </div>
 
-                <Dropdown label="Ticks">
+                <Dropdown
+                    label="Ticks"
+                    isOpen={isTicksOpen}
+                    setIsOpen={setIsTicksOpen}
+                >
                     <div className="ticks-options-container">
                         <div className="tick-column-1">
                             <CheckboxInputField
@@ -194,7 +222,11 @@ function AxisLayer({ dispatch, id }) {
                     </div>
                 </Dropdown>
 
-                <Dropdown label="Grid">
+                <Dropdown
+                    label="Grid"
+                    isOpen={isGridOpen}
+                    setIsOpen={setIsGridOpen}
+                >
                     <div className="grid-options-container">
                         <div className="grid-column-1">
                             <CheckboxInputField
@@ -221,7 +253,11 @@ function AxisLayer({ dispatch, id }) {
                         </div>
                     </div>
                 </Dropdown>
-                <Dropdown label="Advanced">
+                <Dropdown
+                    label="Advanced"
+                    isOpen={isAdvancedOpen}
+                    setIsOpen={setIsAdvancedOpen}
+                >
                     <div className="advanced-options-container">
                         <div className="advanced-column-1">
                             <CheckboxInputField

@@ -5,6 +5,7 @@ import "../styles/graph-layer-wrapper-styles.css";
 
 import CopyLayerButton from "./Buttons/CopyLayerButton";
 import DltLayerButton from "./Buttons/DeleteLayerButton";
+import ToggleVisibleButton from "./Buttons/ToggleVisibleButton";
 
 function GraphLayerWrapper({ index, children, draggable, id }) {
     const { dispatch } = useContext(LayerContext);
@@ -47,8 +48,18 @@ function GraphLayerWrapper({ index, children, draggable, id }) {
         });
     }
 
+    function toggleVisible(e) {
+        dispatch({
+            type: "toggle_visible",
+            payload: {
+                id: id,
+            },
+        });
+    }
+
     return (
         //If not draggable (as in the case with the axes) then no behavior should be defined
+
         <div className="graph-layer-wrapper">
             <div
                 className="drag-bar-container"
@@ -58,6 +69,9 @@ function GraphLayerWrapper({ index, children, draggable, id }) {
                 onDrop={draggable ? onDrop : undefined}
             >
                 <div className="buttons-container">
+                    <ToggleVisibleButton
+                        onClickFunction={toggleVisible}
+                    ></ToggleVisibleButton>
                     <CopyLayerButton></CopyLayerButton>
                     <DltLayerButton
                         onClickFunction={deleteLayer}

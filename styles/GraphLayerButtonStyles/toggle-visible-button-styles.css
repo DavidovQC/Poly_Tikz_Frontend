@@ -1,0 +1,17 @@
+.toggle-visible-button-container {
+    border-radius: 3px;
+    display: flex;
+    cursor: pointer;
+}
+
+.toggle-visible-button-container svg {
+    color: rgb(180, 180, 180);
+}
+
+.toggle-visible-button-container svg:hover {
+    color: white;
+}
+
+.toggle-visible-button-container:hover {
+    background-color: rgb(180, 180, 180);
+}

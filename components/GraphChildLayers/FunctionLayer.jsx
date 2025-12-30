@@ -9,12 +9,26 @@ import DropdownInputField from "../InputWidgets/DropdownInputField";
 import SliderInputField from "../InputWidgets/SliderInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 
-function FunctionLayer({ id, dispatch }) {
-    const [functionInput, setFunctionInput] = useState("(\\x)^2");
-    const [thickness, setThickness] = useState("thick");
-    const [stroke, setStroke] = useState("solid");
-    const [samples, setSamples] = useState(100);
-    const [color, setColor] = useState("#0000ff");
+function FunctionLayer({ id, dispatch, layer, isVisible }) {
+    //Main
+    const [functionInput, setFunctionInput] = useState(
+        layer.functionInput ?? "(\\x)^2"
+    );
+    const [thickness, setThickness] = useState(layer.thickness ?? "thick");
+    const [stroke, setStroke] = useState(layer.stroke ?? "solid");
+    const [color, setColor] = useState(layer.color ?? "#0000ff");
+
+    //Advanced
+    const [samples, setSamples] = useState(layer.samples ?? 100);
+
+    //Dropdown options
+    const [isOpen, setIsOpen] = useState(layer.isOpen ?? false);
+    const [isAdvancedOpen, setIsAdvancedOpen] = useState(
+        layer.isAdvancedOpen ?? false
+    );
+
+    const objectData = [functionInput, thickness, stroke, color, samples];
+    const dropdownData = [isOpen, isAdvancedOpen];
 
     function handleFunctionChange(e) {
         setFunctionInput(e.target.value);
@@ -58,17 +72,22 @@ function FunctionLayer({ id, dispatch }) {
             newLayer: {
                 type: "Function",
                 id: id,
-                function: functionInput,
+                isVisible: isVisible,
+
+                functionInput: functionInput,
                 thickness: thickness,
                 stroke: stroke,
                 samples: samples,
                 color: color,
+
+                isOpen: isOpen,
+                isAdvancedOpen: isAdvancedOpen,
             },
         });
-    }, [functionInput, thickness, stroke, samples, color]);
+    }, [objectData, dropdownData]);
 
     return (
-        <Dropdown label="Function">
+        <Dropdown label="Function" isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className="main-function-options-container">
                 <div className="main-function-column-1">
                     <div className="function-input-container">
@@ -103,7 +122,11 @@ function FunctionLayer({ id, dispatch }) {
                     ></ColorInputField>
                 </div>
             </div>
-            <Dropdown label={"Advanced"}>
+            <Dropdown
+                label={"Advanced"}
+                isOpen={isAdvancedOpen}
+                setIsOpen={setIsAdvancedOpen}
+            >
                 <div className="advanced-function-container">
                     <div className="advanced-function-row-1">
                         <SliderInputField

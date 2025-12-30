@@ -11,7 +11,7 @@ import ColorInputField from "../InputWidgets/ColorInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import LargeTextInputField from "../InputWidgets/LargeTextInputField";
 
-function GraphPointLayer({ dispatch, id, layer, isVisible }) {
+function GraphPointsLayer({ dispatch, id, layer }) {
     //Main
     const [xCoordinate, setXCoordinate] = useState(layer.xCoordinate ?? 0);
     const [yCoordinate, setYCoordinate] = useState(layer.yCoordinate ?? 0);
@@ -55,8 +55,6 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
             newLayer: {
                 id: id,
                 type: "Point",
-                isVisible: isVisible,
-
                 xValue: xCoordinate,
                 yValue: yCoordinate,
                 size: size,
@@ -198,4 +196,4 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
     );
 }
 
-export default GraphPointLayer;
+export default GraphPointsLayer;

@@ -16,9 +16,11 @@
 
 ~~-Currently all components trigger drag and drop, make it so only label is draggable.~~
 
-~~-Copy and hide functionality (maybe a wrapper around each layer?)~~
+~~-Copy functionality (maybe a wrapper around each layer?)~~
 
--Convert layer selection from dropdown to searchbar
+~~-Convert layer selection from dropdown to searchbar~~
+
+~~-Hide functionality~~
 
 -onDragover should have a blue line above the layer appear
 
@@ -26,7 +28,9 @@
 
 -Ctrl + Z to previous generation
 
--Finish points layer and create path layer
+-Finish points layer,
+-Add path layer and polygon layer
+-Add range to function layer
 
 -Launch
 

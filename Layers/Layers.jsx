@@ -88,6 +88,7 @@ function Layers({ options }) {
                                     key={layer.id}
                                     id={layer.id}
                                     dispatch={dispatch}
+                                    layer={layer}
                                 ></AxisLayer>
                             );
 
@@ -101,7 +102,9 @@ function Layers({ options }) {
                                     <GraphPointLayer
                                         key={layer.id}
                                         id={layer.id}
+                                        isVisible={layer.isVisible}
                                         dispatch={dispatch}
+                                        layer={layer}
                                     ></GraphPointLayer>
                                 </GraphLayerWrapper>
                             );
@@ -116,7 +119,9 @@ function Layers({ options }) {
                                     <FunctionLayer
                                         key={layer.id}
                                         id={layer.id}
+                                        isVisible={layer.isVisible}
                                         dispatch={dispatch}
+                                        layer={layer}
                                     ></FunctionLayer>
                                 </GraphLayerWrapper>
                             );
@@ -131,6 +136,7 @@ function Layers({ options }) {
                                     <CircleLayer
                                         key={layer.id}
                                         id={layer.id}
+                                        isVisible={layer.isVisible}
                                         layer={layer}
                                         dispatch={dispatch}
                                     ></CircleLayer>
@@ -147,18 +153,11 @@ function Layers({ options }) {
                                     <RectangleLayer
                                         key={layer.id}
                                         id={layer.id}
+                                        isVisible={layer.isVisible}
                                         layer={layer}
                                         dispatch={dispatch}
                                     ></RectangleLayer>
                                 </GraphLayerWrapper>
-                            );
-                        case "Path":
-                            return (
-                                <PathLayer
-                                    key={layer.id}
-                                    id={layer.id}
-                                    dispatch={dispatch}
-                                ></PathLayer>
                             );
 
                         default:

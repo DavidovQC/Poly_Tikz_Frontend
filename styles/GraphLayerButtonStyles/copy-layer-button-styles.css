@@ -1,7 +1,6 @@
 .copy-button-container {
     border-radius: 3px;
     display: flex;
-    align-items: center;
     cursor: pointer;
 }
 

@@ -1,9 +1,12 @@
-import Dropdown from "../Dropdown";
 import { useState, useEffect } from "react";
+import { shallowEqual } from "../../utils/shallow-equals";
+
+import "../../styles/GraphLayerComponentStyles/axis-layers-styles.css";
+
+import Dropdown from "../Dropdown";
 import SVGButton from "../SVGButton";
 import SVGButtonArray from "../SVGButtonArray";
 import svgData from "../../assets/SVGButtonData";
-import "../../styles/GraphLayerComponentStyles/axis-layers-styles.css";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
@@ -45,9 +48,10 @@ function AxisLayer({ dispatch, id, layer }) {
     const [ticksStep, setTicksStep] = useState(1);
 
     const objectData = [
+        graphType,
         xAxisSize,
         yAxisSize,
-        graphType,
+
         arrowsOn,
         gridStep,
         gridOn,
@@ -64,32 +68,36 @@ function AxisLayer({ dispatch, id, layer }) {
     const dropdownData = [isOpen, isTicksOpen, isGridOpen, isAdvancedOpen];
 
     useEffect(() => {
+        const newLayer = {
+            //Main
+            type: "Axis",
+            id: id,
+            xAxisSize: xAxisSize,
+            yAxisSize: yAxisSize,
+            AxisType: graphType,
+            arrowsOn: arrowsOn,
+            xAxisVisible: xAxisVisible,
+            yAxisVisible: yAxisVisible,
+            gridOn: gridOn,
+            gridStep: gridStep,
+            ticksOnX: ticksOnX,
+            ticksOnY: ticksOnY,
+            ticksStep: ticksStep,
+            axisColor: axisColor,
+            gridColor: gridColor,
+
+            //Dropdown
+            isOpen: isOpen,
+            isTicksOpen: isTicksOpen,
+            isGridOpen: isGridOpen,
+            isAdvancedOpen: isAdvancedOpen,
+        };
+
+        if (shallowEqual(newLayer, layer)) return;
+
         dispatch({
             type: "edit_layer",
-            newLayer: {
-                //Main
-                type: "Axis",
-                id: id,
-                xAxisSize: xAxisSize,
-                yAxisSize: yAxisSize,
-                AxisType: graphType,
-                arrowsOn: arrowsOn,
-                xAxisVisible: xAxisVisible,
-                yAxisVisible: yAxisVisible,
-                gridOn: gridOn,
-                gridStep: gridStep,
-                ticksOnX: ticksOnX,
-                ticksOnY: ticksOnY,
-                ticksStep: ticksStep,
-                axisColor: axisColor,
-                gridColor: gridColor,
-
-                //Dropdown
-                isOpen: isOpen,
-                isTicksOpen: isTicksOpen,
-                isGridOpen: isGridOpen,
-                isAdvancedOpen: isAdvancedOpen,
-            },
+            newLayer: newLayer,
         });
     }, [objectData, dropdownData]);
 

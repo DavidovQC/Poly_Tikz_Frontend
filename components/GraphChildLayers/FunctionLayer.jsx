@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { shallowEqual } from "../../utils/shallow-equals";
 
 import "../../styles/GraphLayerComponentStyles/function-layers-styles.css";
 
@@ -67,22 +68,26 @@ function FunctionLayer({ id, dispatch, layer, isVisible }) {
     ];
 
     useEffect(() => {
+        const newLayer = {
+            type: "Function",
+            id: id,
+            isVisible: isVisible,
+
+            functionInput: functionInput,
+            thickness: thickness,
+            stroke: stroke,
+            samples: samples,
+            color: color,
+
+            isOpen: isOpen,
+            isAdvancedOpen: isAdvancedOpen,
+        };
+
+        if (shallowEqual(newLayer, layer)) return;
+
         dispatch({
             type: "edit_layer",
-            newLayer: {
-                type: "Function",
-                id: id,
-                isVisible: isVisible,
-
-                functionInput: functionInput,
-                thickness: thickness,
-                stroke: stroke,
-                samples: samples,
-                color: color,
-
-                isOpen: isOpen,
-                isAdvancedOpen: isAdvancedOpen,
-            },
+            newLayer: newLayer,
         });
     }, [objectData, dropdownData]);
 

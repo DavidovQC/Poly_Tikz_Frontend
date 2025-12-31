@@ -9,6 +9,7 @@ import TextInputField from "../InputWidgets/TextInputField";
 import SliderInputField from "../InputWidgets/SliderInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 import DropdownInputField from "../InputWidgets/DropdownInputField";
+import { shallowEqual } from "../../utils/shallow-equals";
 
 function RectangleLayer({ id, dispatch, layer, isVisible }) {
     //Object data
@@ -88,26 +89,30 @@ function RectangleLayer({ id, dispatch, layer, isVisible }) {
     }
 
     useEffect(() => {
+        const newLayer = {
+            type: "Rectangle",
+            id: id,
+            isVisible: isVisible,
+
+            height: height,
+            width: width,
+            posCenter: posCenter,
+            centerValue: centerValue,
+            bottomValue: bottomValue,
+            fill: fill,
+            fillColor: fillColor,
+            opacity: opacity,
+
+            isOpen: isOpen,
+            isPosOpen: isPosOpen,
+            isFillOpen: isFillOpen,
+        };
+
+        if (shallowEqual(newLayer, layer)) return;
+
         dispatch({
             type: "edit_layer",
-            newLayer: {
-                type: "Rectangle",
-                id: id,
-                isVisible: isVisible,
-
-                height: height,
-                width: width,
-                posCenter: posCenter,
-                centerValue: centerValue,
-                bottomValue: bottomValue,
-                fill: fill,
-                fillColor: fillColor,
-                opacity: opacity,
-
-                isOpen: isOpen,
-                isPosOpen: isPosOpen,
-                isFillOpen: isFillOpen,
-            },
+            newLayer: newLayer,
         });
     }, [objectData, dropdownData]);
 

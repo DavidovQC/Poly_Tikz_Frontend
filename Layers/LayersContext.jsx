@@ -9,12 +9,14 @@ function reducer(layers, action) {
     console.log(layers);
     switch (action.type) {
         case "add_layer":
+            console.log("add_layer called");
             return [
                 ...layers,
                 createLayer(action.payload.type, layerIDCounter++),
             ];
 
         case "edit_layer":
+            console.log("edit_layer called");
             return layers.map((layer) =>
                 layer.id === action.newLayer.id ? action.newLayer : layer
             );
@@ -45,7 +47,14 @@ function reducer(layers, action) {
 
 function createLayer(type, id) {
     console.log(`the type is + ${type}`);
-    const typeList = ["Axis", "Function", "Circle", "Rectangle", "Point"];
+    const typeList = [
+        "Axis",
+        "Function",
+        "Circle",
+        "Rectangle",
+        "Point",
+        "Test",
+    ];
 
     if (!typeList.includes(type)) {
         console.log("Error, invalid type");

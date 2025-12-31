@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { shallowEqual } from "../../utils/shallow-equals";
 
 import "../../styles/GraphLayerComponentStyles/circle-layers-styles.css";
 
@@ -37,22 +38,25 @@ function CircleLayer({ id, dispatch, layer, isVisible }) {
     }
 
     useEffect(() => {
+        const newLayer = {
+            type: "Circle",
+            id: id,
+            isVisible: isVisible,
+
+            //Object data:
+            radius: radius,
+            xOrigin: xOrigin,
+            yOrigin: yOrigin,
+            color: color,
+
+            //Dropdown data:
+            isOpen: isOpen,
+        };
+
+        if (shallowEqual(newLayer, layer)) return;
         dispatch({
             type: "edit_layer",
-            newLayer: {
-                type: "Circle",
-                id: id,
-                isVisible: isVisible,
-
-                //Object data:
-                radius: radius,
-                xOrigin: xOrigin,
-                yOrigin: yOrigin,
-                color: color,
-
-                //Dropdown data:
-                isOpen: isOpen,
-            },
+            newLayer: newLayer,
         });
     }, [objectData, dropdownData]);
 

@@ -1,16 +1,15 @@
-import { useState } from "react";
-import Dropdown from "../Dropdown";
-import { useEffect } from "react";
-import DeleteLayerButton from "../Buttons/DeleteLayerButton";
-import TextInputField from "../InputWidgets/TextInputField";
+import { useState, useEffect } from "react";
 
 import "../../styles/GraphLayerComponentStyles/graph-point-layers-styles.css";
 
+import Dropdown from "../Dropdown";
+import TextInputField from "../InputWidgets/TextInputField";
 import DropdownInputField from "../InputWidgets/DropdownInputField";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import LargeTextInputField from "../InputWidgets/LargeTextInputField";
+import { shallowEqual } from "../../utils/shallow-equals";
 
 function GraphPointLayer({ dispatch, id, layer, isVisible }) {
     //Main
@@ -49,25 +48,29 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
     const dropdownData = [isOpen, isFillOpen, isLabelOpen];
 
     useEffect(() => {
+        const newLayer = {
+            id: id,
+            type: "Point",
+            isVisible: isVisible,
+
+            pointsList: pointsList,
+            size: size,
+            fillOn: fillOn,
+            fillColor: fillColor,
+            radialColor: radialColor,
+            pointLabel: pointLabel,
+            labelOrientation: labelOrientation,
+
+            isOpen: isOpen,
+            isFillOpen: isFillOpen,
+            isLabelOpen: isLabelOpen,
+        };
+
+        if (shallowEqual(newLayer, layer)) return;
+
         dispatch({
             type: "edit_layer",
-            newLayer: {
-                id: id,
-                type: "Point",
-                isVisible: isVisible,
-
-                pointsList: pointsList,
-                size: size,
-                fillOn: fillOn,
-                fillColor: fillColor,
-                radialColor: radialColor,
-                pointLabel: pointLabel,
-                labelOrientation: labelOrientation,
-
-                isOpen: isOpen,
-                isFillOpen: isFillOpen,
-                isLabelOpen: isLabelOpen,
-            },
+            newLayer: newLayer,
         });
     }, [objectData, dropdownData]);
 

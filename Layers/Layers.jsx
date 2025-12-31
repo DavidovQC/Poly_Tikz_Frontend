@@ -9,6 +9,7 @@ import GraphPointLayer from "../components/GraphChildLayers/GraphPointLayer";
 import FunctionLayer from "../components/GraphChildLayers/FunctionLayer";
 import CircleLayer from "../components/GraphChildLayers/CircleLayer";
 import RectangleLayer from "../components/GraphChildLayers/RectangleLayer";
+import TestLayer from "../components/GraphChildLayers/TestLayer";
 import PathLayer from "../components/GraphChildLayers/PathLayer";
 
 import GraphLayerWrapper from "../components/GraphLayerWrapper";
@@ -60,6 +61,11 @@ function Layers({ options }) {
         {
             label: "Point",
             terms: ["Node", "Label"],
+        },
+
+        {
+            label: "Test",
+            terms: [],
         },
     ];
 
@@ -157,6 +163,23 @@ function Layers({ options }) {
                                         layer={layer}
                                         dispatch={dispatch}
                                     ></RectangleLayer>
+                                </GraphLayerWrapper>
+                            );
+
+                        case "Test":
+                            return (
+                                <GraphLayerWrapper
+                                    draggable={true}
+                                    index={index}
+                                    id={layer.id}
+                                >
+                                    <TestLayer
+                                        key={layer.id}
+                                        id={layer.id}
+                                        isVisible={layer.isVisible}
+                                        layer={layer}
+                                        dispatch={dispatch}
+                                    ></TestLayer>
                                 </GraphLayerWrapper>
                             );
 

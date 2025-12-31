@@ -47,11 +47,11 @@ function Layers({ options }) {
     const graphOptions = [
         {
             label: "Rectangle",
-            terms: ["Square", "Polygon", "Quadrilateral", "Diamond"],
+            terms: ["Square", "Polygon", "Quadrilateral"],
         },
         {
             label: "Circle",
-            terms: ["Ellipse", "Round"],
+            terms: ["Ellipse"],
         },
         {
             label: "Function",

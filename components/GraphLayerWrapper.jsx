@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { LayerContext } from "../Layers/LayersContext";
 
 import "../styles/graph-layer-wrapper-styles.css";
@@ -9,6 +9,7 @@ import ToggleVisibleButton from "./Buttons/ToggleVisibleButton";
 
 function GraphLayerWrapper({ index, children, draggable, id }) {
     const { dispatch } = useContext(LayerContext);
+    const [dragOverTrue, setDragOverTrue] = useState(false);
 
     function onDragStart(e) {
         e.dataTransfer.setData("text/plain", index);
@@ -16,6 +17,12 @@ function GraphLayerWrapper({ index, children, draggable, id }) {
 
     function onDragOver(e) {
         e.preventDefault();
+        setDragOverTrue(true);
+    }
+
+    function onDragLeave(e) {
+        e.preventDefault();
+        setDragOverTrue(false);
     }
 
     function onDrop(e) {
@@ -28,6 +35,8 @@ function GraphLayerWrapper({ index, children, draggable, id }) {
                 payload: { fromIndex, toIndex },
             });
         }
+
+        setDragOverTrue(false);
     }
 
     function deleteLayer() {
@@ -61,11 +70,13 @@ function GraphLayerWrapper({ index, children, draggable, id }) {
         //If not draggable (as in the case with the axes) then no behavior should be defined
 
         <div className="graph-layer-wrapper">
+            {dragOverTrue && <div className="dragover-bar"></div>}
             <div
                 className="drag-bar-container"
                 draggable={draggable}
                 onDragStart={draggable ? onDragStart : undefined}
                 onDragOver={draggable ? onDragOver : undefined}
+                onDragLeave={draggable ? onDragLeave : undefined}
                 onDrop={draggable ? onDrop : undefined}
             >
                 <div className="buttons-container">

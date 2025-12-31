@@ -1,18 +1,17 @@
 import { useState } from "react";
-import Dropdown from "../Dropdown";
 import { useEffect } from "react";
-import DeleteLayerButton from "../Buttons/DeleteLayerButton";
-import TextInputField from "../InputWidgets/TextInputField";
 
 import "../../styles/GraphLayerComponentStyles/graph-point-layers-styles.css";
 
+import Dropdown from "../Dropdown";
+import TextInputField from "../InputWidgets/TextInputField";
 import DropdownInputField from "../InputWidgets/DropdownInputField";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import LargeTextInputField from "../InputWidgets/LargeTextInputField";
 
-function GraphPointLayer({ dispatch, id, layer, isVisible }) {
+function GraphPathLayer({ dispatch, id, layer, isVisible }) {
     //Main
     const [pointsList, setPointsList] = useState("(-1, 0),\n (0, 0),\n (1, 1)");
     const [size, setSize] = useState(layer.size ?? 1);
@@ -28,10 +27,14 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
         layer.labelOrientation ?? "right"
     );
 
+    //Edges:
+    const [edgesOn, setEdgesOn] = useState(layer.edgesOn ?? true);
+
     //Dropdown:
     const [isOpen, setIsOpen] = useState(layer.isOpen ?? false);
     const [isFillOpen, setIsFillOpen] = useState(layer.isFillOpen ?? false);
     const [isLabelOpen, setIsLabelOpen] = useState(layer.isLabelOpen ?? false);
+    const [isEdgesOpen, setIsEdgesOpen] = useState(layer.isEdgesOpen ?? false);
 
     ///to be implemented:
 
@@ -44,9 +47,11 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
         radialColor,
         fillColor,
         fillOn,
+
+        edgesOn,
     ];
 
-    const dropdownData = [isOpen, isFillOpen, isLabelOpen];
+    const dropdownData = [isOpen, isFillOpen, isLabelOpen, isEdgesOpen];
 
     useEffect(() => {
         dispatch({
@@ -63,10 +68,12 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
                 radialColor: radialColor,
                 pointLabel: pointLabel,
                 labelOrientation: labelOrientation,
+                edgesOn: edgesOn,
 
                 isOpen: isOpen,
                 isFillOpen: isFillOpen,
                 isLabelOpen: isLabelOpen,
+                isEdgesOpen: isEdgesOpen,
             },
         });
     }, [objectData, dropdownData]);
@@ -99,6 +106,10 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
         setLabelOrientation(e.target.value);
     }
 
+    function handleEdgesOn(e) {
+        setEdgesOn(!edgesOn);
+    }
+
     const orientationValues = [
         { value: "right", label: "Right" },
         { value: "left", label: "Left" },
@@ -113,7 +124,7 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
     return (
         <div>
             <div>
-                <Dropdown label="Points" isOpen={isOpen} setIsOpen={setIsOpen}>
+                <Dropdown label="Path" isOpen={isOpen} setIsOpen={setIsOpen}>
                     <div className="main-graph-point-container">
                         <div className="main-graph-point-column-1">
                             <LargeTextInputField
@@ -127,15 +138,7 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
                         </div>
 
                         <div className="main-graph-point-column-2">
-                            <LargeTextInputField
-                                label={"Labels: "}
-                                infoText={"Input as a comma separated list"}
-                                value={pointLabel}
-                                onChangeFunction={handlePointLabelChange}
-                            ></LargeTextInputField>
-                        </div>
-                        <div>
-                            {/* <NumberInputField
+                            <NumberInputField
                                 label={"size: "}
                                 step={1}
                                 min={1}
@@ -147,7 +150,7 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
                                 label={"color: "}
                                 value={radialColor}
                                 onChangeFunction={handleRadialColorChange}
-                            ></ColorInputField> */}
+                            ></ColorInputField>
                         </div>
                     </div>
 
@@ -169,6 +172,22 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
                                     value={fillColor}
                                     onChangeFunction={handleFillColorChange}
                                 ></ColorInputField>
+                            </div>
+                        </div>
+                    </Dropdown>
+
+                    <Dropdown
+                        label={"Edges"}
+                        isOpen={isEdgesOpen}
+                        setIsOpen={setIsEdgesOpen}
+                    >
+                        <div className="edges-graph-path-container">
+                            <div className="edges-graph-path-column-1">
+                                <CheckboxInputField
+                                    label={"edges:"}
+                                    value={edgesOn}
+                                    onChangeFunction={handleEdgesOn}
+                                ></CheckboxInputField>
                             </div>
                         </div>
                     </Dropdown>
@@ -202,4 +221,4 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
     );
 }
 
-export default GraphPointLayer;
+export default GraphPathLayer;

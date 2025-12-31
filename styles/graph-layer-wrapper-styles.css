@@ -1,6 +1,14 @@
 /* .graph-layer-wrapper {
 } */
 
+.dragover-bar {
+    height: 1px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .drag-bar-container {
     /* border: solid red 1px; */
     height: 25px;

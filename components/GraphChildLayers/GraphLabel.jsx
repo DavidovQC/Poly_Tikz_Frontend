@@ -1,21 +1,23 @@
 import { useState } from "react";
 import Dropdown from "../Dropdown";
 import { useEffect } from "react";
-import DeleteLayerButton from "../Buttons/DeleteLayerButton";
 import TextInputField from "../InputWidgets/TextInputField";
 
 import "../../styles/GraphLayerComponentStyles/graph-point-layers-styles.css";
+
 import DropdownInputField from "../InputWidgets/DropdownInputField";
 import NumberInputField from "../InputWidgets/NumberInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import LargeTextInputField from "../InputWidgets/LargeTextInputField";
 
-function GraphPointsLayer({ dispatch, id, layer }) {
+function GraphLabelLayer({ dispatch, id, layer, isVisible }) {
     //Main
+    // const [pointsList, setPointsList] = useState("");
     const [xCoordinate, setXCoordinate] = useState(layer.xCoordinate ?? 0);
     const [yCoordinate, setYCoordinate] = useState(layer.yCoordinate ?? 0);
     const [size, setSize] = useState(layer.size ?? 1);
+    const [radialColor, setRadialColor] = useState("#000000");
 
     //Fill:
     const [fillOn, setFillOn] = useState(layer.fillOn ?? true);
@@ -33,7 +35,6 @@ function GraphPointsLayer({ dispatch, id, layer }) {
     const [isLabelOpen, setIsLabelOpen] = useState(layer.isLabelOpen ?? false);
 
     ///to be implemented:
-    const [radialColor, setRadialColor] = useState("#000000");
 
     const objectData = [
         xCoordinate,
@@ -55,6 +56,8 @@ function GraphPointsLayer({ dispatch, id, layer }) {
             newLayer: {
                 id: id,
                 type: "Point",
+                isVisible: isVisible,
+
                 xValue: xCoordinate,
                 yValue: yCoordinate,
                 size: size,
@@ -196,4 +199,4 @@ function GraphPointsLayer({ dispatch, id, layer }) {
     );
 }
 
-export default GraphPointsLayer;
+export default GraphLabelLayer;

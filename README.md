@@ -22,15 +22,20 @@
 
 ~~-Hide functionality~~
 
--onDragover should have a blue line above the layer appear
+~~-onDragover should have a blue line above the layer appear~~
+
+-Finish points layer,
+-Add path layer,
+-polygon layer,
+-vector layer,
+-angle layer
+-line layer,
+-label layer
+-Add range to function layer
 
 -Save up to 10 changes
 
 -Ctrl + Z to previous generation
-
--Finish points layer,
--Add path layer and polygon layer
--Add range to function layer
 
 -Launch
 

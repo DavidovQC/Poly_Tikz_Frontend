@@ -25,6 +25,9 @@
 ~~-onDragover should have a blue line above the layer appear~~
 
 -Finish points layer,
+--Fix parseLabels to take elements of the form {A}, {B(0, 1)}, etc...
+--
+
 -Add path layer,
 -polygon layer,
 -vector layer,

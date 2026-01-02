@@ -1,6 +1,8 @@
 import Navbar from "../components/SiteComponents/Navbar";
 import Footer from "../components/SiteComponents/Footer";
 import "../styles/PageStyles/about-page-styles.css";
+import TikzContainer from "../components/TikzContainer";
+import { useState } from "react";
 
 function About() {
     return (
@@ -9,6 +11,7 @@ function About() {
             <div className="coming-soon-container">
                 <h2>Tutorials Coming Soon!</h2>
             </div>
+
             <Footer></Footer>
         </>
     );

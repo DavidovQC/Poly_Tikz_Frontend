@@ -46,6 +46,11 @@ function Layers({ options }) {
     }
 
     const graphOptions = [
+        // {
+        //     label: "Test",
+        //     terms: [],
+        // },
+
         {
             label: "Rectangle",
             terms: ["Square", "Polygon", "Quadrilateral"],
@@ -59,13 +64,8 @@ function Layers({ options }) {
             terms: ["Relation", "Transformation"],
         },
         {
-            label: "Point",
+            label: "Points",
             terms: ["Node", "Label"],
-        },
-
-        {
-            label: "Test",
-            terms: [],
         },
     ];
 
@@ -88,6 +88,23 @@ function Layers({ options }) {
             <div className="layers-container">
                 {layers.map((layer, index) => {
                     switch (layer.type) {
+                        // case "Test":
+                        //     return (
+                        //         <GraphLayerWrapper
+                        //             draggable={true}
+                        //             index={index}
+                        //             id={layer.id}
+                        //         >
+                        //             <TestLayer
+                        //                 key={layer.id}
+                        //                 id={layer.id}
+                        //                 isVisible={layer.isVisible}
+                        //                 layer={layer}
+                        //                 dispatch={dispatch}
+                        //             ></TestLayer>
+                        //         </GraphLayerWrapper>
+                        //     );
+
                         case "Axis":
                             return (
                                 <AxisLayer
@@ -98,7 +115,7 @@ function Layers({ options }) {
                                 ></AxisLayer>
                             );
 
-                        case "Point":
+                        case "Points":
                             return (
                                 <GraphLayerWrapper
                                     draggable={true}
@@ -163,23 +180,6 @@ function Layers({ options }) {
                                         layer={layer}
                                         dispatch={dispatch}
                                     ></RectangleLayer>
-                                </GraphLayerWrapper>
-                            );
-
-                        case "Test":
-                            return (
-                                <GraphLayerWrapper
-                                    draggable={true}
-                                    index={index}
-                                    id={layer.id}
-                                >
-                                    <TestLayer
-                                        key={layer.id}
-                                        id={layer.id}
-                                        isVisible={layer.isVisible}
-                                        layer={layer}
-                                        dispatch={dispatch}
-                                    ></TestLayer>
                                 </GraphLayerWrapper>
                             );
 

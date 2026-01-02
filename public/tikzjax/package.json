@@ -1,0 +1,45 @@
+{
+	"name": "tikzjax",
+	"version": "1.0.0",
+	"description": "",
+	"browser": "tikzjax.js",
+	"scripts": {
+		"gen-tex-files": "node genTexFiles.js",
+		"encode-tex-files": "node encodeTexFiles.js",
+		"install-fonts": "gulp download-fonts && gulp install-fonts && fontforge -lang=py -script patchFonts.py && node encodeFonts.js",
+		"devbuild": "npm run encode-tex-files && ./node_modules/.bin/webpack --mode development",
+		"build": "npm run encode-tex-files && ./node_modules/.bin/webpack",
+		"postbuild": "node cleanup.js && npm run install-fonts"
+	},
+	"author": "Jim Fowler",
+	"contributors": [
+		"Glenn Rice"
+	],
+	"license": "GPL-3.0+",
+	"dependencies": {
+		"buffer": "^6.0.3",
+		"dvi2html": "github:artisticat1/dvi2html#ww-modifications",
+		"fetch-readablestream": "^0.2.0",
+		"localforage": "^1.9.0",
+		"md5": "^2.3.0",
+		"pako": "^2.0.2",
+		"process": "^0.11.10",
+		"stream-browserify": "^3.0.0",
+		"threads": "^1.6.3"
+	},
+	"devDependencies": {
+		"@types/md5": "^2.3.2",
+		"@types/pako": "^2.0.0",
+		"copy-webpack-plugin": "^7.0.0",
+		"css-loader": "^5.0.1",
+		"gulp": "^4.0.2",
+		"gulp-decompress": "^3.0.0",
+		"gulp-download2": "^1.0.2",
+		"gulp-filter": "^6.0.0",
+		"style-loader": "^2.0.0",
+		"ts-loader": "^9.4.2",
+		"typescript": "^5.0.4",
+		"webpack": "^5.11.1",
+		"webpack-cli": "^4.3.0"
+	}
+}

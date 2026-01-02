@@ -8,11 +8,13 @@ import "../styles/graph-component-styles.css";
 import GenerateButton from "./GenerateButton";
 
 import symbolsSVG from "../assets/SVGSymbols";
+import TikzContainer from "./TikzContainer";
 
 function GraphComponent() {
-    const { setLatexCode, setSVGCode, setMySVG, setIsLoading } =
+    const { latexCode, setLatexCode, setSVGCode, setMySVG, setIsLoading } =
         useContext(AppContext);
     const { layers, dispatch } = useContext(LayerContext);
+    const [value, setValue] = useState("");
 
     useEffect(() => {
         dispatch({
@@ -35,8 +37,8 @@ function GraphComponent() {
 
         try {
             const response = await fetch(
-                // "http://localhost:3000/api/getGraphSVGv2",
-                "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
+                "http://localhost:3000/api/getGraphSVGv2",
+                // "https://poly-tikz-backend.onrender.com/api/getGraphSVGv2",
                 {
                     method: "POST",
                     body: JSON.stringify(layers),
@@ -70,6 +72,12 @@ function GraphComponent() {
             <div className="generate-graph-button-container">
                 <GenerateButton buttonFunction={GenerateGraph}></GenerateButton>
             </div>
+            {/* <div>
+                <TikzContainer
+                    value={latexCode}
+                    setValue={setLatexCode}
+                ></TikzContainer>
+            </div> */}
         </div>
     );
 }

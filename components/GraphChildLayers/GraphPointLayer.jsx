@@ -127,6 +127,14 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
                                 value={pointsList}
                                 onChangeFunction={handlePointsListChange}
                             ></LargeTextInputField>
+
+                            <NumberInputField
+                                label={"size: "}
+                                step={1}
+                                min={1}
+                                value={size}
+                                onChangeFunction={handleSizeChange}
+                            ></NumberInputField>
                         </div>
 
                         <div className="main-graph-point-column-2">
@@ -136,21 +144,16 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
                                 value={pointLabel}
                                 onChangeFunction={handlePointLabelChange}
                             ></LargeTextInputField>
-                        </div>
-                        <div>
-                            {/* <NumberInputField
-                                label={"size: "}
-                                step={1}
-                                min={1}
-                                value={size}
-                                onChangeFunction={handleSizeChange}
-                            ></NumberInputField>
-
                             <ColorInputField
                                 label={"color: "}
                                 value={radialColor}
                                 onChangeFunction={handleRadialColorChange}
-                            ></ColorInputField> */}
+                            ></ColorInputField>
+                        </div>
+                        <div>
+                            {/* 
+
+                         */}
                         </div>
                     </div>
 

@@ -67,7 +67,7 @@ function createLayer(type, id) {
         "Function",
         "Circle",
         "Rectangle",
-        "Point",
+        "Points",
         "Test",
     ];
 

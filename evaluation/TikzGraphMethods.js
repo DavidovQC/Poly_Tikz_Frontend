@@ -8,7 +8,7 @@ export function createGraphLayer(layers) {
             case "Axis":
                 tikzString = addAxis(tikzString, layer);
                 break;
-            case "Point":
+            case "Points":
                 tikzString = layer.isVisible
                     ? addPoint(tikzString, layer)
                     : tikzString;
@@ -326,7 +326,7 @@ function addPoint(string, point, axis) {
           `\n`
         : string;
 
-    for (i = 0; i < pointsList.length; i++) {
+    for (let i = 0; i < pointsList.length; i++) {
         string =
             string +
             `\n` +
@@ -454,7 +454,7 @@ function addRectnagle(string, rectangle, axis) {
         const color = hexToRGB(rectangle.fillColor);
         const opacity = rectangle.opacity / 100;
         string = string + `\\definecolor{fillColor}${color}` + `\n`;
-        fillString = rectangle.posCenter
+        const fillString = rectangle.posCenter
             ? `\\filldraw[fill=fillColor, fill opacity = ${opacity}] (\\x - 0.5*\\width, \\y - 0.5*\\height) rectangle (\\x + 0.5*\\width, \\y + 0.5*\\height);`
             : `\\filldraw[fill=fillColor, fill opacity = ${opacity}] (\\x, \\y) rectangle (\\x + \\width, \\y + \\height);`;
         string = string + fillString;
@@ -592,6 +592,8 @@ function createClipString(axis) {
 }
 
 function createDomainString(axis) {
+    let domainString;
+
     switch (axis) {
         case "Cross":
             domainString = "domain=-\\xAxisScale:\\xAxisScale";

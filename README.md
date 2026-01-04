@@ -24,6 +24,8 @@
 
 ~~-onDragover should have a blue line above the layer appear~~
 
+--Increase everything in CSS 1.1x
+
 -Finish points layer,
 --Fix parseLabels to take elements of the form {A}, {B(0, 1)}, etc...
 --

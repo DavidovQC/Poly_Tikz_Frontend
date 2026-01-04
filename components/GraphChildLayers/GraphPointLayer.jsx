@@ -50,7 +50,7 @@ function GraphPointLayer({ dispatch, id, layer, isVisible }) {
     useEffect(() => {
         const newLayer = {
             id: id,
-            type: "Point",
+            type: "Points",
             isVisible: isVisible,
 
             pointsList: pointsList,

@@ -37,7 +37,7 @@ function Layers({ options }) {
         });
     }
 
-    function handleAddLayer(option) {
+    function handleAddLayer() {
         if (
             graphOptions.some(
                 (option) =>
@@ -54,22 +54,22 @@ function Layers({ options }) {
         //     terms: [],
         // },
 
-        // {
-        //     label: "Rectangle",
-        //     terms: ["Square", "Polygon", "Quadrilateral"],
-        // },
+        {
+            label: "Rectangle",
+            terms: ["Square", "Polygon", "Quadrilateral"],
+        },
         {
             label: "Circle",
             terms: ["Ellipse"],
         },
-        // {
-        //     label: "Function",
-        //     terms: ["Relation", "Transformation"],
-        // },
-        // {
-        //     label: "Points",
-        //     terms: ["Node", "Label"],
-        // },
+        {
+            label: "Function",
+            terms: ["Relation", "Transformation"],
+        },
+        {
+            label: "Points",
+            terms: ["Node", "Label"],
+        },
     ];
 
     useEffect(() => {

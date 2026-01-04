@@ -28,18 +28,10 @@ function GraphComponent() {
         };
     }, []);
 
-    // function generateGraphv2() {
-    //     setLatexCode(createGraphLayer(layers));
-    // }
-
     return (
         <div className="graph-component-container">
             <Layers></Layers>
-            <div className="generate-graph-button-container">
-                {/* <GenerateButton
-                    buttonFunction={generateGraphv2}
-                ></GenerateButton> */}
-            </div>
+
             <div>
                 <TikzContainer
                     value={latexCode}

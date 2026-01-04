@@ -36,7 +36,10 @@ function reducer(layers, action) {
             return [];
 
         case "delete_layer":
-            return layers.filter((layer) => layer.id != action.payload.id);
+            console.log("delete_layers called");
+            return layers
+                .filter((layer) => layer.id !== action.payload.id)
+                .map((layer) => ({ ...layer }));
 
         case "move_layer":
             const { fromIndex, toIndex } = action.payload;

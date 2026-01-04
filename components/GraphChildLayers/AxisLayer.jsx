@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { shallowEqual } from "../../utils/shallow-equals";
 
 import "../../styles/GraphLayerComponentStyles/axis-layers-styles.css";
@@ -11,7 +11,13 @@ import NumberInputField from "../InputWidgets/NumberInputField";
 import CheckboxInputField from "../InputWidgets/CheckboxInputField";
 import ColorInputField from "../InputWidgets/ColorInputField";
 
+import { AppContext } from "../../src/AppContext";
+import { LayerContext } from "../../Layers/LayersContext";
+import { createGraphLayer } from "../../evaluation/TikzGraphMethods";
+
 function AxisLayer({ dispatch, id, layer }) {
+    const { layers } = useContext(LayerContext);
+    const { setLatexCode } = useContext(AppContext);
     //Main
     const [graphType, setGraphType] = useState(layer.graphType ?? "Cross");
     const [xAxisSize, setXAxisSize] = useState(layer.xAxisSize ?? 1);
@@ -99,6 +105,9 @@ function AxisLayer({ dispatch, id, layer }) {
             type: "edit_layer",
             newLayer: newLayer,
         });
+        // console.log("The layers are:\n");
+        // console.log(layers);
+        // console.log("createGraph is called");
     }, [objectData, dropdownData]);
 
     function handleXAxisSizeChange(event) {

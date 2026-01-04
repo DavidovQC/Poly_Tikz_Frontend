@@ -1,8 +1,12 @@
-import { useReducer, createContext } from "react";
+import { useReducer, createContext, useContext } from "react";
+import { AppContext } from "../src/AppContext";
+import { createGraphLayer } from "../evaluation/TikzGraphMethods";
 
 const LayerContext = createContext();
 
 let layerIDCounter = 0;
+
+// const { setLatexCode } = useContext(AppContext);
 
 function reducer(layers, action) {
     console.log("dispatch called");
@@ -17,9 +21,17 @@ function reducer(layers, action) {
 
         case "edit_layer":
             console.log("edit_layer called");
-            return layers.map((layer) =>
+
+            const newLayers = layers.map((layer) =>
                 layer.id === action.newLayer.id ? action.newLayer : layer
             );
+
+            console.log("newLayers object is:");
+            console.log(newLayers);
+
+            // setLatexCode(createGraphLayer(newLayers));
+
+            return newLayers;
         case "delete_all_layers":
             return [];
 
@@ -57,7 +69,9 @@ function createLayer(type, id) {
     ];
 
     if (!typeList.includes(type)) {
-        console.log("Error, invalid type");
+        console.log(
+            "Error, invalid layerType created in createLayer <- LayersContext. Check typeList."
+        );
         return;
     }
 

@@ -8,8 +8,7 @@ import SVGDisplay from "../components/SVGDisplay";
 import Footer from "../components/SiteComponents/Footer";
 
 function Homepage() {
-    const { latexCode, svgCode, setSVGCode, mySVG, setMySVG } =
-        useContext(AppContext);
+    const { latexCode, svgCode, outputRef, mySVG } = useContext(AppContext);
 
     const [wrapTikz, setWrapTikz] = useState(false);
 
@@ -33,6 +32,8 @@ function Homepage() {
                             svg={mySVG}
                             className="SVG-Display"
                         ></SVGDisplay>
+
+                        <div ref={outputRef} id="output" />
                     </div>
 
                     <div className="output-text-container">

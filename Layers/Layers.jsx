@@ -1,6 +1,6 @@
 import "../styles/layers-styles.css";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LayerContext } from "./LayersContext";
 
 import AxisLayer from "../components/GraphChildLayers/AxisLayer";
@@ -15,8 +15,11 @@ import PathLayer from "../components/GraphChildLayers/PathLayer";
 import GraphLayerWrapper from "../components/GraphLayerWrapper";
 import LayerSearchbar from "../components/SiteComponents/LayerSearchbar";
 import AddLayerButton from "../components/Buttons/AddLayerButton";
+import { AppContext } from "../src/AppContext";
+import { createGraphLayer } from "../evaluation/TikzGraphMethods";
 
 function Layers({ options }) {
+    const { setLatexCode } = useContext(AppContext);
     const { layers, dispatch } = useContext(LayerContext);
     const [layerType, setLayerType] = useState("");
 
@@ -51,24 +54,27 @@ function Layers({ options }) {
         //     terms: [],
         // },
 
-        {
-            label: "Rectangle",
-            terms: ["Square", "Polygon", "Quadrilateral"],
-        },
+        // {
+        //     label: "Rectangle",
+        //     terms: ["Square", "Polygon", "Quadrilateral"],
+        // },
         {
             label: "Circle",
             terms: ["Ellipse"],
         },
-        {
-            label: "Function",
-            terms: ["Relation", "Transformation"],
-        },
-        {
-            label: "Points",
-            terms: ["Node", "Label"],
-        },
+        // {
+        //     label: "Function",
+        //     terms: ["Relation", "Transformation"],
+        // },
+        // {
+        //     label: "Points",
+        //     terms: ["Node", "Label"],
+        // },
     ];
 
+    useEffect(() => {
+        setLatexCode(createGraphLayer(layers));
+    }, layers);
     return (
         <div>
             <div className="add-layer-options-container">

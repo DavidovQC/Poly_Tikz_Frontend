@@ -1,54 +1,47 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
+import { AppContext } from "../src/AppContext";
 
 function TikzContainer({ value, setValue }) {
-    const [code, setCode] = useState(value ?? "");
+    const { setMySVG, setSVGCode } = useContext(AppContext);
+    const [svgText, setSvgText] = useState("");
     const outputRef = useRef(null);
 
-    const debounceTimer = useRef(null);
-    const debouncePending = useRef(false);
-
     function update(currentCode) {
-        if (!outputRef.current) return;
-
         const s = document.createElement("script");
         s.type = "text/tikz";
         s.setAttribute("data-show-console", "true");
         s.textContent = currentCode;
-
         outputRef.current.innerHTML = "";
         outputRef.current.appendChild(s);
     }
 
-    function handleInput(e) {
-        const newCode = e.target.value;
-        setValue(newCode);
-
-        if (debounceTimer.current) {
-            debouncePending.current = true;
-            return;
-        }
-
-        update(newCode);
-
-        debounceTimer.current = setTimeout(() => {
-            debounceTimer.current = null;
-            if (debouncePending.current) {
-                update(newCode);
-            }
-            debouncePending.current = false;
-        }, 200);
-    }
-
-    // initial run (equivalent to update() at bottom of your script)
     useEffect(() => {
+        console.log("UseEffect called");
         update(value);
+
+        //Make a new observer
+        const observer = new MutationObserver(() => {
+            const svg = outputRef.current.querySelector("svg");
+
+            if (svg) {
+                setMySVG(svg.outerHTML);
+                setSvgText(svg.outerHTML);
+                setSVGCode(svg.outerHTML);
+            }
+        });
+
+        //attach it to outputRef.current and its children
+        observer.observe(outputRef.current, { childList: true, subtree: true });
+        //clean up observer
+        return () => observer.disconnect();
     }, [value]);
 
     return (
-        <>
-            <textarea value={value} onInput={handleInput} id="code" />
+        <div style={{ display: "none" }}>
+            <textarea value={value} id="code" />
+            <textarea value={svgText}></textarea>
             <div ref={outputRef} id="output" />
-        </>
+        </div>
     );
 }
 
